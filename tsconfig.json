@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es5",
+    "removeComments": true,
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "rootDirs": ["src", "stories"],
+    "outDir": "lib",
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "declaration": true,
+    "jsx": "react",
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "types": ["node", "jest"]
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "bundles",
+    "example",
+    "lib",
+    "esm",
+    "src/**/*.test.*",
+    "**/__tests__/**",
+    "build",
+    "scripts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "rules": {
+    "indent": [true, 2]
+  }
+}
