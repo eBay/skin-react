@@ -14,7 +14,7 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `expanded` | Boolean | No | No | Whether the drawer is expanded to full height or max 50%
 `open` | Boolean | Yes | No | Whether drawer is open.
-`noHandle` | Boolean | Yes | No | Wheather handle will be shown or not.
+`noHandle` | Boolean | Yes | No | Whether handle will be shown or not.
 `focus` | String | No | No | An id for an element which will receive focus when the drawer opens (defaults to close button).
 `a11yCloseText` | String | No | Yes | A11y text for close button and mask.
 `a11yHandleText` | String | No | Yes | A11y text for draggable handle
