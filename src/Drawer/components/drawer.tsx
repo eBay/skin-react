@@ -4,20 +4,11 @@ import DialogBase from './dialogBase';
 import classNames from 'classnames';
 
 export class Drawer extends React.Component<any, any> {
-  private portalNode: HTMLDivElement;
   constructor(props: any) {
     super(props);
-    this.portalNode = document.createElement('div');
   }
-  componentDidMount() {
-    document.body.appendChild(this.portalNode);
-  }
-  componentWillUnmount() {
-    document.body.removeChild(this.portalNode);
-  }
-  renderOverLay() {
+  render() {
     const {children, ...rest} = this.props;
-
     return (
       <DialogBase
         {...rest}
@@ -31,9 +22,6 @@ export class Drawer extends React.Component<any, any> {
         {children}
       </DialogBase>
     );
-  }
-  render() {
-    return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
   }
 }
 export default Drawer;

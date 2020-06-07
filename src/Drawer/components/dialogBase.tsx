@@ -11,6 +11,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
+import * as ReactDOM from 'react-dom';
 
 export interface DialogBase<T> extends React.HTMLProps<T> {
   tag?: any;
@@ -83,17 +84,40 @@ export const DialogBase = ({
     </Container>
   );
 };
-
-export const DialogBaseWithState = ({onCollapsed, onExpanded, onCloseBtnClick, ...props}: any) => {
-  let startEl = React.createRef();
-  const [open, setOpen] = React.useState(props.open || false);
-  const handleStartClick = ({target}) => (startEl = target);
-  const handleCloseBtnClick = (e) => {
-    setOpen(false);
-    onCloseBtnClick && onCloseBtnClick(e);
+export class DialogBaseWithState extends React.Component<any, any> {
+  private portalNode: HTMLDivElement;
+  private startEl: React.RefObject<unknown>;
+  constructor(props: any) {
+    super(props);
+    this.portalNode = document.createElement('div');
+    this.startEl = React.createRef();
+    this.state = {open: props.open || false};
+  }
+  componentDidMount() {
+    document.body.appendChild(this.portalNode);
+  }
+  componentWillUnmount() {
+    document.body.removeChild(this.portalNode);
+  }
+  handleStartClick = ({target}) => (this.startEl = target);
+  handleCloseBtnClick = (e) => {
+    this.setState({open: false});
+    this.props.onCloseBtnClick && this.props.onCloseBtnClick(e);
   };
-
-  return <DialogBase {...props} onMouseDown={handleStartClick} onCloseBtnClick={handleCloseBtnClick} open={open} />;
-};
+  renderOverLay() {
+    const {...rest} = this.props;
+    return (
+      <DialogBase
+        {...rest}
+        onMouseDown={this.handleStartClick}
+        onCloseBtnClick={this.handleCloseBtnClick}
+        open={open}
+      />
+    );
+  }
+  render() {
+    return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
+  }
+}
 
 export default DialogBaseWithState;
