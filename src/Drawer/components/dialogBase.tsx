@@ -59,7 +59,7 @@ export const DialogBase = ({
   };
   return (
     <Container {...containerProps}>
-      <div key="window" className={`${classPrefix}__window ${windowClass || ''}`}>
+      <div key="window" className={classNames(`${classPrefix}__window`, windowClass)}>
         {top}
         {header && (
           <div className={`${classPrefix}__header`}>
