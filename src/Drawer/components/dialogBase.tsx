@@ -28,7 +28,7 @@ export interface DialogBase<T> extends React.HTMLProps<T> {
   top?: any;
   buttonPosition?: any;
   allyCloseText?: string;
-  onButtonClick?: any;
+  onCloseBtnClick?: any;
 }
 const Container = ({tag, ...props}): any => React.createElement(tag, props);
 
@@ -41,7 +41,7 @@ export const DialogBase = ({
   buttonPosition = 'left',
   children,
   allyCloseText,
-  onButtonClick,
+  onCloseBtnClick,
   footer,
   onScroll,
   ...props
@@ -68,7 +68,7 @@ export const DialogBase = ({
               className={`${classPrefix}__close`}
               type="button"
               aria-label={allyCloseText}
-              onClick={onButtonClick}
+              onClick={onCloseBtnClick}
             >
               <Icon type="close" />
             </button>
@@ -84,20 +84,16 @@ export const DialogBase = ({
   );
 };
 
-export const DialogBaseWithState = ({onCollapsed, onExpanded, ...props}: any) => {
+export const DialogBaseWithState = ({onCollapsed, onExpanded, onCloseBtnClick, ...props}: any) => {
   let startEl = React.createRef();
   const [open, setOpen] = React.useState(props.open || false);
   const handleStartClick = ({target}) => (startEl = target);
-  const handleKeydown = (event) => event.keyCode === 27 && setOpen(false);
-  const handleCloseButtonClick = () => setOpen(false);
-  const handleDialogClick = () => {};
-  const _triggerFocus = () => {};
-  const _triggerBodyScroll = () => {};
-  const onDestroy = () => {};
-  const _trap = () => {};
-  const _release = () => {};
-  const _cancelAsync = () => {};
-  return <DialogBase {...props} open={open} />;
+  const handleCloseBtnClick = (e) => {
+    setOpen(false);
+    onCloseBtnClick && onCloseBtnClick(e);
+  };
+
+  return <DialogBase {...props} onMouseDown={handleStartClick} onCloseBtnClick={handleCloseBtnClick} open={open} />;
 };
 
 export default DialogBaseWithState;
