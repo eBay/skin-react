@@ -14,7 +14,7 @@ Name | Type | Stateful | Required | Description
 `a11yCloseText`| String | No | Yes | A11y text for close button and mask.
 `windowClass` | String | No | No | "" (default) / modifies the base prefix for all Skin classes in the component
 `baseEl` | String | No | No | modify the tag be "div" (default) / "" / ""
-`header` | String | No | No | elment placeholder 
-`footer` | String | No | No | elment placeholder 
+`header` | String | No | No | element placeholder 
+`footer` | String | No | No | element placeholder 
 `transitionEl` | String | No | No | modify the tag be "div" (default) / "" / ""
 `isModal` | Boolean | No | No | Whether drawer is model.
