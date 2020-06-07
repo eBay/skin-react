@@ -85,63 +85,19 @@ export const DialogBase = ({
 };
 
 export const DialogBaseWithState = ({onCollapsed, onExpanded, ...props}: any) => {
-  const [expanded, setExpanded] = React.useState(props.expanded || false);
-  let touches = [];
-  const setExpandedState = (isExpanded) => {
-    setExpanded(isExpanded);
-    if (isExpanded) {
-      onExpanded && onExpanded(isExpanded);
-    } else {
-      onCollapsed && onCollapsed(isExpanded);
-    }
-  };
-  const handleExpand = () => setExpandedState(!expanded);
-  const handleScroll = () => setExpandedState(true);
-  const handleTouchStart = (event) => {
-    const touches = event.changedTouches;
-    debugger;
-    // touches = map(touches, ({ identifier, pageY }) => ({ identifier, pageY }));
-  };
-  const handleTouchMove = (event) => {
-    debugger;
-    if (touches.length) {
-      // forEach(event.changedTouches, (current) => {
-      //   const compare = findIndex(touches, (item) => item.identifier === current.identifier);
-      //   const diff = current.pageY - touches[compare].pageY;
-      //
-      //   if (diff > 30) {
-      //     // Drag down, collpase
-      //     if (this.state.expanded) {
-      //       this.setExpandedState(false);
-      //     } else {
-      //       this.getComponent('dialog').state.open = false;
-      //     }
-      //     this.handleTouchEnd(event);
-      //   } else if (diff < -30) {
-      //     this.setExpandedState(true);
-      //     this.handleTouchEnd(event);
-      //   }
-      // });
-    }
-  };
-  const handleTouchEnd = (event) => {
-    debugger;
-    // forEach(event.changedTouches, (current) => {
-    //   const idx = findIndex(touches, (item) => item.identifier === current.identifier);
-    //   if (idx > -1) {
-    //     touches.splice(idx, 1);
-    //   }
-    // });
-  };
-  return (
-    <DialogBase
-      {...props}
-      onScroll={handleScroll}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    />
-  );
+  let startEl = React.createRef();
+  const [open, setOpen] = React.useState(props.open || false);
+  const handleStartClick = ({target}) => (startEl = target);
+  const handleKeydown = (event) => event.keyCode === 27 && setOpen(false);
+  const handleCloseButtonClick = () => setOpen(false);
+  const handleDialogClick = () => {};
+  const _triggerFocus = () => {};
+  const _triggerBodyScroll = () => {};
+  const onDestroy = () => {};
+  const _trap = () => {};
+  const _release = () => {};
+  const _cancelAsync = () => {};
+  return <DialogBase {...props} />;
 };
 
 export default DialogBaseWithState;
