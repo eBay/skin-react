@@ -97,7 +97,7 @@ export const DialogBaseWithState = ({onCollapsed, onExpanded, ...props}: any) =>
   const _trap = () => {};
   const _release = () => {};
   const _cancelAsync = () => {};
-  return <DialogBase {...props} />;
+  return <DialogBase {...props} open={open} />;
 };
 
 export default DialogBaseWithState;
