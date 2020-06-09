@@ -28,10 +28,9 @@ export class Drawer extends React.Component<any, any> {
   }
   handleTouchMove(e) {
     if (this.touches.length) {
-      const touches = [...e.changedTouches];
-      touches.forEach((current) => {
+      [...e.changedTouches].forEach((current) => {
         const compare = this.touches.findIndex((item) => item.identifier === current.identifier);
-        const diff = current.pageY - touches[compare].pageY;
+        const diff = current.pageY - this.touches[compare].pageY;
         if (diff > 30) {
           // Drag down, collpase
           if (this.state.expanded) {
