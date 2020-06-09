@@ -56,6 +56,9 @@ export class Drawer extends React.Component<any, any> {
     //   }
     // });
   };
+  handleCloseBtnClick = (e) => {
+    this.props.onClose && this.props.onClose(e);
+  };
 
   render() {
     const {children, ...rest} = this.props;
@@ -72,6 +75,7 @@ export class Drawer extends React.Component<any, any> {
         onTouchStart={this.handleTouchStart}
         onTouchMove={this.handleTouchMove}
         onTouchEnd={this.handleTouchEnd}
+        onCloseBtnClick={this.handleCloseBtnClick}
       >
         {children}
       </DialogBase>

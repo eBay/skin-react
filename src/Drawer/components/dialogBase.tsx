@@ -91,7 +91,6 @@ export class DialogBaseWithState extends React.Component<any, any> {
     super(props);
     this.portalNode = document.createElement('div');
     this.startEl = React.createRef();
-    this.state = {open: props.open || false};
   }
   componentDidMount() {
     document.body.appendChild(this.portalNode);
@@ -100,20 +99,10 @@ export class DialogBaseWithState extends React.Component<any, any> {
     document.body.removeChild(this.portalNode);
   }
   handleStartClick = ({target}) => (this.startEl = target);
-  handleCloseBtnClick = (e) => {
-    this.setState({open: false});
-    this.props.onCloseBtnClick && this.props.onCloseBtnClick(e);
-  };
+
   renderOverLay() {
     const {...rest} = this.props;
-    return (
-      <DialogBase
-        {...rest}
-        onMouseDown={this.handleStartClick}
-        onCloseBtnClick={this.handleCloseBtnClick}
-        open={open}
-      />
-    );
+    return <DialogBase {...rest} onMouseDown={this.handleStartClick} open={open} />;
   }
   render() {
     return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
