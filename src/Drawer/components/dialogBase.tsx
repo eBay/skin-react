@@ -45,13 +45,14 @@ export const DialogBase = ({
   onCloseBtnClick,
   footer,
   onScroll,
+  open = false,
   ...props
 }: DialogBase<HTMLElement>) => {
   const className = classNames(classPrefix, props.className);
   const containerProps = {
     ['aria-modal']: true,
     role: 'dialog',
-    ['hidden:no-update']: (!props.open).toString(),
+    ['hidden:no-update']: (!open).toString(),
     ['aria-live']: !props.isModal && 'polite',
     ...props,
     className,

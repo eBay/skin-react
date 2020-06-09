@@ -11,7 +11,6 @@
 import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import Drawer from './components/drawer';
-import {SkinPageItem} from '../Pagination';
 const story: any = {
   title: Category.SKINDS6,
   component: Drawer
@@ -25,15 +24,12 @@ export const _Drawer = () => {
       <button className="btn btn--secondary" onClick={() => setOpen(!open)}>
         Open Drawer
       </button>
-      <Drawer {...props} header={<h2 id="drawer-title">Heading</h2>}>
+      <Drawer {...props} header={<h2 id="drawer-title">Heading</h2>} onClose={() => setOpen(false)}>
         {Array(100)
           .fill(1)
           .map((x, i) => (
             <p key={i}>{i + 1}</p>
           ))}
-        <button className="btn btn--secondary" onClick={() => setOpen(false)}>
-          Close Drawer
-        </button>
       </Drawer>
     </div>
   );
