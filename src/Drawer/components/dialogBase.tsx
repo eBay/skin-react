@@ -2,13 +2,14 @@
  * ************************************************************
  *  Copyright 2020 eBay Inc.
  *  Author/Developer: Arturo Montoya
- *  Use of this source code is governed by an MIT-style
+ *  Use of source code is governed by an MIT-style
  *  license that can be found in the LICENSE file or at
  *  https://opensource.org/licenses/MIT.
  *  ***********************************************************
  */
 
 import * as React from 'react';
+import {useEffect} from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import * as ReactDOM from 'react-dom';
@@ -18,13 +19,9 @@ export interface DialogBase<T> extends React.HTMLProps<T> {
   open?: any;
   type?: any;
   classPrefix?: any;
-  focus?: any;
-  a11yCloseText?: any;
   windowClass?: any;
-  baseEl?: any;
   header?: any;
   footer?: any;
-  transitionEl?: any;
   isModal?: any;
   top?: any;
   buttonPosition?: any;
@@ -85,29 +82,16 @@ export const DialogBase = ({
     </Container>
   );
 };
-export class DialogBaseWithState extends React.Component<any, any> {
-  private portalNode: HTMLDivElement;
-  private startEl: React.RefObject<unknown>;
-  constructor(props: any) {
-    super(props);
-    this.portalNode = document.createElement('div');
-    this.startEl = React.createRef();
-  }
-  componentDidMount() {
-    document.body.appendChild(this.portalNode);
-  }
-  componentWillUnmount() {
-    document.body.removeChild(this.portalNode);
-  }
-  handleStartClick = ({target}) => (this.startEl = target);
+export const DialogBaseWithState = ({props: any}) => {
+  const portalNode: HTMLDivElement = document.createElement('div');
 
-  renderOverLay() {
-    const {...rest} = this.props;
-    return <DialogBase {...rest} onMouseDown={this.handleStartClick} open={open} />;
-  }
-  render() {
-    return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
-  }
+  useEffect(() => {
+    document.body.appendChild(portalNode);
+    return () => {document.body.removeChild(portalNode);}
+  }, []);
+
+  const renderOverLay = () => <DialogBase {...props} open={open} />;
+  return props.open ? ReactDOM.createPortal(renderOverLay(), portalNode) : null;
 }
 
 export default DialogBaseWithState;
