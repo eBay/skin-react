@@ -82,7 +82,7 @@ export const DialogBase = ({
     </Container>
   );
 };
-export const DialogBaseWithState = ({props: any}) => {
+export const DialogBaseWithState = (props: any) => {
   const portalNode: HTMLDivElement = document.createElement('div');
 
   useEffect(() => {
