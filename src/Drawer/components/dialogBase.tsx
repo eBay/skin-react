@@ -15,14 +15,13 @@ import {Icon} from '../../Icon';
 import * as ReactDOM from 'react-dom';
 
 export interface DialogBase<T> extends React.HTMLProps<T> {
-  tag?: any;
-  open?: any;
-  type?: any;
-  classPrefix?: any;
-  windowClass?: any;
-  header?: any;
-  footer?: any;
-  isModal?: any;
+  tag?: 'div' | 'span' ;
+  open?: boolean;
+  classPrefix: 'drawer';
+  windowClass?: string;
+  header?: string;
+  footer?: string;
+  isModal?: boolean;
   top?: any;
   buttonPosition?: any;
   allyCloseText?: string;
@@ -90,8 +89,7 @@ export const DialogBaseWithState = (props: any) => {
     return () => {document.body.removeChild(portalNode);}
   }, []);
 
-  const renderOverLay = () => <DialogBase {...props} open={open} />;
+  const renderOverLay = () => {return <DialogBase {...props} open={props.open}/>};
   return props.open ? ReactDOM.createPortal(renderOverLay(), portalNode) : null;
 }
-
 export default DialogBaseWithState;

@@ -26,7 +26,8 @@ export const Drawer = ({children, ...rest}: any) =>  {
       [...e.changedTouches].forEach((current) => {
         const compare = touches.findIndex((item) => item.identifier === current.identifier);
         const diff = current.pageY - touches[compare].pageY;
-        if (diff > 30) {
+        const THRESHOLD_TOUCH = 30;
+        if (diff > THRESHOLD_TOUCH) {
           // Drag down, collpase
           if (state.expanded) {
             setExpandedState(false);
@@ -34,7 +35,7 @@ export const Drawer = ({children, ...rest}: any) =>  {
             rest.onClose && rest.onClose(e);
           }
           handleTouchEnd(e);
-        } else if (diff < -30) {
+        } else if (diff < -THRESHOLD_TOUCH) {
           setExpandedState(true);
           handleTouchEnd(e);
         }
