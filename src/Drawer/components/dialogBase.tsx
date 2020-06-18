@@ -89,7 +89,7 @@ export const DialogBaseWithState = (props: any) => {
     return () => {document.body.removeChild(portalNode);}
   }, []);
 
-  const renderOverLay = () => {return <DialogBase {...props} open={props.open}/>};
+  const renderOverLay = () => <DialogBase {...props} open={open}/>;
   return props.open ? ReactDOM.createPortal(renderOverLay(), portalNode) : null;
 }
 export default DialogBaseWithState;
