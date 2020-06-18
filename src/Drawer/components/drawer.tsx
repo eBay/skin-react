@@ -1,84 +1,83 @@
 import * as React from 'react';
+import { useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import DialogBase from './dialogBase';
 import classNames from 'classnames';
 
-export class Drawer extends React.Component<any, any> {
-  private touches: any;
-  constructor(props: any) {
-    super(props);
-    this.state = {expanded: props.expanded || false};
-    this.handleTouchStart = this.handleTouchStart.bind(this);
-    this.handleTouchMove = this.handleTouchMove.bind(this);
-    this.handleTouchEnd = this.handleTouchEnd.bind(this);
+export const Drawer = ({children, ...rest}: any) => {
+  let touches: any = [];
+  const [state, setState] = useState{expanded: rest.expanded || false}
+  constructor(rest: any) {
+    super(rest);
+    state = {expanded: rest.expanded || false};
   }
-  setExpandedState = (expanded) => {
-    const {onExpanded, onCollapsed} = this.props;
-    this.setState({expanded});
+  const setExpandedState = (expanded) => {
+    const {onExpanded, onCollapsed} = rest;
+    setState({expanded});
     if (expanded) {
       onExpanded && onExpanded(expanded);
     } else {
       onCollapsed && onCollapsed(expanded);
     }
   };
-  handleExpand = () => this.setExpandedState(!this.state.expanded);
-  handleScroll = () => this.setExpandedState(true);
-  handleTouchStart(event) {
-    this.touches = [...event.changedTouches].map(({identifier, pageY}) => ({identifier, pageY}));
+  const handleExpand = () => setExpandedState(!state.expanded);
+  const handleScroll = () => setExpandedState(true);
+  const handleTouchStart(event) {
+    touches = [...event.changedTouches].map(({identifier, pageY}) => ({identifier, pageY}));
   }
-  handleTouchMove(e) {
-    if (this.touches.length) {
+  const handleTouchMove = (e) => {
+    if (touches.length) {
       [...e.changedTouches].forEach((current) => {
-        const compare = this.touches.findIndex((item) => item.identifier === current.identifier);
-        const diff = current.pageY - this.touches[compare].pageY;
+        const compare = touches.findIndex((item) => item.identifier === current.identifier);
+        const diff = current.pageY - touches[compare].pageY;
         if (diff > 30) {
           // Drag down, collpase
-          if (this.state.expanded) {
-            this.setExpandedState(false);
+          if (state.expanded) {
+            setExpandedState(false);
           } else {
-            this.props.onClose && this.props.onClose(e);
+            rest.onClose && rest.onClose(e);
           }
-          this.handleTouchEnd(e);
+          handleTouchEnd(e);
         } else if (diff < -30) {
-          this.setExpandedState(true);
-          this.handleTouchEnd(e);
+          setExpandedState(true);
+          handleTouchEnd(e);
         }
       });
     }
   }
-  handleTouchEnd(e) {
+  const handleTouchEnd = (e) => {
     const changedTouches = [...e.changedTouches];
     changedTouches.forEach((current) => {
-      const idx = this.touches.findIndex((item) => item.identifier === current.identifier);
+      const idx = touches.findIndex((item) => item.identifier === current.identifier);
       if (idx > -1) {
-        this.touches.splice(idx, 1);
+        touches.splice(idx, 1);
       }
     });
   }
-  handleCloseBtnClick = (e) => this.props.onClose && this.props.onClose(e);
-  render() {
-    const {children, ...rest} = this.props;
+  const handleCloseBtnClick = (e) => rest.onClose && rest.onClose(e);
+
+
     const top = !rest.noHandle && (
       <button
         aria-label="Expand Dialog"
         className="drawer__handle"
         type="button"
-        onClick={this.handleExpand}
-        onScroll={this.handleScroll}
-        onTouchStart={this.handleTouchStart}
-        onTouchMove={this.handleTouchMove}
-        onTouchEnd={this.handleTouchEnd}
+        onClick={handleExpand}
+        onScroll={handleScroll}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       />
-    );
+
     return (
       <DialogBase
         {...rest}
         classPrefix="drawer"
         buttonPosition="right"
-        onCloseBtnClick={this.handleCloseBtnClick}
+        onCloseBtnClick={handleCloseBtnClick}
         key="dialog"
         className={classNames(rest.className, 'drawer--mask-fade-slow')}
-        windowClass={classNames('drawer__window--slide', {'drawer__window--expanded': this.state.expanded})}
+        windowClass={classNames('drawer__window--slide', {'drawer__window--expanded': state.expanded})}
         top={top}
       >
         {children}
