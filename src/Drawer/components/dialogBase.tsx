@@ -1,7 +1,7 @@
 /*
  * ************************************************************
  *  Copyright 2020 eBay Inc.
- *  Author/Developer: Arturo Montoya
+ *  Author/Developer: Arturo Montoya,Steve Doty
  *  Use of source code is governed by an MIT-style
  *  license that can be found in the LICENSE file or at
  *  https://opensource.org/licenses/MIT.
@@ -9,21 +9,21 @@
  */
 
 import * as React from 'react';
-import {useEffect} from 'react';
+import {FunctionComponent, useEffect} from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import * as ReactDOM from 'react-dom';
 
-export interface DialogBase<T> extends React.HTMLProps<T> {
-  tag?: 'div' | 'span' ;
+export interface DialogBaseProps<T> extends React.HTMLProps<T> {
+  tag?: any; //'div' | 'span'
   open?: boolean;
-  classPrefix: 'drawer';
+  classPrefix?: any; //'drawer' | 'toast' | 'dialog'
   windowClass?: string;
-  header?: string;
+  header?: any;
   footer?: string;
   isModal?: boolean;
   top?: any;
-  buttonPosition?: any;
+  buttonPosition?: any; //'top' | 'right' | 'bottom' | 'left'
   allyCloseText?: string;
   onCloseBtnClick?: any;
 }
@@ -43,7 +43,7 @@ export const DialogBase = ({
   onScroll,
   open = false,
   ...props
-}: DialogBase<HTMLElement>) => {
+}: DialogBaseProps<HTMLElement>) => {
   const className = classNames(classPrefix, props.className);
   const containerProps = {
     ['aria-modal']: true,
@@ -81,15 +81,25 @@ export const DialogBase = ({
     </Container>
   );
 };
-export const DialogBaseWithState = (props: any) => {
-  const portalNode: HTMLDivElement = document.createElement('div');
+export class DialogBaseWithState extends React.Component<DialogBaseProps<HTMLElement>> {
+  private portalNode: HTMLDivElement;
+  constructor(props) {
+    super(props);
+    this.portalNode = document.createElement('div');
+  }
+  componentDidMount() {
+    document.body.appendChild(this.portalNode);
+  }
+  componentWillUnmount() {
+    document.body.removeChild(this.portalNode);
+  }
 
-  useEffect(() => {
-    document.body.appendChild(portalNode);
-    return () => {document.body.removeChild(portalNode);}
-  }, []);
+  renderOverLay() {
+    return <DialogBase {...this.props} />;
+  }
+  render() {
+    return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
+  }
+};
 
-  const renderOverLay = () => <DialogBase {...props} open={open}/>;
-  return props.open ? ReactDOM.createPortal(renderOverLay(), portalNode) : null;
-}
 export default DialogBaseWithState;
