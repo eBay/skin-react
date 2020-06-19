@@ -9,7 +9,9 @@
  */
 
 import * as React from 'react';
-import {FunctionComponent, useEffect} from 'react';
+import { useEffect } from 'react';
+import FocusLock, {InFocusGuard} from 'react-focus-lock';
+import {RemoveScroll} from 'react-remove-scroll';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import * as ReactDOM from 'react-dom';
@@ -95,7 +97,13 @@ export class DialogBaseWithState extends React.Component<DialogBaseProps<HTMLEle
   }
 
   renderOverLay() {
-    return <DialogBase {...this.props} />;
+    return (
+      <FocusLock>
+        <RemoveScroll>
+          <DialogBase {...this.props} />
+        </RemoveScroll>
+      </FocusLock>
+    );
   }
   render() {
     return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;

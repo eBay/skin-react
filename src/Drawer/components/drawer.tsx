@@ -72,21 +72,19 @@ export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onEx
       onTouchEnd={handleTouchEnd}
     />
   );
-
   return (
-    <DialogBase
-      {...rest}
-      classPrefix="drawer"
-      buttonPosition="right"
-      onCloseBtnClick={handleCloseBtnClick}
-      key="dialog"
-      className={classNames(rest.className, 'drawer--mask-fade-slow')}
-      windowClass={classNames('drawer__window--slide', {'drawer__window--expanded': state.expanded})}
-      top={top}
-    >
-              {children}
-            
-    </DialogBase>
+      <DialogBase
+        {...rest}
+        classPrefix="drawer"
+        buttonPosition="right"
+        onCloseBtnClick={handleCloseBtnClick}
+        key="dialog"
+        className={classNames(rest.className, 'drawer--mask-fade-slow')}
+        windowClass={classNames('drawer__window--slide', {'drawer__window--expanded': state.expanded})}
+        top={top}
+      >
+                {children}
+      </DialogBase>
   );
 };
 export default Drawer;
