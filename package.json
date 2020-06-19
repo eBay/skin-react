@@ -34,6 +34,8 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "core-js": "3",
+    "react-focus-lock": "^2.4.0",
+    "react-remove-scroll": "^2.3.0",
     "tslib": "^2.0.0",
     "url-loader": "^4.1.0"
   },
