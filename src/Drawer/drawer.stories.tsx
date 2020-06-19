@@ -29,13 +29,13 @@ export const _Drawer = () => {
         .map((x, i) => (
           <p key={i}>{i + 1}</p>
         ))}
-          <Drawer {...props} header={<h2 id="drawer-title">Heading</h2>} onClose={() => setOpen(false)}>
-            {Array(100)
-              .fill(1)
-              .map((x, i) => (
-                <p key={i}>{i + 1}</p>
-              ))}
-          </Drawer>
+        <Drawer {...props} header={<h2 id="drawer-title">Heading</h2>} onClose={() => setOpen(false)}>
+          {Array(100)
+            .fill(1)
+            .map((x, i) => (
+              <p key={i}>{i + 1}</p>
+            ))}
+        </Drawer>
     </div>
   );
 };
