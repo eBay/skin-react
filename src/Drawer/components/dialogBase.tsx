@@ -1,33 +1,31 @@
 /*
  * ************************************************************
  *  Copyright 2020 eBay Inc.
- *  Author/Developer: Arturo Montoya
- *  Use of this source code is governed by an MIT-style
+ *  Author/Developer: Arturo Montoya,Steve Doty
+ *  Use of source code is governed by an MIT-style
  *  license that can be found in the LICENSE file or at
  *  https://opensource.org/licenses/MIT.
  *  ***********************************************************
  */
 
 import * as React from 'react';
+import { useEffect } from 'react';
+import FocusLock, {InFocusGuard} from 'react-focus-lock';
+import {RemoveScroll} from 'react-remove-scroll';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import * as ReactDOM from 'react-dom';
 
-export interface DialogBase<T> extends React.HTMLProps<T> {
-  tag?: any;
-  open?: any;
-  type?: any;
-  classPrefix?: any;
-  focus?: any;
-  a11yCloseText?: any;
-  windowClass?: any;
-  baseEl?: any;
+export interface DialogBaseProps<T> extends React.HTMLProps<T> {
+  tag?: any; //'div' | 'span'
+  open?: boolean;
+  classPrefix?: any; //'drawer' | 'toast' | 'dialog'
+  windowClass?: string;
   header?: any;
-  footer?: any;
-  transitionEl?: any;
-  isModal?: any;
+  footer?: string;
+  isModal?: boolean;
   top?: any;
-  buttonPosition?: any;
+  buttonPosition?: any; //'top' | 'right' | 'bottom' | 'left'
   allyCloseText?: string;
   onCloseBtnClick?: any;
 }
@@ -47,7 +45,7 @@ export const DialogBase = ({
   onScroll,
   open = false,
   ...props
-}: DialogBase<HTMLElement>) => {
+}: DialogBaseProps<HTMLElement>) => {
   const className = classNames(classPrefix, props.className);
   const containerProps = {
     ['aria-modal']: true,
@@ -85,13 +83,11 @@ export const DialogBase = ({
     </Container>
   );
 };
-export class DialogBaseWithState extends React.Component<any, any> {
+export class DialogBaseWithState extends React.Component<DialogBaseProps<HTMLElement>> {
   private portalNode: HTMLDivElement;
-  private startEl: React.RefObject<unknown>;
-  constructor(props: any) {
+  constructor(props) {
     super(props);
     this.portalNode = document.createElement('div');
-    this.startEl = React.createRef();
   }
   componentDidMount() {
     document.body.appendChild(this.portalNode);
@@ -99,15 +95,19 @@ export class DialogBaseWithState extends React.Component<any, any> {
   componentWillUnmount() {
     document.body.removeChild(this.portalNode);
   }
-  handleStartClick = ({target}) => (this.startEl = target);
 
   renderOverLay() {
-    const {...rest} = this.props;
-    return <DialogBase {...rest} onMouseDown={this.handleStartClick} open={open} />;
+    return (
+      <FocusLock>
+        <RemoveScroll>
+          <DialogBase {...this.props} />
+        </RemoveScroll>
+      </FocusLock>
+    );
   }
   render() {
     return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
   }
-}
+};
 
 export default DialogBaseWithState;

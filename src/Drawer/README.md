@@ -3,9 +3,14 @@
 ## Drawer Usage
 
 ```react
-<drawer open a11yClosetext="Close Drawer">
-  <h1>Hello World</h1>
-</drawer>
+<Drawer
+    open
+    a11yClosetext = "Close Drawer"
+    onExpanded={ handleExpand }>
+
+        <h1>Hello World</h1>
+
+</Drawer>
 ```
 
 ## Attributes
@@ -25,7 +30,5 @@ Event | Data | Description
 --- | --- | ---
 `onShow` |  | drawer opened
 `onClose` |  | drawer closed. Triggered also when user drags down on handle (touch only) when dialog is not expanded
-`onExpanded` |  | drawer expanded to full page height. Event is triggerd on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded
-`onCollapsed` |  | drawer collapsed back to max 50%. Event is triggerd on drags do
-
-
+`onExpanded` |  | drawer expanded to full page height. Event is triggered on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded
+`onCollapsed` |  | drawer collapsed back to max 50%. Event is triggered on drags do
