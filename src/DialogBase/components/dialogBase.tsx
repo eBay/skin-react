@@ -24,6 +24,7 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   buttonPosition?: any; //'top' | 'right' | 'bottom' | 'left'
   allyCloseText?: string;
   onCloseBtnClick?: any;
+  OnBackgroundClick?: any;
 }
 const Container = ({tag, ...props}): any => React.createElement(tag, props);
 
@@ -40,8 +41,19 @@ export const DialogBase = ({
   footer,
   onScroll,
   open = false,
+  OnBackgroundClick = () => {},
   ...props
 }: DialogBaseProps<HTMLElement>) => {
+  const drawerBaseEl = React.useRef(null);
+  React.useEffect(() => {
+    const handleBackgroundClick = (e) => {
+      if (drawerBaseEl && !drawerBaseEl.current.contains(e.target)) {
+        OnBackgroundClick(e);
+      }
+    };
+    document.addEventListener('click', handleBackgroundClick, false);
+    return () => document.removeEventListener('click', handleBackgroundClick, false);
+  }, []);
   const className = classNames(classPrefix, props.className);
   const containerProps = {
     ['aria-modal']: true,
@@ -54,13 +66,12 @@ export const DialogBase = ({
   };
   return (
     <Container {...containerProps}>
-      <div key="window" className={classNames(`${classPrefix}__window`, windowClass)}>
+      <div className={classNames(`${classPrefix}__window`, windowClass)} ref={drawerBaseEl}>
         {top}
         {header && (
           <div className={`${classPrefix}__header`}>
             {buttonPosition === 'right' && header}
             <button
-              key="close"
               className={`${classPrefix}__close`}
               type="button"
               aria-label={allyCloseText}
@@ -71,7 +82,7 @@ export const DialogBase = ({
             {buttonPosition === 'left' && header}
           </div>
         )}
-        <div key="body" className={`${classPrefix}__main`} onScroll={onScroll}>
+        <div className={`${classPrefix}__main`} onScroll={onScroll}>
           {children}
         </div>
         {footer && <div className={`${classPrefix}__footer`}>{footer}</div>}

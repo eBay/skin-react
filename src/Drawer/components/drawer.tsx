@@ -58,7 +58,7 @@ export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onEx
     });
   };
   const handleCloseBtnClick = (e) => onClose && onClose(e);
-
+  const handleBackgroundClick = (e) => onClose && onClose(e);
   const top = !noHandle && (
     <button
       aria-label="Expand Dialog"
@@ -77,9 +77,9 @@ export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onEx
       classPrefix="drawer"
       buttonPosition="right"
       onCloseBtnClick={handleCloseBtnClick}
-      key="dialog"
       className={classNames(rest.className, 'drawer--mask-fade-slow')}
       windowClass={classNames('drawer__window--slide', {'drawer__window--expanded': state.expanded})}
+      OnBackgroundClick={handleBackgroundClick}
       top={top}
     >
               {children}
