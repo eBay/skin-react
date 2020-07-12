@@ -1,6 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import DialogBase, {DialogBaseProps} from './dialogBase';
+import DialogBase, {DialogBaseProps} from '../../DialogBase';
 import classNames from 'classnames';
 
 const THRESHOLD_TOUCH = 30;
@@ -17,7 +16,7 @@ export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onEx
   const [state, setState] = React.useState({expanded: expanded || false});
 
   const setExpandedState = (expand) => {
-    setState({expanded:expand});
+    setState({expanded: expand});
     if (expand) {
       onExpanded && onExpanded(expand);
     } else {

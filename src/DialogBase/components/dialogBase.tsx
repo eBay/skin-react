@@ -9,12 +9,8 @@
  */
 
 import * as React from 'react';
-import { useEffect } from 'react';
-import FocusLock, {InFocusGuard} from 'react-focus-lock';
-import {RemoveScroll} from 'react-remove-scroll';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
-import * as ReactDOM from 'react-dom';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   tag?: any; //'div' | 'span'
@@ -83,31 +79,5 @@ export const DialogBase = ({
     </Container>
   );
 };
-export class DialogBaseWithState extends React.Component<DialogBaseProps<HTMLElement>> {
-  private portalNode: HTMLDivElement;
-  constructor(props) {
-    super(props);
-    this.portalNode = document.createElement('div');
-  }
-  componentDidMount() {
-    document.body.appendChild(this.portalNode);
-  }
-  componentWillUnmount() {
-    document.body.removeChild(this.portalNode);
-  }
 
-  renderOverLay() {
-    return (
-      <FocusLock>
-        <RemoveScroll>
-          <DialogBase {...this.props} />
-        </RemoveScroll>
-      </FocusLock>
-    );
-  }
-  render() {
-    return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
-  }
-};
-
-export default DialogBaseWithState;
+export default DialogBase;
