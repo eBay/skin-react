@@ -4,31 +4,18 @@ import {RemoveScroll} from 'react-remove-scroll';
 import * as ReactDOM from 'react-dom';
 import {DialogBase, DialogBaseProps} from './components/dialogBase';
 
-export class DialogBaseWithState extends React.Component<DialogBaseProps<HTMLElement>> {
-  private portalNode: HTMLDivElement;
-  constructor(props) {
-    super(props);
-    this.portalNode = document.createElement('div');
-  }
-  componentDidMount() {
-    document.body.appendChild(this.portalNode);
-  }
-  componentWillUnmount() {
-    document.body.removeChild(this.portalNode);
-  }
-
-  renderOverLay() {
-    return (
+export const DialogBaseWithState = (props: DialogBaseProps<HTMLElement>) => {
+  const renderOverLay = () => (
+    <div>
       <FocusLock>
         <RemoveScroll>
-          <DialogBase {...this.props} />
+          <DialogBase {...props} />
         </RemoveScroll>
       </FocusLock>
-    );
-  }
-  render() {
-    return this.props.open ? ReactDOM.createPortal(this.renderOverLay(), this.portalNode) : null;
-  }
-}
+    </div>
+  );
+  return props.open ? ReactDOM.createPortal(renderOverLay(), document.body) : null;
+};
+
 export {DialogBase, DialogBaseProps} from './components/dialogBase';
 export default DialogBaseWithState;
