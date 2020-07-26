@@ -15,7 +15,7 @@ import {Icon} from '../../Icon';
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   tag?: 'div' | 'span';
   open?: boolean;
-  classPrefix: 'drawer' | 'toast' | 'dialog';
+  classPrefix?: 'drawer' | 'toast' | 'dialog';
   windowClass?: string;
   header?: any;
   footer?: string;
@@ -31,7 +31,7 @@ const Container = ({tag, ...props}): any => React.createElement(tag, props);
 
 export const DialogBase = ({
   tag = 'div',
-  classPrefix,
+  classPrefix = 'drawer',
   windowClass,
   top,
   header,
