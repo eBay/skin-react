@@ -8,6 +8,7 @@
     "sanity-check": "yarn lint && yarn build && yarn test",
     "script:update-icons": "node scripts/import-icons-types && yarn lint",
     "build": "npm run clean && tsc && tsc -m es6 --outDir esm --removeComments false && cross-env NODE_ENV=production webpack",
+    "build:ci": "yarn lint && yarn coverage && yarn build",
     "version": "npm run build-storybook && npm run build",
     "storybook": "cross-env NODE_ENV=development STORYBOOK=true start-storybook -p 6006 -c .storybook",
     "deploy-storybook": "yarn sanity-check && storybook-to-ghpages",
