@@ -13,15 +13,16 @@ import classNames from 'classnames';
 import {Icon} from '../../Icon';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
-  tag?: any; //'div' | 'span'
+  tag?: 'div' | 'span';
   open?: boolean;
-  classPrefix?: any; //'drawer' | 'toast' | 'dialog'
+  classPrefix: 'drawer' | 'toast' | 'dialog';
   windowClass?: string;
   header?: any;
   footer?: string;
   isModal?: boolean;
   top?: any;
-  buttonPosition?: any; //'top' | 'right' | 'bottom' | 'left'
+  buttonPosition?: 'top' | 'right' | 'bottom' | 'left';
+  ariaLabelledby?: string;
   allyCloseText?: string;
   onCloseBtnClick?: any;
   OnBackgroundClick?: any;
@@ -36,6 +37,7 @@ export const DialogBase = ({
   header,
   buttonPosition = 'left',
   children,
+  ariaLabelledby,
   allyCloseText,
   onCloseBtnClick,
   footer,
@@ -56,6 +58,7 @@ export const DialogBase = ({
   }, []);
   const className = classNames(classPrefix, props.className);
   const containerProps = {
+    ['aria-labelledby']: ariaLabelledby,
     ['aria-modal']: true,
     role: 'dialog',
     ['hidden:no-update']: (!open).toString(),
