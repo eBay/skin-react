@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/eBay/skin-react.svg?branch=master)](https://travis-ci.com/eBay/skin-react)
 # skin-react
 > [Skin](https://github.com/eBay/skin) components built with React (Typescript).
 https://github.com/eBay/skin
