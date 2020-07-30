@@ -23,7 +23,7 @@ export const getClass = (type: NoticeType) => {
 export interface NoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
   title?: string;
   iconType?: IconType;
-  iconProps?: any;
+  iconProps?: object;
   variant?: NoticeVariant;
   type?: NoticeType;
   content?: any;

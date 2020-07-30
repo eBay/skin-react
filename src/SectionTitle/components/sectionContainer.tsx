@@ -10,10 +10,11 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
+import {ReactNode} from 'react';
 
 export interface SectionContainerProps<T> extends React.HTMLProps<T> {
-  title?: any;
-  subtitle?: any;
+  title?: string;
+  subtitle?: ReactNode;
 }
 export const SectionContainer = ({title, subtitle, ...props}: SectionContainerProps<HTMLDivElement>) => {
   const className = classNames('section-title__title-container', props.className);
