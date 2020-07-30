@@ -1,7 +1,7 @@
 /*
  * ************************************************************
  *  Copyright 2020 eBay Inc.
- *  Author/Developer: Arturo Montoya,Steve Doty
+ *  Author/Developer: Arturo Montoya,Steve Doty,Joseph Kim
  *  Use of source code is governed by an MIT-style
  *  license that can be found in the LICENSE file or at
  *  https://opensource.org/licenses/MIT.
@@ -18,7 +18,7 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   classPrefix?: 'drawer' | 'toast' | 'dialog';
   windowClass?: string;
   header?: any;
-  footer?: string;
+  footer?: any;
   isModal?: boolean;
   top?: any;
   buttonPosition?: 'top' | 'right' | 'bottom' | 'left';
