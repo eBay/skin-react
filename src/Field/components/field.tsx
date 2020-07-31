@@ -74,7 +74,7 @@ export const FieldControl = ({isFluid, isBlock, ...props}: FieldControlProps<HTM
 };
 
 export interface FieldDescriptionProps<T> extends React.HTMLProps<T> {
-  color?: 'confirmation' | 'information' | 'attention' | any;
+  color?: 'confirmation' | 'information' | 'attention' | string;
   isBlock?: boolean;
 }
 export const FieldDescription = ({

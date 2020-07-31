@@ -13,10 +13,10 @@ import classNames from 'classnames';
 import Icon, {IconType} from '../../Icon';
 
 export interface SectionCTAProps<T> extends React.HTMLProps<T> {
-  title?: any;
+  title?: string;
   href?: string;
   iconType?: IconType;
-  iconProps?: any;
+  iconProps?: object;
 }
 export const SectionCTA = ({title, href, iconType, iconProps = {}, ...props}: SectionCTAProps<HTMLDivElement>) => {
   const className = classNames(

@@ -21,7 +21,7 @@ export interface TextboxProps<T> extends Skin.Fluid, React.HTMLProps<T> {
   isPostfixIcon?: boolean;
   isInvalid?: boolean;
   iconType?: IconType;
-  iconProps?: any;
+  iconProps?: object;
   forwardedRef?: any;
 }
 export const Textbox = ({
