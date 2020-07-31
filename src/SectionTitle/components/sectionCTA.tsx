@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import Icon, {IconType} from '../../Icon';
 
 export interface SectionCTAProps<T> extends React.HTMLProps<T> {
-  title?: any;
+  title?: string;
   href?: string;
   iconType?: IconType;
   iconProps?: object;
