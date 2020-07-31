@@ -12,9 +12,10 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {getHTMLProps} from '../../skin-utils';
+import {ReactNode} from 'react';
 
 export interface DetailsProps<T> extends React.HTMLProps<T> {
-  label?: any;
+  label?: string;
   isCentered?: boolean;
   isSmall?: boolean;
   isRtl?: boolean;
