@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import {Icon} from '../../Icon';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
-  tag?: 'div' | 'span';
+  tag?: 'div' | 'span' | 'aside';
   open?: boolean;
   classPrefix?: 'drawer' | 'toast' | 'dialog';
   windowClass?: string;

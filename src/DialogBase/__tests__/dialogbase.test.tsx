@@ -13,7 +13,7 @@ import {shallow} from 'enzyme';
 import {DialogBase} from '../index';
 
 describe('DialogBase', () => {
-  it('should render a DialogBase with .checkbox', () => {
+  it('should render a DialogBase with .drawer', () => {
     const component = shallow(<DialogBase classPrefix="drawer" />);
     expect(component.hasClass('drawer')).toBe(true);
   });
