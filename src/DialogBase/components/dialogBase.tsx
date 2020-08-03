@@ -25,8 +25,8 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   buttonPosition?: 'top' | 'right' | 'bottom' | 'left';
   ariaLabelledby?: string;
   allyCloseText?: string;
-  onCloseBtnClick?: any;
-  OnBackgroundClick?: any;
+  onCloseBtnClick?: React.MouseEventHandler<HTMLButtonElement>;
+  OnBackgroundClick?: React.MouseEventHandler<HTMLElement>;
 }
 const Container = ({tag, ...props}): any => React.createElement(tag, props);
 
