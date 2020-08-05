@@ -1,16 +1,16 @@
-# Stepper
+# Toast
 
-## Stepper Usage
+## Toast Usage
 
 ```react
-<Stepper
+<Toast
     open
-    a11yClosetext = "Close Stepper"
+    a11yClosetext = "Close Toast"
     >
 
         <h1>Hello World</h1>
 
-</Stepper>
+</Toast>
 ```
 
 ## Attributes
