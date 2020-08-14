@@ -9,12 +9,16 @@
  */
 
 import * as React from 'react';
-import {mount, shallow} from 'enzyme';
-import {DialogBase} from '..';
+import {mount} from 'enzyme';
+import {DialogBaseWithState} from '..';
 
 describe('DialogBase', () => {
+  it('given a closed dialog should return null', () => {
+    const component = mount(<DialogBaseWithState classPrefix="drawer" className="custom-class" />);
+    expect(component.html()).toBe(null);
+  });
   describe('given a DialogBase', () => {
-    let component = mount(<DialogBase classPrefix="drawer" className="custom-class" />);
+    let component = mount(<DialogBaseWithState classPrefix="drawer" className="custom-class" open />);
     it('should render a DialogBase', () => {
       expect(component).toHaveLength(1);
     });
@@ -24,7 +28,9 @@ describe('DialogBase', () => {
     describe('when the close button is clicked', () => {
       let spy;
       beforeEach(() => {
-        component = mount(<DialogBase classPrefix="drawer" header={<h2>Heading</h2>} onCloseBtnClick={jest.fn()} />);
+        component = mount(
+          <DialogBaseWithState classPrefix="drawer" header={<h2>Heading</h2>} onCloseBtnClick={jest.fn()} open />
+        );
       });
       it('then it should trigger close event', () => {
         spy = jest.spyOn(component.props(), 'onCloseBtnClick');
