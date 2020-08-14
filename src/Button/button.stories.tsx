@@ -19,7 +19,7 @@ import StoryBook from '../../.storybook/util/story-setup';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6 + '.Button',
+  title: Category.SKINDS6,
   component: Button,
   decorators: [withKnobs, withA11y]
 };
