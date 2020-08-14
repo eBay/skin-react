@@ -17,8 +17,7 @@ import Icon from '../../Icon';
 const getUncheckedIconType = addPrefix('radio-unchecked');
 const getCheckedIconType = addPrefix('radio-checked');
 
-// @ts-ignore
-export interface RadioProps<T> extends Skin.Role, React.HTMLProps<T> {
+export interface RadioProps<T> extends Skin.Role, Omit<React.HTMLProps<T>, 'size'> {
   size?: 'large' | 'small';
 }
 export function Radio({size, ...props}: RadioProps<HTMLInputElement>) {

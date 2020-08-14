@@ -23,8 +23,7 @@ import {
 } from '..';
 import Icon from '../../Icon';
 
-// @ts-ignore
-export interface ButtonProps<T> extends React.HTMLProps<T> {
+export interface ButtonProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
   size?: ButtonSizes;
   type?: ButtonTypes;
   variant?: ButtonColors;

@@ -56,8 +56,7 @@ const getCellClassName = (size: CellSize, platform: Platform = '') => {
     return `${prefix}${size}of16${platform ? '-' + platform : ''}`;
   }
 };
-// @ts-ignore
-export interface GridCellProps<T> extends React.HTMLProps<T> {
+export interface GridCellProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
   size?: CellSize | object;
 }
 const getSize = (size: CellSize | object) => {
