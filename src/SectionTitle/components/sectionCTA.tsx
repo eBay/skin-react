@@ -16,7 +16,7 @@ export interface SectionCTAProps<T> extends React.HTMLProps<T> {
   title?: any;
   href?: string;
   iconType?: IconType;
-  iconProps?: any;
+  iconProps?: object;
 }
 export const SectionCTA = ({title, href, iconType, iconProps = {}, ...props}: SectionCTAProps<HTMLDivElement>) => {
   const className = classNames(

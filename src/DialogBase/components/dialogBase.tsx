@@ -11,21 +11,22 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
+import {ReactNode} from 'react';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   tag?: 'div' | 'span' | 'aside';
   open?: boolean;
   classPrefix?: 'drawer' | 'toast' | 'dialog';
   windowClass?: string;
-  header?: any;
-  footer?: any;
+  header?: ReactNode;
+  footer?: ReactNode;
   isModal?: boolean;
-  top?: any;
+  top?: ReactNode;
   buttonPosition?: 'top' | 'right' | 'bottom' | 'left';
   ariaLabelledby?: string;
   allyCloseText?: string;
-  onCloseBtnClick?: any;
-  OnBackgroundClick?: any;
+  onCloseBtnClick?: React.MouseEventHandler<HTMLButtonElement>;
+  OnBackgroundClick?: React.MouseEventHandler<HTMLElement>;
 }
 const Container = ({tag, ...props}): any => React.createElement(tag, props);
 

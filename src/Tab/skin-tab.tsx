@@ -13,10 +13,9 @@ import Tab, {TabCell, TabContent, TabItem, TabItems, TabPanel} from './';
 import {withForwardRef} from '../skin-utils';
 const TabItemWithRef = withForwardRef(TabItem);
 export interface SkinTabProps<T> extends React.HTMLProps<T> {
-  index: any;
-  isSelected: any;
-  title: any;
-  children: any;
+  index: string | number;
+  isSelected: boolean;
+  title: string;
 }
 export const SkinTab = ({children, index, isSelected, title, tabId, ...props}: SkinTabProps<HTMLElement> | any) => (
   <TabPanel

@@ -14,7 +14,7 @@ import {Icon} from '../../Icon';
 import {getHTMLProps} from '../../skin-utils';
 
 export interface DetailsProps<T> extends React.HTMLProps<T> {
-  label?: any;
+  label?: string;
   isCentered?: boolean;
   isSmall?: boolean;
   isRtl?: boolean;
