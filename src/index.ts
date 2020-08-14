@@ -9,7 +9,7 @@
  */
 
 export {Actionable, SkinActionable} from './Actionable';
-export {Badge, SkinBadge} from './Badge';
+export {SkinBadge, BadgeProps} from './Badge';
 export {Breadcrumb, SkinBreadcrumb, SkinBreadcrumbItem} from './Breadcrumb';
 export {Button, BtnCell, ExpandBtnCell, SkinButton} from './Button';
 export {Checkbox, SkinCheckbox} from './Checkbox';
