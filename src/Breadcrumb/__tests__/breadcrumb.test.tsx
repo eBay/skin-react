@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {Breadcrumb, BreadcrumbItem} from '../index';
+import {Breadcrumb, BreadcrumbItem} from '..';
 import {times} from '../../test-utils';
 const getMountComponent = (props = {}, breadcrumbItemCount = 3, breadcrumbItemProps = {}) =>
   mount(

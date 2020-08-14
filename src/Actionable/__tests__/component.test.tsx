@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import Actionable from '../index';
+import Actionable from '..';
 
 describe('actionable', () => {
   it('should render a Actionable(a) with .actionable and custom classNames', () => {

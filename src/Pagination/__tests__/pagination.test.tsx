@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Pagination, PageItem, PageControl, PageList} from '../index';
+import {Pagination, PageItem, PageControl, PageList} from '..';
 
 describe('Pagination', () => {
   it('should render a Pagination with .pagination', () => {

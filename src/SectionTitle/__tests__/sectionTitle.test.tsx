@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {SectionTitle} from '../index';
+import {SectionTitle} from '..';
 
 describe('SectionTitle', () => {
   it('should render a SectionTitle(div) with default class and custom classNames', () => {

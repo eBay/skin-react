@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {DialogBase} from '../index';
+import {DialogBase} from '..';
 
 describe('DialogBase', () => {
   it('should render a DialogBase with .drawer', () => {

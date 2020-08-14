@@ -13,7 +13,7 @@ import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withKnobs, select, boolean, number} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import Badge, {SkinBadge} from './index';
+import {SkinBadge} from './index';
 import {BgColorsEnum, ColorsEnum} from '../skin';
 import {withA11y} from '@storybook/addon-a11y';
 
@@ -46,15 +46,9 @@ export const Badges = () => {
     '1'
   );
   const props = {...defaultProps, bgColor};
-  return (
-    <div>
-      <SkinBadge {...props} aria-label="unread items">
-        {content}
-      </SkinBadge>
-    </div>
-  );
+  return <SkinBadge {...props} aria-label="unread items" value={content} />;
 };
 Badges.story = {
-  name: 'Badge'
+  name: 'SkinBadge'
 };
 export default story;

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Textbox} from '../index';
+import {Textbox} from '..';
 
 describe('Textbox', () => {
   it('should render a Textbox(input) with .textbox and custom classNames', () => {

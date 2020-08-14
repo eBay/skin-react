@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {mount, shallow} from 'enzyme';
-import {SkinPageItem, SkinPagination} from '../index';
+import {SkinPageItem, SkinPagination} from '..';
 const SkinPageItems = (num) =>
   Array(num)
     .fill(1)

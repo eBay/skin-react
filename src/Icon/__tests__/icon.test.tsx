@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import Icon from '../index';
+import Icon from '..';
 
 describe('Icon', () => {
   it('should render a Icon with .icon', () => {

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {Checkbox} from '../index';
+import {Checkbox} from '..';
 
 describe('Checkbox', () => {
   describe('Checkbox', () => {

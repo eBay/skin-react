@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import Details from '../index';
+import Details from '..';
 
 describe('Details', () => {
   describe('given the details is in the default state', () => {

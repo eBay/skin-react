@@ -7,10 +7,6 @@
  *  https://opensource.org/licenses/MIT.
  *  ***********************************************************
  */
-
-import * as React from 'react';
-import SkinBadge from './skin-badge';
-
-export {Badge, BadgeProps} from './components/badge';
-export {default as SkinBadge} from './skin-badge';
-export default SkinBadge;
+import {Badge} from './components/badge';
+export {Badge as SkinBadge, BadgeProps} from './components/badge';
+export default Badge;

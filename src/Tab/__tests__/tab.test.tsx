@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Tab, TabCell, TabContent, TabItem, TabItems, TabPanel} from '../index';
+import {Tab, TabCell, TabContent, TabItem, TabItems, TabPanel} from '..';
 
 describe('Tab', () => {
   it('should render a Tab(div) with .tabs', () => {

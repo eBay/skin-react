@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {FloatingLabel} from '../index';
+import {FloatingLabel} from '..';
 
 describe('FloatingLabel', () => {
   it('should render a FloatingLabel(span) with .textbox and custom classNames', () => {
