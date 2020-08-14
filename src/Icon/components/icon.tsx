@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import {IconType} from '../index';
+import {IconType} from '..';
 
 export interface IconProps<T> extends React.HTMLProps<T> {
   type: IconType | string;

@@ -9,12 +9,27 @@
  */
 
 import * as React from 'react';
-import {shallow} from 'enzyme';
-import {Checkbox} from '../index';
+import {mount} from 'enzyme';
+import {Checkbox} from '..';
 
 describe('Checkbox', () => {
-  it('should render a Checkbox with .checkbox', () => {
-    const component = shallow(<Checkbox />);
-    expect(component.hasClass('checkbox')).toBe(true);
+  describe('Checkbox', () => {
+    const component = mount(<Checkbox id="checkbox-id" />);
+    const inputElm = component.find('input');
+    it('should render a Checkbox with .checkbox', () => {
+      expect(component.find('.checkbox')).toHaveLength(1);
+    });
+    it('renders default checkbox', () => {
+      expect(inputElm.props().disabled).toBe(undefined);
+    });
+    it('renders checkbox with id', () => {
+      expect(inputElm.props().id).toBe('checkbox-id');
+    });
+  });
+
+  it('renders disabled checkbox', () => {
+    const component = mount(<Checkbox disabled />);
+    const inputElm = component.find('input').at(0);
+    expect(inputElm.props().disabled).toBe(true);
   });
 });

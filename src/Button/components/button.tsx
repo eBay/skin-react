@@ -20,7 +20,7 @@ import {
   getSize,
   getColor,
   getTag
-} from '../index';
+} from '..';
 import Icon from '../../Icon';
 
 // @ts-ignore

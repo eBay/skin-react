@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {SkinBreadcrumb} from '../index';
+import {SkinBreadcrumb} from '..';
 
 describe('SkinBreadcrumb', () => {
   it('should render a SkinBreadcrumb(nav) with .breadcrumbs and custom classNames', () => {

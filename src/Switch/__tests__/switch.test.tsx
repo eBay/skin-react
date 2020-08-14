@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Switch} from '../index';
+import {Switch} from '..';
 
 describe('Switch', () => {
   it('should render a Switch(span) with .switch and custom classNames', () => {

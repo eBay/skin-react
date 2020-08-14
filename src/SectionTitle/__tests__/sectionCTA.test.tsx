@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {SectionCTA} from '../index';
+import {SectionCTA} from '..';
 
 describe('SectionCTA', () => {
   it('should render a SectionCTA(div) with default class and custom classNames', () => {

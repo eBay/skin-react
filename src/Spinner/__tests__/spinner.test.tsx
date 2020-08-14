@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import Spinner from '../index';
+import Spinner from '..';
 
 describe('Spinner', () => {
   it('should render a Spinner(span) with .spinner and custom classNames', () => {

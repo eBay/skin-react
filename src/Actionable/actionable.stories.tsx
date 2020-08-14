@@ -14,7 +14,7 @@ import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
-import {Icon, Actionable} from '../index';
+import {Icon, Actionable} from '..';
 
 const story: any = {
   title: Category.SKINDS6,

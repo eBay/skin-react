@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import Button from '../index';
+import Button from '..';
 
 describe('Button', () => {
   it('should render a Button with .btn', () => {

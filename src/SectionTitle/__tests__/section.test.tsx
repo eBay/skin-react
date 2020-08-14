@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {SectionInfo, SectionOverflow} from '../index';
+import {SectionInfo, SectionOverflow} from '..';
 
 describe('SectionInfo', () => {
   it('should render a SectionInfo(div) with default class and custom classNames', () => {

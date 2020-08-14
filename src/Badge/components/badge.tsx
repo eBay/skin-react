@@ -21,13 +21,20 @@ import {
 import * as Skin from '../../skin';
 
 export interface BadgeProps<T> extends Skin.BgColor, Skin.Color, React.HTMLProps<T> {}
-export const Badge = (props: BadgeProps<HTMLSpanElement>) => {
-  const className = classNames(
-    'badge',
-    combineModifiers(props, getColorModifiers, getBgColorModifiers),
-    props.className
-  );
-  const HTMLProps = getHTMLProps({...props, className}, removeColorProps, removeBgColorProps);
-  return <span {...HTMLProps} />;
+export const Badge = ({value, type, ...props}: BadgeProps<HTMLSpanElement>) => {
+  const parsedNumber = Math.round(parseInt(value as string, 10));
+  if (parsedNumber > 0) {
+    const children = parsedNumber > 99 ? '99+' : parsedNumber;
+    const className = classNames(
+      'badge',
+      combineModifiers(props, getColorModifiers, getBgColorModifiers),
+      props.className
+    );
+    const role = type !== 'menu' && type !== 'icon' && 'img';
+    const HTMLProps = getHTMLProps({...props, className, children, role}, removeColorProps, removeBgColorProps);
+    return <span {...HTMLProps} />;
+  }
+  return null;
 };
+
 export default Badge;

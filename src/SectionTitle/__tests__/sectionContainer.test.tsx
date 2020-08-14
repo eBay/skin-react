@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {SectionContainer} from '../index';
+import {SectionContainer} from '..';
 
 describe('SectionContainer', () => {
   it('should render a SectionContainer(div) with default class and custom classNames', () => {
