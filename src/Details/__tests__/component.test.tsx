@@ -13,10 +13,16 @@ import {shallow} from 'enzyme';
 import Details from '../index';
 
 describe('Details', () => {
-  it('should render a details tag with .details and custom classNames', () => {
+  describe('given the details is in the default state', () => {
     const component = shallow(<Details className="custom-class" />);
-    expect(component.is('details')).toBe(true);
-    expect(component.hasClass('details')).toBe(true);
-    expect(component.hasClass('custom-class')).toBe(true);
+    it('should render a details tag', () => {
+      expect(component.is('details')).toBe(true);
+    });
+    it('should render a details tag with .details', () => {
+      expect(component.hasClass('details')).toBe(true);
+    });
+    it('should render a details with custom classNames', () => {
+      expect(component.hasClass('custom-class')).toBe(true);
+    });
   });
 });
