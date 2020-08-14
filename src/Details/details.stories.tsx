@@ -22,15 +22,14 @@ const story: any = {
 };
 
 export const _Details = () => {
-  const type = select('Type', ['center', 'regular'], 'regular');
+  const type = select('Type', ['center', 'rtl', 'regular'], 'regular');
   const size = select('Size', ['small', 'regular'], 'regular');
-  const isRtl = boolean('isRtl', false);
   return (
     <div>
       <h1>Default Details</h1>
       <SkinDetails label="Default Detail">SkinDetails</SkinDetails>
       <h1>Custom SkinDetails</h1>
-      <SkinDetails label="SkinDetails" type={type} size={size} isRtl={isRtl}>
+      <SkinDetails label="SkinDetails" type={type} size={size} open>
         SkinDetails
       </SkinDetails>
     </div>

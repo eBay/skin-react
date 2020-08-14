@@ -15,18 +15,17 @@ import {getHTMLProps} from '../../skin-utils';
 
 export interface DetailsProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
   label?: string;
-  isRtl?: boolean;
-  type?: 'center' | 'regular';
+  type?: 'center' | 'rtl' | 'regular';
   size?: 'small' | 'regular';
 }
-export const Details = ({children, isRtl, label, type, size, ...props}: DetailsProps<HTMLDetailsElement>) => {
+export const Details = ({children, label, type, size, ...props}: DetailsProps<HTMLDetailsElement>) => {
   const className = classNames('details', props.className);
   const summaryClassName = classNames('details__summary', {
     'details__summary--center': type === 'center',
     'details__summary--small': size === 'small'
   });
 
-  const HTMLProps = getHTMLProps({...props, className, dir: isRtl ? 'rtl' : ''});
+  const HTMLProps = getHTMLProps({...props, className, dir: type === 'rtl' ? 'rtl' : ''});
   return (
     <details {...HTMLProps}>
       <summary className={summaryClassName}>
