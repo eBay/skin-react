@@ -31,7 +31,7 @@ const list = Array(20)
   .map((x: any, i: any) => i + 1);
 
 export const _Pagination = () => {
-  const hrefBool = boolean('show Link Version', false, '1');
+  const hrefBool = boolean('show Link Version', false);
   const pageSize = number(
     'pageSize',
     9,

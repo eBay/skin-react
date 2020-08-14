@@ -27,6 +27,7 @@ Name | Type | Stateful | Required | Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `title` | string | No | no |  used to populate tab header
+`size` | String | No | No | Can be "regular" / "large". Default "regular"
 `children` | ReactNode | No | no |  tab content 
 
 

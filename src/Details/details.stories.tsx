@@ -12,7 +12,7 @@ import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {SkinDetails} from './index';
-import {withKnobs, boolean} from '@storybook/addon-knobs';
+import {withKnobs, boolean, select} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
@@ -22,15 +22,15 @@ const story: any = {
 };
 
 export const _Details = () => {
-  const isCentered = boolean('isCentered', false, '1');
-  const isSmall = boolean('isSmall', false, '1');
-  const isRtl = boolean('isRtl', false, '1');
+  const type = select('Type', ['center', 'regular'], 'regular');
+  const size = select('Size', ['small', 'regular'], 'regular');
+  const isRtl = boolean('isRtl', false);
   return (
     <div>
       <h1>Default Details</h1>
       <SkinDetails label="Default Detail">SkinDetails</SkinDetails>
       <h1>Custom SkinDetails</h1>
-      <SkinDetails label="SkinDetails" isCentered={isCentered} isSmall={isSmall} isRtl={isRtl}>
+      <SkinDetails label="SkinDetails" type={type} size={size} isRtl={isRtl}>
         SkinDetails
       </SkinDetails>
     </div>

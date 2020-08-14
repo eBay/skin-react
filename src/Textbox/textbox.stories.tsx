@@ -28,11 +28,11 @@ const iconOptions = toStoryObj(icons);
 const defaultProps = {};
 
 export const _Textbox = () => {
-  const isMultiline = boolean('isMultiline', false, '1');
-  const isUnderlined = boolean('isUnderlined', false, '1');
-  const isFluid = boolean('isFluid', false, '1');
-  const iconType = select('iconType', iconOptions, '', '1') as IconType;
-  const isPostfixIcon = boolean('isPostfixIcon', false, '1');
+  const isMultiline = boolean('isMultiline', false);
+  const isUnderlined = boolean('isUnderlined', false);
+  const isFluid = boolean('isFluid', false);
+  const iconType = select('iconType', iconOptions, '') as IconType;
+  const isPostfixIcon = boolean('isPostfixIcon', false);
   const props = {...defaultProps, isFluid, isUnderlined, isMultiline, iconType, isPostfixIcon};
   return (
     <div>

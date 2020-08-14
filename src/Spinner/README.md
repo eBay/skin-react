@@ -10,7 +10,7 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`isLarge` | boolean | No | no | 
+`size` | String | No | No | Can be "regular" / "large". Default "regular"
 ## Spinner Events
 
 HTML Anchor Element Events

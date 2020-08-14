@@ -27,7 +27,7 @@ const defaultProps = {};
 const Sizeoptions = toStoryObj([undefined, 'small', 'large']);
 
 export const _Radio = () => {
-  const size = select('Sizes', Sizeoptions, undefined, '1');
+  const size = select('Sizes', Sizeoptions, undefined);
   const props = {...defaultProps};
   return (
     <div>

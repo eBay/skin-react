@@ -26,7 +26,7 @@ const defaultProps = {};
 
 export const _Checkbox = () => {
   const size = select('Sizes', ['large', 'regular'], 'regular');
-  const disabled = boolean('disabled', false, '1');
+  const disabled = boolean('disabled', false);
   const props = {...defaultProps, size, disabled};
   return (
     <div>
