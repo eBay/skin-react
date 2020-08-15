@@ -11,13 +11,24 @@
 import * as React from 'react';
 import Tab, {TabCell, TabContent, TabItem, TabItems, TabPanel} from './';
 import {withForwardRef} from '../skin-utils';
+import * as Skin from '../skin';
 const TabItemWithRef = withForwardRef(TabItem);
 export interface SkinTabProps<T> extends React.HTMLProps<T> {
   index: string | number;
   isSelected: boolean;
   title: string;
 }
-export const SkinTab = ({children, index, isSelected, title, tabId, ...props}: SkinTabProps<HTMLElement> | any) => (
+
+export const SkinTab = ({
+  children,
+  index,
+  selected,
+  href,
+  isSelected,
+  title,
+  tabId,
+  ...props
+}: SkinTabProps<HTMLElement> | any) => (
   <TabPanel
     id={`tabpanel_${index}`}
     role="tabpanel"
@@ -29,7 +40,7 @@ export const SkinTab = ({children, index, isSelected, title, tabId, ...props}: S
     <TabCell>{children} </TabCell>
   </TabPanel>
 );
-export interface SkinTabsProps<T> extends React.HTMLProps<T> {}
+export interface SkinTabsProps<T> extends Skin.Fake, React.HTMLProps<T> {}
 export class SkinTabs extends React.Component<SkinTabsProps<HTMLElement>, any> {
   private tabs: any;
   private activeLink: HTMLDivElement | HTMLAnchorElement;
@@ -67,31 +78,35 @@ export class SkinTabs extends React.Component<SkinTabsProps<HTMLElement>, any> {
   }
   render() {
     const {selected} = this.state;
-    const {id = ''} = this.props;
+    const {id = '', isFake} = this.props;
     return (
-      <Tab>
-        <TabItems>
+      <Tab isFake={isFake}>
+        <TabItems isFake={isFake}>
           {this.tabs.map((tab, i) => {
             const tabId = `${id || 'item'}-tab_${i}`;
+            const props = tab.props.href
+              ? {
+                  href: tab.props.href,
+                  selected: tab.props.selected
+                }
+              : {
+                  [' aria-controls']: tabId,
+                  ['aria-selected']: tab === selected,
+                  tabIndex: tab === selected ? 0 : -1,
+                  onClick: (e) => this.handleClick(e, tab),
+                  onKeyUp: (e) => this.handleKeyup(e, tab),
+                  ref: (link) => {
+                    if (tab === selected) this.activeLink = link;
+                  }
+                };
             return (
-              <TabItemWithRef
-                key={tabId}
-                id={tabId}
-                aria-controls={tabId}
-                aria-selected={tab === selected}
-                tabIndex={tab === selected ? 0 : -1}
-                onClick={(e) => this.handleClick(e, tab)}
-                onKeyUp={(e) => this.handleKeyup(e, tab)}
-                ref={(link) => {
-                  if (tab === selected) this.activeLink = link;
-                }}
-              >
+              <TabItemWithRef key={tabId} id={tabId} {...props}>
                 {tab.props.title}
               </TabItemWithRef>
             );
           })}
         </TabItems>
-        <TabContent>
+        <TabContent isFake={isFake}>
           {this.tabs.map((tab, i) =>
             React.cloneElement(tab, {
               tabId: `${id || 'item'}-tab_${i}`,

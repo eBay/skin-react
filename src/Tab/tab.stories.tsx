@@ -52,20 +52,17 @@ export const _Tab = () => {
       <br />
       <br />
       <h2>Fake Tabs </h2>
-      <Tab isFake>
-        <TabItems isFake>
-          {list.map((name) => (
-            <TabItem key={name} selected={name === 1} href="#">
-              Tab {name}
-            </TabItem>
-          ))}
-        </TabItems>
-        <TabContent isFake>
-          <TabCell>
-            <TabContentStorybook header={`Content`} />
-          </TabCell>
-        </TabContent>
-      </Tab>
+      <SkinTabs isFake>
+        <SkinTab title="Tab 1" href="#">
+          <TabContentStorybook header={`Panel 1 Content`} />
+        </SkinTab>
+        <SkinTab title="Tab 2" href="#" selected>
+          <TabContentStorybook header={`Panel 2 Content`} />
+        </SkinTab>
+        <SkinTab title="Tab 3" href="#">
+          <TabContentStorybook header={`Panel 3 Content`} />
+        </SkinTab>
+      </SkinTabs>
     </div>
   );
 };
