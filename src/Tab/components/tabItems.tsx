@@ -12,14 +12,16 @@ import {addFakePrefix, getFakeTag} from '../../skin-utils';
 import * as React from 'react';
 import classNames from 'classnames';
 
-interface TabItemsProps<T> extends Skin.Fake, Skin.Role, Skin.Large, React.HTMLProps<T> {}
-export const TabItems = ({isLarge, isFake, ...props}: TabItemsProps<HTMLDivElement | HTMLUListElement>) => {
+interface TabItemsProps<T> extends Skin.Fake, Skin.Role, Omit<React.HTMLProps<T>, 'size'> {
+  size?: 'large' | 'regular';
+}
+export const TabItems = ({size, isFake, ...props}: TabItemsProps<HTMLDivElement | HTMLUListElement>) => {
   const wrapperClassName = addFakePrefix(isFake, 'tabs__items');
   const role = props.role || (!isFake ? 'tablist' : '');
   const className = classNames(
     wrapperClassName,
     {
-      [`${wrapperClassName}--large`]: isLarge
+      [`${wrapperClassName}--large`]: size === 'large'
     },
     props.className
   );

@@ -50,8 +50,8 @@ const defaultProps = {
 const typeOptions = toStoryObj(['page', 'section', 'inline']);
 
 export const _Notice = () => {
-  const type = select('type', typeOptions, 'page', '1') as NoticeType;
-  const hidden = boolean('hidden', false, '1');
+  const type = select('type', typeOptions, 'page') as NoticeType;
+  const hidden = boolean('hidden', false);
 
   const props = {...defaultProps, type};
   return (

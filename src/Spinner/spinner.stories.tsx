@@ -32,7 +32,7 @@ export const _Spinner = () => {
       <br />
       <br />
       <br />
-      <Spinner {...props} isLarge />
+      <Spinner {...props} size="large" />
     </div>
   );
 };

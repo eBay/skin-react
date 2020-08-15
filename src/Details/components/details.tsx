@@ -13,20 +13,19 @@ import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {getHTMLProps} from '../../skin-utils';
 
-export interface DetailsProps<T> extends React.HTMLProps<T> {
+export interface DetailsProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
   label?: string;
-  isCentered?: boolean;
-  isSmall?: boolean;
-  isRtl?: boolean;
+  type?: 'center' | 'rtl' | 'regular';
+  size?: 'small' | 'regular';
 }
-export const Details = ({children, isCentered, isSmall, isRtl, label, ...props}: DetailsProps<HTMLDetailsElement>) => {
+export const Details = ({children, label, type, size, ...props}: DetailsProps<HTMLDetailsElement>) => {
   const className = classNames('details', props.className);
   const summaryClassName = classNames('details__summary', {
-    'details__summary--center': isCentered,
-    'details__summary--small': isSmall
+    'details__summary--center': type === 'center',
+    'details__summary--small': size === 'small'
   });
 
-  const HTMLProps = getHTMLProps({...props, className, dir: isRtl ? 'rtl' : ''});
+  const HTMLProps = getHTMLProps({...props, className, dir: type === 'rtl' ? 'rtl' : ''});
   return (
     <details {...HTMLProps}>
       <summary className={summaryClassName}>

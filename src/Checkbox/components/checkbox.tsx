@@ -15,12 +15,14 @@ import {addPostfix} from '../../skin-utils';
 import * as Skin from '../../skin';
 
 const addLargePostFix = addPostfix('-large');
-export interface CheckboxProps<T> extends Skin.Large, React.HTMLProps<T> {
+export interface CheckboxProps extends Omit<React.HTMLProps<HTMLInputElement>, 'size'> {
   iconStyle?: React.CSSProperties;
+  size?: 'large' | 'regular';
 }
-export function Checkbox({isLarge, iconStyle, children, ...props}: CheckboxProps<HTMLInputElement>) {
+export function Checkbox({size, iconStyle, children, ...props}: CheckboxProps) {
   const className = classNames('checkbox__control', props.className);
   const HTMLProps = {type: 'checkbox', ...props, className};
+  const isLarge = size === 'large';
   const iconSize = isLarge ? '24' : '18';
   return (
     <span className="checkbox">

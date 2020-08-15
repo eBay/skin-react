@@ -12,7 +12,7 @@ import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import Checkbox, {SkinCheckbox} from './index';
-import {boolean, withKnobs} from '@storybook/addon-knobs';
+import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
@@ -25,9 +25,9 @@ const story: any = {
 const defaultProps = {};
 
 export const _Checkbox = () => {
-  const isLarge = boolean('isLarge', false, '1');
-  const disabled = boolean('disabled', false, '1');
-  const props = {...defaultProps, isLarge, disabled};
+  const size = select('Sizes', ['large', 'regular'], 'regular');
+  const disabled = boolean('disabled', false);
+  const props = {...defaultProps, size, disabled};
   return (
     <div>
       <SkinCheckbox aria-label="Default checkbox example" name="checkbox" {...props} />

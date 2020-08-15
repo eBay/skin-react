@@ -28,7 +28,7 @@ const defaultProps = {
   id: 'window-notice'
 };
 export const _NoticeWindow = () => {
-  const hidden = boolean('hidden', false, '1');
+  const hidden = boolean('hidden', false);
   return (
     <div>
       <SkinWindowNotice

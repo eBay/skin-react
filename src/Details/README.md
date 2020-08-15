@@ -10,8 +10,8 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`isCentered` | boolean | No | no | 
-`isSmall` | boolean | No | no | 
+`type` | String | No | No | Can be "regular" / "center". Default "regular"
+`size` | String | No | No | Can be "regular" / "small". Default "regular"
 `isRtl` | boolean | No | no | 
 `open` | Boolean | No | No | Whether details is open.
 

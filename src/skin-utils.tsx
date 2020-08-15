@@ -25,14 +25,13 @@ export const getBgColorModifiers = ({bgColor}: Skin.BgColor) => ({[bgColor]: !!b
 
 export const removeBgColorProps = (props: Skin.BgColor) => removeProp(props, 'bgColor');
 
-export const removeDefaultClassNameProps = (props) => removeProp(props, 'defaultClassName');
 // @ts-ignore
 export const removeProp = ({[prop]: omit, ...res}: React.HTMLProps<HTMLElement> | object, prop) => res;
 
 type PropsFunc = (object) => object;
 
 export function getHTMLProps(props: object, ...args: PropsFunc[]): React.HTMLProps<HTMLElement> {
-  return args ? args.reduce((rest, fn) => ({...fn(rest)}), props) : props;
+  return args && args.length > 0 ? args.reduce((rest, fn) => ({...fn(rest)}), props) : props;
 }
 
 export function combineModifiers(props: object, ...args: PropsFunc[]): object {
@@ -71,20 +70,6 @@ export const withProps = ({displayName, ...injectedProps}) => (WrappedComponent 
   return HOC;
 };
 
-export const passPropsChildren = (children, props, validDisplayNames: string[] | undefined = undefined) => {
-  if (children) {
-    return React.Children.map(children, (child) => {
-      if (
-        React.isValidElement(child) &&
-        (!validDisplayNames || validDisplayNames.includes(typeof child.type !== 'string' && child.type['displayName']))
-      ) {
-        return React.cloneElement(child, props);
-      }
-      return child;
-    });
-  }
-  return children;
-};
 export const getDisplayName = (Component) =>
   !Component ? 'Component' : Component.displayName || Component.name || 'Component';
 

@@ -19,7 +19,7 @@ import StoryBook from '../../.storybook/util/story-setup';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6 + '.Button',
+  title: Category.SKINDS6,
   component: Button,
   decorators: [withKnobs, withA11y]
 };
@@ -30,8 +30,8 @@ const Sizeoptions = toStoryObj(['truncated', 'large', 'large-truncated']);
 const types: ButtonTypes[] = ['btn', 'fake-btn', 'cta-btn'];
 
 export const _Button = () => {
-  const variant = select('Colors', ColorOptions, '', '1') as ButtonColors;
-  const size = select('Sizes', Sizeoptions, '', '1') as ButtonSizes;
+  const variant = select('Colors', ColorOptions, '') as ButtonColors;
+  const size = select('Sizes', Sizeoptions, '') as ButtonSizes;
   const props = {...defaultProps, variant, size};
   return (
     <div>
