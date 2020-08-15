@@ -21,6 +21,7 @@
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `id` | string | No | no |  
+`isFake` | Boolean | No | No | Whether to use link behavior for tab headings
 
 ## SkinTab Attributes
 

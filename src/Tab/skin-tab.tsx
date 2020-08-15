@@ -107,15 +107,18 @@ export class SkinTabs extends React.Component<SkinTabsProps<HTMLElement>, any> {
           })}
         </TabItems>
         <TabContent isFake={isFake}>
-          {this.tabs.map((tab, i) =>
-            React.cloneElement(tab, {
-              tabId: `${id || 'item'}-tab_${i}`,
-              key: i,
-              ...tab.props,
-              index: i,
-              isSelected: () => tab === selected
-            })
-          )}
+          {this.tabs.map((tab, i) => {
+            if (!isFake || tab.props.selected) {
+              return React.cloneElement(tab, {
+                tabId: `${id || 'item'}-tab_${i}`,
+                key: i,
+                ...tab.props,
+                index: i,
+                isSelected: () => tab === selected
+              });
+            }
+            return null;
+          })}
         </TabContent>
       </Tab>
     );
