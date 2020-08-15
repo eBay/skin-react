@@ -25,16 +25,27 @@ describe('DialogBase', () => {
     it('should render a DialogBase with custom classNames', () => {
       expect(component.hasClass('custom-class')).toBe(true);
     });
-    describe('when the close button is clicked', () => {
+    describe('click events', () => {
       let spy;
       beforeEach(() => {
         component = mount(
-          <DialogBaseWithState classPrefix="drawer" header={<h2>Heading</h2>} onCloseBtnClick={jest.fn()} open />
+          <DialogBaseWithState
+            classPrefix="drawer"
+            header={<h2>Heading</h2>}
+            onCloseBtnClick={jest.fn()}
+            OnBackgroundClick={jest.fn()}
+            open
+          />
         );
       });
-      it('then it should trigger close event', () => {
+      it('when btn cliked then it should trigger onCloseBtnClick event', () => {
         spy = jest.spyOn(component.props(), 'onCloseBtnClick');
         component.find('.drawer__close').simulate('click');
+        expect(spy).toHaveBeenCalled();
+      });
+      it('when background clicked then it should trigger OnBackgroundClick event', () => {
+        spy = jest.spyOn(component.props(), 'OnBackgroundClick');
+        document.body.click();
         expect(spy).toHaveBeenCalled();
       });
     });
