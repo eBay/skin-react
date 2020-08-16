@@ -46,7 +46,7 @@ export const _SectionTitle = () => {
       <br />
       <DemoComponent>
         <SkinSectionTitle {...props}>
-          <SkinSectionCTA href="#" title="See All" iconType="arrow-right-bold" />
+          <SkinSectionCTA href="#" title="See All" iconName="arrow-right-bold" />
         </SkinSectionTitle>
       </DemoComponent>
     </div>

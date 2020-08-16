@@ -32,11 +32,11 @@ describe('notice', () => {
 
 describe('NoticeStatus', () => {
   it('should render a NoticeStatus(a) with .notice__status and custom classNames', () => {
-    const component = shallow(<NoticeStatus className="custom-class" iconType="menu" />);
+    const component = shallow(<NoticeStatus className="custom-class" iconName="menu" />);
     expect(component.hasClass('custom-class')).toBe(true);
   });
   it('should render a NoticeStatus(a) with .notice__status and custom classNames', () => {
-    const component = shallow(<NoticeStatus className="custom-class" iconType="menu" type="inline" />);
+    const component = shallow(<NoticeStatus className="custom-class" iconName="menu" type="inline" />);
     expect(component.hasClass('custom-class')).toBe(true);
   });
 });

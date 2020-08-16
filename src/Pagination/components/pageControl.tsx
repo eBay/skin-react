@@ -20,7 +20,7 @@ export const PageControl = ({isNext, disabled, ...props}: PageControlProps<HTMLB
   const tag = getFakeTag(!!props.href, 'a', 'button');
   const HTMLProps = {
     ['aria-disabled']: disabled,
-    children: isNext ? <Icon type="pagination-next" /> : <Icon type="pagination-prev" />,
+    children: isNext ? <Icon name="pagination-next" /> : <Icon name="pagination-prev" />,
     ...props,
     className
   };

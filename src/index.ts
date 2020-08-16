@@ -15,7 +15,7 @@ export {Button, BtnCell, ExpandBtnCell, SkinButton} from './Button';
 export {Checkbox, SkinCheckbox} from './Checkbox';
 export {Details, SkinDetails} from './Details';
 export {Grid} from './Grid';
-export {Icon, IconSymbols, IconType} from './Icon';
+export {Icon, IconSymbols, IconName} from './Icon';
 export {Notice, WindowNotice, NoticeType, NoticeVariant, SkinNotice, SkinWindowNotice} from './Notice';
 export {Pagination, PageControl, PageList, PageItem, SkinPagination, SkinPageItem} from './Pagination';
 export {Radio, SkinRadio} from './Radio';

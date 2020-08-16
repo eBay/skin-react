@@ -11,19 +11,19 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import * as Skin from '../../skin';
-import Icon, {IconType} from '../../Icon';
+import Icon, {IconName} from '../../Icon';
 
 export interface WindowNoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
   a11yText?: string;
   content?: any;
-  iconType?: IconType;
+  iconName?: IconName;
   iconProps?: any;
   isFill?: boolean;
 }
 export const WindowNotice = ({
   children,
   isFill,
-  iconType,
+  iconName,
   iconProps = {},
   a11yText,
   content,
@@ -42,7 +42,7 @@ export const WindowNotice = ({
   return (
     <section aria-labelledby={id} {...HTMLProps}>
       <h2 id={id}>
-        {iconType && <Icon type={iconType} {...iconProps} />}
+        {iconName && <Icon name={iconName} {...iconProps} />}
         {a11yText && <span className="window-notice__title">{a11yText}</span>}
       </h2>
       {content && <p className="window-notice__content">{content}</p>}

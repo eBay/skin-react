@@ -4,7 +4,7 @@
 
 ```react
 <SkinSectionTitle aria-label="Skin SkinSectionTitle">
-    <Icon type="menu" />
+    <Icon name="menu" />
 </SkinSectionTitle>
 ```
 
@@ -21,5 +21,5 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `title` | any | No | no | 
 `href` | string | No | no | 
-`iconType` | IconType | No | no | 
+`iconName` | IconName | No | no | 
 `iconProps` | object | No | no | 

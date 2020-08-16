@@ -3,14 +3,14 @@
 ## Icon Usage
 
 ```react
-<Icon type="add" />
+<Icon name="add" />
 ```
 
 ## Icon Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`type` | IconType | No | yes | name of the icon from Skin
+`name` | IconName | No | yes | name of the icon from Skin
 `isButton` | boolean | No | no | add btn__icon class
 `customClassName` | string | No | no | 	Used for special cases where icon classes from Skin should not be applied
 `focusable` | string | No | no | 

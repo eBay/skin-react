@@ -14,8 +14,8 @@ import {addPrefix} from '../../skin-utils';
 import * as Skin from '../../skin';
 
 import Icon from '../../Icon';
-const getUncheckedIconType = addPrefix('radio-unchecked');
-const getCheckedIconType = addPrefix('radio-checked');
+const getUncheckedIconName = addPrefix('radio-unchecked');
+const getCheckedIconName = addPrefix('radio-checked');
 
 export interface RadioProps<T> extends Skin.Role, Omit<React.HTMLProps<T>, 'size'> {
   size?: 'large' | 'small';
@@ -27,8 +27,8 @@ export function Radio({size, ...props}: RadioProps<HTMLInputElement>) {
     <span className="radio">
       <input {...HTMLProps} />
       <span className="radio__icon" hidden>
-        <Icon className="radio__unchecked" type={getUncheckedIconType(size ? `-${size}` : '', true)} />
-        <Icon className="radio__checked" type={getCheckedIconType(size ? `-${size}` : '', true)} />
+        <Icon className="radio__unchecked" name={getUncheckedIconName(size ? `-${size}` : '', true)} />
+        <Icon className="radio__checked" name={getCheckedIconName(size ? `-${size}` : '', true)} />
       </span>
     </span>
   );

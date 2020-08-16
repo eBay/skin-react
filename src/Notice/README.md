@@ -8,7 +8,7 @@
   variant={notice.color as NoticeVariant}
   id={`page-notice-${index}`}
   a11yText={`page notice ${index}`}
-  iconType={notice.icon as IconType}
+  iconName={notice.icon as IconName}
   content={<p>{notice.color} message</p>}
   hidden={hidden}
   key={index}

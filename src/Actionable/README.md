@@ -4,7 +4,7 @@
 
 ```react
 <Actionable aria-label="Skin Actionable">
-    <Icon type="menu" />
+    <Icon name="menu" />
 </Actionable>
 ```
 

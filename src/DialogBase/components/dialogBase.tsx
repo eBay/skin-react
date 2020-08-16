@@ -81,7 +81,7 @@ export const DialogBase = ({
               aria-label={allyCloseText}
               onClick={onCloseBtnClick}
             >
-              <Icon type="close" />
+              <Icon name="close" />
             </button>
             {buttonPosition === 'left' && header}
           </div>

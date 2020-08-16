@@ -10,18 +10,18 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import {IconType} from '..';
+import {IconName} from '..';
 
 export interface IconProps<T> extends React.HTMLProps<T> {
-  type: IconType | string;
+  name: IconName | string;
   isButton?: boolean;
   customClassName?: string;
   focusable?: string | boolean;
   a11yText?: string;
 }
 
-export const Icon = ({a11yText, customClassName, type, isButton, ...props}: IconProps<SVGElement>) => {
-  const iconClass = 'icon--' + type;
+export const Icon = ({a11yText, customClassName, name, isButton, ...props}: IconProps<SVGElement>) => {
+  const iconClass = 'icon--' + name;
   const className = customClassName
     ? customClassName
     : classNames(
@@ -46,7 +46,7 @@ export const Icon = ({a11yText, customClassName, type, isButton, ...props}: Icon
     // @ts-ignore
     <svg focusable="false" xmlns="http://www.w3.org/2000/svg" {...iconProps}>
       {id && <title id={id}>{a11yText}</title>}
-      <use xlinkHref={'#icon-' + type} />
+      <use xlinkHref={'#icon-' + name} />
     </svg>
   );
 };

@@ -15,7 +15,7 @@ import {withKnobs, boolean, select} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {SkinTextbox, Textbox} from './index';
 import {toStoryObj, icons} from '../../.storybook/util/utils';
-import {IconType} from '../Icon';
+import {IconName} from '../Icon';
 import {withA11y} from '@storybook/addon-a11y';
 import SkinTextboxLabeled from './skin-textbox-labeled';
 const story: any = {
@@ -31,9 +31,9 @@ export const _Textbox = () => {
   const isMultiline = boolean('isMultiline', false);
   const isUnderlined = boolean('isUnderlined', false);
   const isFluid = boolean('isFluid', false);
-  const iconType = select('iconType', iconOptions, '') as IconType;
+  const iconName = select('iconName', iconOptions, '') as IconName;
   const isPostfixIcon = boolean('isPostfixIcon', false);
-  const props = {...defaultProps, isFluid, isUnderlined, isMultiline, iconType, isPostfixIcon};
+  const props = {...defaultProps, isFluid, isUnderlined, isMultiline, iconName, isPostfixIcon};
   return (
     <div>
       <h1>Textbox</h1>

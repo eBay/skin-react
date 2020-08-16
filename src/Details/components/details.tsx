@@ -31,7 +31,7 @@ export const Details = ({children, label, type, size, ...props}: DetailsProps<HT
       <summary className={summaryClassName}>
         <span className="details__label">{label}</span>
         <span className="details__icon" hidden>
-          <Icon type="dropdown" aria-hidden="true" />
+          <Icon name="dropdown" aria-hidden="true" />
         </span>
       </summary>
       <p>{children}</p>

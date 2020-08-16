@@ -34,7 +34,7 @@ export const _NoticeWindow = () => {
       <SkinWindowNotice
         {...defaultProps}
         title="Your first order has been placed!"
-        iconType="confirmation-filled"
+        iconName="confirmation-filled"
         id="window-notice-1"
         content="You'll get a confirmation email soon. The rest of your items are now ready to checkout."
         hidden={hidden}
