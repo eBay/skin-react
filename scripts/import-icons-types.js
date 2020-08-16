@@ -30,8 +30,8 @@ for (const theme of THEME_NAMES) {
 }
 const iconsList = Object.keys(icons);
 
-const filePath = path.join(outputDir, 'iconType.ts');
-fs.writeFileSync(filePath, `export type IconType = '${iconsList.join(`'|'`)}';`);
+const filePath = path.join(outputDir, 'iconName.ts');
+fs.writeFileSync(filePath, `export type IconName = '${iconsList.join(`'|'`)}';`);
 
 fs.writeFileSync(path.join(outputStorybookUtilDir, 'icons.ts'), `export const icons = ['${iconsList.join(`','`)}'];`);
 fs.writeFileSync(

@@ -20,7 +20,7 @@ export const BreadcrumbItem = ({isLast, ...props}: BreadcrumbItemProps<HTMLButto
   return (
     <li>
       {React.createElement(getBreadcrumbItemTag(!!props.href), {...passedProps, ...props})}
-      {!isLast && <Icon type="breadcrumb" />}
+      {!isLast && <Icon name="breadcrumb" />}
     </li>
   );
 };

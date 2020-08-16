@@ -53,7 +53,7 @@ export function Button({
   } else if ('cta-btn' === type) {
     children = (
       <CTABtnCell>
-        {children} <Icon type="cta" />
+        {children} <Icon name="cta" />
       </CTABtnCell>
     );
   }

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {Icon, IconType} from './index';
+import {Icon, IconName} from './index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {icons} from '../../.storybook/util/utils';
@@ -26,7 +26,7 @@ export const _Icon = () => (
   <div style={{display: 'flex', flexWrap: 'wrap'}}>
     {icons.map((name) => (
       <div key={name} style={{flex: '1 0 21%'}}>
-        <Icon type={name as IconType} style={{margin: '30px', maxWidth: '29px', maxHeight: '29px'}} />
+        <Icon name={name as IconName} style={{margin: '30px', maxWidth: '29px', maxHeight: '29px'}} />
         {name}
       </div>
     ))}

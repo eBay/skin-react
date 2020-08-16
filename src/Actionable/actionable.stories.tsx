@@ -27,10 +27,10 @@ export const _Actionable = () => {
   return (
     <div>
       <Actionable {...props} aria-label="Skin Actionable">
-        <Icon type="menu" />
+        <Icon name="menu" />
       </Actionable>
       <Actionable {...props} href="www.skin.com" aria-label="Skin Website">
-        <Icon type="settings" />
+        <Icon name="settings" />
       </Actionable>
     </div>
   );

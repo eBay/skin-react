@@ -30,13 +30,13 @@ export function Checkbox({size, iconStyle, children, ...props}: CheckboxProps) {
       <span className="checkbox__icon" hidden style={iconStyle}>
         <Icon
           className="checkbox__unchecked"
-          type={addLargePostFix('checkbox-unchecked', isLarge)}
+          name={addLargePostFix('checkbox-unchecked', isLarge)}
           height={iconSize}
           width={iconSize}
         />
         <Icon
           className="checkbox__checked"
-          type={addLargePostFix('checkbox-checked', isLarge)}
+          name={addLargePostFix('checkbox-checked', isLarge)}
           height={iconSize}
           width={iconSize}
         />

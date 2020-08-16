@@ -11,7 +11,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import * as Skin from '../../skin';
-import Icon, {IconType} from '../../Icon';
+import Icon, {IconName} from '../../Icon';
 import TextboxWrapper from './textboxWrapper';
 const getTag = (isMultiline: boolean) => (isMultiline ? 'textarea' : 'input');
 
@@ -20,7 +20,7 @@ export interface TextboxProps<T> extends Skin.Fluid, React.HTMLProps<T> {
   isMultiline?: boolean;
   isPostfixIcon?: boolean;
   isInvalid?: boolean;
-  iconType?: IconType;
+  iconName?: IconName;
   iconProps?: object;
   forwardedRef?: any;
 }
@@ -30,7 +30,7 @@ export const Textbox = ({
   isMultiline,
   isPostfixIcon,
   isInvalid,
-  iconType,
+  iconName,
   forwardedRef,
   iconProps = {width: '16', height: '16', 'aria-hidden': 'true'},
   ...props
@@ -45,7 +45,7 @@ export const Textbox = ({
   );
   return (
     <TextboxWrapper isFluid={isFluid} isPostfixIcon={isPostfixIcon}>
-      {!isPostfixIcon && iconType && <Icon type={iconType} {...iconProps} />}
+      {!isPostfixIcon && iconName && <Icon name={iconName} {...iconProps} />}
       {React.createElement(getTag(isMultiline), {
         type: 'text',
         'aria-invalid': isInvalid,
@@ -53,7 +53,7 @@ export const Textbox = ({
         className,
         ref: forwardedRef
       })}
-      {isPostfixIcon && iconType && <Icon type={iconType} {...iconProps} />}
+      {isPostfixIcon && iconName && <Icon name={iconName} {...iconProps} />}
     </TextboxWrapper>
   );
 };

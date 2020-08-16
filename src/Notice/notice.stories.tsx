@@ -14,7 +14,7 @@ import {Category} from '../../.storybook/util/stories-hierarchy';
 import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {NoticeType, NoticeVariant, SkinNotice} from './index';
-import {IconType} from '../Icon';
+import {IconName} from '../Icon';
 import Button from '../Button';
 import {toStoryObj} from '../../.storybook/util/utils';
 import {withA11y} from '@storybook/addon-a11y';
@@ -63,7 +63,7 @@ export const _Notice = () => {
           variant={notice.color as NoticeVariant}
           id={`page-notice-${index}`}
           a11yText={`page notice ${index}`}
-          iconType={notice.icon as IconType}
+          iconName={notice.icon as IconName}
           content={<p>{notice.color} message</p>}
           hidden={hidden}
           key={index}

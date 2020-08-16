@@ -10,15 +10,15 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import Icon, {IconType} from '../../Icon';
+import Icon, {IconName} from '../../Icon';
 
 export interface SectionCTAProps<T> extends React.HTMLProps<T> {
   title?: any;
   href?: string;
-  iconType?: IconType;
+  iconName?: IconName;
   iconProps?: object;
 }
-export const SectionCTA = ({title, href, iconType, iconProps = {}, ...props}: SectionCTAProps<HTMLDivElement>) => {
+export const SectionCTA = ({title, href, iconName, iconProps = {}, ...props}: SectionCTAProps<HTMLDivElement>) => {
   const className = classNames(
     'section-title__cta',
     {
@@ -30,7 +30,7 @@ export const SectionCTA = ({title, href, iconType, iconProps = {}, ...props}: Se
     <div {...props} className={className}>
       <a href={href} aria-hidden="true">
         {title && <span className="section-title__cta-text">{title}</span>}
-        {iconType && <Icon type={iconType} customClassName="section-title__cta-icon" {...iconProps} />}
+        {iconName && <Icon name={iconName} customClassName="section-title__cta-icon" {...iconProps} />}
       </a>
     </div>
   );

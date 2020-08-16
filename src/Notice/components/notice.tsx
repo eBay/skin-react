@@ -11,7 +11,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import * as Skin from '../../skin';
-import Icon, {IconType} from '../../Icon';
+import Icon, {IconName} from '../../Icon';
 
 export type NoticeVariant = 'confirmation' | 'attention' | 'information' | 'celebration';
 export type NoticeType = 'page' | 'section' | 'inline';
@@ -22,7 +22,7 @@ export const getClass = (type: NoticeType) => {
 
 export interface NoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
   title?: string;
-  iconType?: IconType;
+  iconName?: IconName;
   iconProps?: object;
   variant?: NoticeVariant;
   type?: NoticeType;
@@ -34,7 +34,7 @@ export const Notice = ({
   children,
   variant,
   type,
-  iconType,
+  iconName,
   iconProps = {},
   title,
   id,
@@ -59,7 +59,7 @@ export const Notice = ({
         id={id}
         type={type}
         variant={variant}
-        iconType={iconType}
+        iconName={iconName}
         iconProps={iconProps}
         a11yText={a11yText}
       />
@@ -75,14 +75,14 @@ export const Notice = ({
 export default Notice;
 
 interface NoticeStatusProps<T> extends Skin.Role, React.HTMLProps<T> {
-  iconType?: IconType;
+  iconName?: IconName;
   iconProps?: any;
   variant?: NoticeVariant;
   type?: NoticeType;
   a11yText?: string;
 }
 export const NoticeStatus = ({
-  iconType,
+  iconName,
   type,
   variant,
   iconProps = {},
@@ -97,7 +97,7 @@ export const NoticeStatus = ({
       <>
         {props.children}
         <span className="clipped">{a11yText}</span>
-        <Icon type={iconType ? iconType : `${variant}-filled`} {...iconProps} />
+        <Icon name={iconName ? iconName : `${variant}-filled`} {...iconProps} />
       </>
     )
   });

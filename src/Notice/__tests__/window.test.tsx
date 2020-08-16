@@ -11,7 +11,7 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
 import WindowNotice from '../components/windowNotice';
-import {IconType} from '../../Icon';
+import {IconName} from '../../Icon';
 
 describe('notice', () => {
   it('should render a WindowNotice(section) with .notice and custom classNames', () => {
@@ -22,7 +22,7 @@ describe('notice', () => {
   });
   it('should render a WindowNotice(section) with params', () => {
     const component = shallow(
-      <WindowNotice className="custom-class" a11yText="a11yText" content="Hello" iconType="menu" isFill />
+      <WindowNotice className="custom-class" a11yText="a11yText" content="Hello" iconName="menu" isFill />
     );
     expect(component.is('section')).toBe(true);
     expect(component.hasClass('window-notice')).toBe(true);

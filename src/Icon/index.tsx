@@ -18,5 +18,5 @@ export const IconSymbols = (props) => (
   </span>
 );
 export {Icon} from './components/icon';
-export {IconType} from './components/iconType';
+export {IconName} from './components/iconName';
 export default Icon;

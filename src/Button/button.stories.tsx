@@ -52,7 +52,7 @@ export const ButtonIcon = () => {
     <div>
       <Button variant="primary" {...defaultProps} aria-label="Skin Button">
         <BtnCell>
-          <Icon className="btn__icon" type="menu" />
+          <Icon className="btn__icon" name="menu" />
           <span>Button</span>
         </BtnCell>
       </Button>

@@ -29,7 +29,7 @@ describe('Textbox', () => {
   });
   it('should render a Textbox(input) with .textbox and custom classNames', () => {
     const component = shallow(
-      <Textbox className="custom-class" isFluid isUnderlined isPostfixIcon isInvalid iconType="menu" />
+      <Textbox className="custom-class" isFluid isUnderlined isPostfixIcon isInvalid iconName="menu" />
     );
     const inputComponent = component.find('input');
     expect(inputComponent.is('input')).toBe(true);

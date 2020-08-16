@@ -1,4 +1,4 @@
-export type IconType =
+export type IconName =
   | 'add'
   | 'add-small'
   | 'arrow-left'
