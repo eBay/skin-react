@@ -28,9 +28,18 @@ export const SectionCTA = ({title, href, iconName, iconProps = {}, ...props}: Se
   );
   return (
     <div {...props} className={className}>
-      <a href={href} aria-hidden="true">
+      <a href={href} tabIndex={-1} aria-hidden="true">
         {title && <span className="section-title__cta-text">{title}</span>}
-        {iconName && <Icon name={iconName} customClassName="section-title__cta-icon" {...iconProps} />}
+        {iconName && (
+          <Icon
+            name={iconName}
+            customClassName="section-title__cta-icon"
+            height="24"
+            width="24"
+            aria-hidden="true"
+            {...iconProps}
+          />
+        )}
       </a>
     </div>
   );
