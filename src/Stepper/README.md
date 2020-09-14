@@ -15,10 +15,14 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`direction` | any | No | Yes | 
+`direction` | String | No | No | If set to 'column' will render a vertical stepper. 
 
-## Events
+## Stepper Item
 
-Event | Data | Description
---- | --- | ---
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`current` | Boolean | No | No | Signifies the current step in the stepper. 
+`number` | Number | No | No | The number of the step to render.
+`type` | String | No | No | Will explicitly set the visible state of the step item.
+
 

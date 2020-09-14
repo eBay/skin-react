@@ -21,11 +21,36 @@ export const _Stepper = () => {
   const props = {...defaultProps};
   return (
     <div>
+      <h3>Standard flow horizontal</h3>
       <Stepper {...props}>
         <StepperItem>Started</StepperItem>
         <StepperItem>Shipped</StepperItem>
         <StepperItem current>Transit</StepperItem>
         <StepperItem>Delivered</StepperItem>
+      </Stepper>
+
+      <h3>Standard flow vertical/column</h3>
+      <Stepper direction="column">
+        <StepperItem>Started</StepperItem>
+        <StepperItem>Shipped</StepperItem>
+        <StepperItem current>Transit</StepperItem>
+        <StepperItem>Delivered</StepperItem>
+      </Stepper>
+
+      <h3>Step after current completed flow</h3>
+      <Stepper {...props}>
+        <StepperItem>Started</StepperItem>
+        <StepperItem current>Shipped</StepperItem>
+        <StepperItem>Transit</StepperItem>
+        <StepperItem type="confirmation">Delivered</StepperItem>
+      </Stepper>
+
+      <h3>Number stepper</h3>
+      <Stepper>
+        <StepperItem number={1} />
+        <StepperItem number={2} />
+        <StepperItem number={3} current />
+        <StepperItem number={4} />
       </Stepper>
     </div>
   );
