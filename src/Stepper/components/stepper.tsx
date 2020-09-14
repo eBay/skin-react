@@ -1,8 +1,18 @@
+/*
+ * ************************************************************
+ *  Copyright 2020 eBay Inc.
+ *  Author/Developer: Arturo Montoya, Michael Sinnes
+ *  Use of this source code is governed by an MIT-style
+ *  license that can be found in the LICENSE file or at
+ *  https://opensource.org/licenses/MIT.
+ *  ***********************************************************
+ */
+
 import * as React from 'react';
 import classNames from 'classnames';
 
 export interface StepperProps<T> extends React.HTMLProps<T> {
-  direction?: any;
+  direction?: string | 'column';
 }
 const _getType = ({type, number}) => (number ? 'default' : type);
 export const Stepper = ({direction = 'row', children, ...props}: StepperProps<any>) => {
@@ -25,7 +35,7 @@ export const Stepper = ({direction = 'row', children, ...props}: StepperProps<an
       }
     }
     return {
-      type: !type && index < currentIndex? 'confirmation': type,
+      type: !type && index < currentIndex ? 'confirmation' : type,
       current: currentIndex === index,
       typeClass,
       transition,

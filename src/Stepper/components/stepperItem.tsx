@@ -1,3 +1,13 @@
+/*
+ * ************************************************************
+ *  Copyright 2020 eBay Inc.
+ *  Author/Developer: Arturo Montoya, Michael Sinnes
+ *  Use of this source code is governed by an MIT-style
+ *  license that can be found in the LICENSE file or at
+ *  https://opensource.org/licenses/MIT.
+ *  ***********************************************************
+ */
+
 import * as React from 'react';
 import classNames from 'classnames';
 import Icon from '../../Icon';
@@ -21,11 +31,11 @@ export const StepperItem = ({
 }: StepperItemProps<any>) => {
   const renderIcon = () => {
     if (['attention', 'information', 'confirmation'].includes(type)) {
-      return <Icon type={`${type}-filled`} width="24" height="24"/>;
+      return <Icon name={`${type}-filled`} width="24" height="24" />;
     } else if (number) {
-      return <Badge>{number}</Badge>;
+      return <Badge value={number} />;
     }
-    return <Icon type={type || 'circle'} width="24" height="24" />;
+    return <Icon name={type || 'circle'} width="24" height="24" />;
   };
   return (
     <div
