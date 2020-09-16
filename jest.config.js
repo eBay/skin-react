@@ -2,7 +2,10 @@ module.exports = {
   verbose: true,
   collectCoverageFrom: ['src/**/*.{js,jsx,mjs,ts,tsx}'],
   setupFiles: ['<rootDir>/node_modules/regenerator-runtime/runtime', '<rootDir>/tools/polyfills.js'],
-  setupFilesAfterEnv: ['<rootDir>/tools/jest/setup.js'],
+  setupFilesAfterEnv: [
+    '<rootDir>/tools/jest/setup.js',
+    '@testing-library/jest-dom'
+  ],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}',
     '<rootDir>/src/**/*.(spec|test).{js,jsx,mjs,ts,tsx}'
