@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a section title with only a title renders properly 1`] = `
+<div
+  class="section-title"
+>
+  <div
+    class="section-title__title-container"
+  >
+    <h2
+      class="section-title__title"
+    >
+      Title
+    </h2>
+    <span
+      class="section-title__subtitle"
+    />
+  </div>
+</div>
+`;
+
+exports[`Given a section with a subtitle and CTA renders properly 1`] = `
+<div
+  class="section-title"
+>
+  <div
+    class="section-title__title-container"
+  >
+    <h2
+      class="section-title__title"
+    >
+      Title
+    </h2>
+    <span
+      class="section-title__subtitle"
+    >
+      Subtitle
+    </span>
+  </div>
+  <div
+    class="section-title__cta"
+  >
+    <a
+      aria-hidden="true"
+      href="http://ebay.com"
+      tabindex="-1"
+    >
+      <span
+        class="section-title__cta-text"
+      >
+        See All
+      </span>
+      <svg
+        aria-hidden="true"
+        class="section-title__cta-icon"
+        focusable="false"
+        height="24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <use
+          xlink:href="#icon-arrow-right-bold"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Given a section with a subtitle and CTA with no text renders properly 1`] = `
+<div
+  class="section-title"
+>
+  <div
+    class="section-title__title-container"
+  >
+    <h2
+      class="section-title__title"
+    >
+      Title
+    </h2>
+    <span
+      class="section-title__subtitle"
+    >
+      Subtitle
+    </span>
+  </div>
+  <div
+    class="section-title__cta section-title__cta--no-text"
+  >
+    <a
+      aria-hidden="true"
+      href="http://ebay.com"
+      tabindex="-1"
+    >
+      <svg
+        aria-hidden="true"
+        class="section-title__cta-icon"
+        focusable="false"
+        height="24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <use
+          xlink:href="#icon-arrow-right-bold"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Given a section with a subtitle renders properly 1`] = `
+<div
+  class="section-title"
+>
+  <div
+    class="section-title__title-container"
+  >
+    <h2
+      class="section-title__title"
+    >
+      Title
+    </h2>
+    <span
+      class="section-title__subtitle"
+    >
+      Subtitle
+    </span>
+  </div>
+</div>
+`;

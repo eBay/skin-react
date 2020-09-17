@@ -49,6 +49,14 @@ export const _SectionTitle = () => {
           <SkinSectionCTA href="#" title="See All" iconName="arrow-right-bold" />
         </SkinSectionTitle>
       </DemoComponent>
+      <br />
+      <br />
+      <br />
+      <DemoComponent>
+        <SkinSectionTitle {...props}>
+          <SkinSectionCTA href="#" iconName="arrow-right-bold" />
+        </SkinSectionTitle>
+      </DemoComponent>
     </div>
   );
 };

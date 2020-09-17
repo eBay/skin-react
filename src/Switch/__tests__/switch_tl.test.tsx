@@ -1,6 +1,16 @@
+/*
+ * ************************************************************
+ *  Copyright 2020 eBay Inc.
+ *  Author/Developer: Aaron Nance
+ *  Use of this source code is governed by an MIT-style
+ *  license that can be found in the LICENSE file or at
+ *  https://opensource.org/licenses/MIT.
+ *  ***********************************************************
+ */
+
 import {Switch} from '../index';
 import * as React from 'react';
-import {render, wait, cleanup} from '@testing-library/react';
+import {render, cleanup} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 let component;
