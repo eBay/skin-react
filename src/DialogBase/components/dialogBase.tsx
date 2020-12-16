@@ -14,7 +14,7 @@ import {Icon} from '../../Icon';
 import {ReactNode} from 'react';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
-  tag?: 'div' | 'span' | 'aside';
+  baseEl?: 'div' | 'span' | 'aside';
   open?: boolean;
   classPrefix?: 'drawer' | 'toast' | 'dialog';
   windowClass?: string;
@@ -22,16 +22,16 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   footer?: ReactNode;
   isModal?: boolean;
   top?: ReactNode;
-  buttonPosition?: 'top' | 'right' | 'bottom' | 'left';
+  buttonPosition?: 'top' | 'right' | 'bottom' | 'left' | 'hidden';
   ariaLabelledby?: string;
   allyCloseText?: string;
   onCloseBtnClick?: React.MouseEventHandler<HTMLButtonElement>;
   OnBackgroundClick?: React.MouseEventHandler<HTMLElement>;
 }
-const Container = ({tag, ...props}): any => React.createElement(tag, props);
+const Container = ({baseEl, ...props}): any => React.createElement(baseEl, props);
 
 export const DialogBase = ({
-  tag = 'div',
+  baseEl = 'div',
   classPrefix = 'drawer',
   windowClass,
   top,
@@ -66,8 +66,18 @@ export const DialogBase = ({
     ['aria-live']: !props.isModal && 'polite',
     ...props,
     className,
-    tag
+    baseEl
   };
+  const buttonContent = buttonPosition !== 'hidden' && (
+    <button
+      className={`icon-btn ${classPrefix}__close`}
+      type="button"
+      aria-label={allyCloseText}
+      onClick={onCloseBtnClick}
+    >
+      <Icon name="close" />
+    </button>
+  );
   return (
     <Container {...containerProps}>
       <div className={classNames(`${classPrefix}__window`, windowClass)} ref={drawerBaseEl}>
