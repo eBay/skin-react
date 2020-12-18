@@ -33,7 +33,7 @@ describe('DialogBase', () => {
             classPrefix="drawer"
             header={<h2>Heading</h2>}
             onCloseBtnClick={jest.fn()}
-            OnBackgroundClick={jest.fn()}
+            onBackgroundClick={jest.fn()}
             open
           />
         );
@@ -43,8 +43,8 @@ describe('DialogBase', () => {
         component.find('.drawer__close').simulate('click');
         expect(spy).toHaveBeenCalled();
       });
-      it('when background clicked then it should trigger OnBackgroundClick event', () => {
-        spy = jest.spyOn(component.props(), 'OnBackgroundClick');
+      it('when background clicked then it should trigger onBackgroundClick event', () => {
+        spy = jest.spyOn(component.props(), 'onBackgroundClick');
         document.body.click();
         expect(spy).toHaveBeenCalled();
       });

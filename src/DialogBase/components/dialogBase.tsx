@@ -14,26 +14,31 @@ import {Icon} from '../../Icon';
 import {ReactNode} from 'react';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
-  tag?: 'div' | 'span' | 'aside';
+  baseEl?: 'div' | 'span' | 'aside';
   open?: boolean;
-  classPrefix?: 'drawer' | 'toast' | 'dialog';
+  classPrefix?: 'drawer' | 'toast' | 'dialog' | 'drawer-dialog' | 'drawer-dialog' | 'toast-dialog';
   windowClass?: string;
+  windowType?: string;
   header?: ReactNode;
   footer?: ReactNode;
   isModal?: boolean;
   top?: ReactNode;
-  buttonPosition?: 'top' | 'right' | 'bottom' | 'left';
+  buttonPosition?: 'top' | 'right' | 'bottom' | 'left' | 'hidden';
   ariaLabelledby?: string;
   allyCloseText?: string;
   onCloseBtnClick?: React.MouseEventHandler<HTMLButtonElement>;
-  OnBackgroundClick?: React.MouseEventHandler<HTMLElement>;
+  onBackgroundClick?: React.MouseEventHandler<HTMLElement>;
+  mainId?: string;
+  ignoreEscape?: boolean;
+  closeButton?: ReactNode;
 }
-const Container = ({tag, ...props}): any => React.createElement(tag, props);
+const Container = ({baseEl, ...props}): any => React.createElement(baseEl, props);
 
 export const DialogBase = ({
-  tag = 'div',
+  baseEl = 'div',
   classPrefix = 'drawer',
   windowClass,
+  windowType,
   top,
   header,
   buttonPosition = 'left',
@@ -44,52 +49,69 @@ export const DialogBase = ({
   footer,
   onScroll,
   open = false,
-  OnBackgroundClick = () => {},
+  onBackgroundClick = () => {},
+  ignoreEscape,
+  closeButton,
   ...props
 }: DialogBaseProps<HTMLElement>) => {
   const drawerBaseEl = React.useRef(null);
   React.useEffect(() => {
     const handleBackgroundClick = (e) => {
       if (drawerBaseEl && !drawerBaseEl.current.contains(e.target)) {
-        OnBackgroundClick(e);
+        onBackgroundClick(e);
       }
     };
     document.addEventListener('click', handleBackgroundClick, false);
     return () => document.removeEventListener('click', handleBackgroundClick, false);
   }, []);
-  const className = classNames(classPrefix, props.className);
   const containerProps = {
+    ...props,
     ['aria-labelledby']: ariaLabelledby,
     ['aria-modal']: true,
-    role: 'dialog',
+    role: props.role || 'dialog',
+    className: classNames(classPrefix, props.className),
     ['hidden:no-update']: (!open).toString(),
     ['aria-live']: !props.isModal && 'polite',
-    ...props,
-    className,
-    tag
+    baseEl,
+    onKeyDown: (event) => {
+      if (!ignoreEscape && event.key === 'Escape') {
+        event.stopPropagation();
+        onCloseBtnClick(event);
+      }
+    }
   };
+  const buttonContent = buttonPosition !== 'hidden' && (
+    <button
+      className={`icon-btn ${classPrefix}__close`}
+      type="button"
+      aria-label={allyCloseText}
+      onClick={onCloseBtnClick}
+    >
+      {closeButton || <Icon name="close" />}
+    </button>
+  );
+  const windowClassName = windowType ? `${classPrefix}__${windowType}-window` : `${classPrefix}__window`;
   return (
     <Container {...containerProps}>
-      <div className={classNames(`${classPrefix}__window`, windowClass)} ref={drawerBaseEl}>
+      <div className={classNames(windowClassName, windowClass)} ref={drawerBaseEl}>
         {top}
         {header && (
           <div className={`${classPrefix}__header`}>
             {buttonPosition === 'right' && header}
-            <button
-              className={`${classPrefix}__close`}
-              type="button"
-              aria-label={allyCloseText}
-              onClick={onCloseBtnClick}
-            >
-              <Icon name="close" />
-            </button>
-            {buttonPosition === 'left' && header}
+            {buttonPosition !== 'bottom' && buttonContent}
+            {(buttonPosition === 'left' || buttonPosition === 'hidden') && header}
           </div>
         )}
         <div className={`${classPrefix}__main`} onScroll={onScroll}>
           {children}
         </div>
-        {footer && <div className={`${classPrefix}__footer`}>{footer}</div>}
+        {footer ||
+          (buttonPosition === 'bottom' && (
+            <div className={`${classPrefix}__footer`}>
+              {footer}
+              {buttonPosition === 'bottom' && buttonContent}
+            </div>
+          ))}
       </div>
     </Container>
   );
