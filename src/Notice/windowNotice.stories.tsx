@@ -25,8 +25,7 @@ const story: any = {
 };
 
 const defaultProps = {
-  id: 'window-notice',
-  className: 'window-notice--screen'
+  id: 'window-notice'
 };
 export const _NoticeWindow = () => {
   const hidden = boolean('hidden', false);

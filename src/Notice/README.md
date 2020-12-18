@@ -28,4 +28,6 @@ Name | Type | Stateful | Required | Description
 `variant`  | String | No | No | "attention" (default for "page" and "inline"), "confirmation" "information", or "celebration" (page notice only).  The default for "section" type will render with grey background and no icon
 `a11yText` | String | No | Yes | adding description for the notice for a11y users
 `hidden` | Boolean | Yes | No | whether the widget is hidden or not.
-  
+`title` | String | No | Yes |
+`conent` | ReactNode | No | Yes |
+`iconName` | IconName | No | Yes |

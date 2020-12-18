@@ -21,13 +21,13 @@ export const getClass = (type: NoticeType) => {
 };
 const SectionRows = ({type, ...props}) => React.createElement(type === 'inline' ? 'span' : 'div', props);
 
-export interface NoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
+export interface NoticeProps<T> extends Skin.Role, Omit<React.HTMLProps<T>, 'content'> {
   title?: string;
   iconName?: IconName;
   iconProps?: object;
   variant?: NoticeVariant;
   type?: NoticeType;
-  content?: any;
+  content?: React.ReactNode;
   a11yText?: string;
 }
 export const Notice = ({
