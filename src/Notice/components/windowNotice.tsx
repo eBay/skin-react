@@ -12,22 +12,24 @@ import * as React from 'react';
 import classNames from 'classnames';
 import * as Skin from '../../skin';
 import Icon, {IconName} from '../../Icon';
+import {ReactNode} from 'react';
 
 export interface WindowNoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
+  title?: string;
   a11yText?: string;
-  content?: any;
+  footer?: ReactNode;
   iconName?: IconName;
   iconProps?: any;
   isFill?: boolean;
 }
 export const WindowNotice = ({
+  title,
   children,
   isFill,
   iconName,
   iconProps = {},
   a11yText,
-  content,
-  id,
+  footer,
   role = 'region',
   ...props
 }: WindowNoticeProps<HTMLElement>) => {
@@ -40,13 +42,16 @@ export const WindowNotice = ({
   );
   const HTMLProps = {...props, className, role};
   return (
-    <section aria-labelledby={id} {...HTMLProps}>
-      <h2 id={id}>
-        {iconName && <Icon name={iconName} {...iconProps} />}
-        {a11yText && <span className="window-notice__title">{a11yText}</span>}
-      </h2>
-      {content && <p className="window-notice__content">{content}</p>}
-      {children}
+    <section aria-label={a11yText} {...HTMLProps}>
+      <div className="window-notice__header">{iconName && <Icon name={iconName} {...iconProps} />}</div>
+      {(children || title) && (
+        <div className="window-notice__main">
+          {' '}
+          {title && <h2 className="window-notice__title">{title}</h2>}
+          {children}
+        </div>
+      )}
+      {footer && <div className="window-notice__footer"> {footer} </div>}
     </section>
   );
 };
