@@ -11,10 +11,11 @@ export const Toast = ({onClose, ...props}: ToastProps<any>) => {
   return (
     <DialogBase
       {...props}
-      tag="aside"
-      classPrefix="toast"
+      isModal={false}
+      baseEl="aside"
+      classPrefix="toast-dialog"
       buttonPosition="right"
-      className={classNames(props.className, 'toast--transition')}
+      className={classNames(props.className, 'toast-dialog--transition')}
       onCloseBtnClick={handleCloseBtnClick}
     />
   );
