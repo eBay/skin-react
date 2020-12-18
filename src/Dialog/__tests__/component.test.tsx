@@ -10,29 +10,29 @@
 
 import * as React from 'react';
 import {mount} from 'enzyme';
-import Dialog from '..';
+import {LightBoxDialog} from '..';
 
 describe('given an closed dialog', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<Dialog className="custom-class" />);
+    wrapper = mount(<LightBoxDialog className="custom-class" />);
   });
   it('then it is hidden in the DOM', () => {
-    expect(wrapper.find('.dialog').at(0)).toHaveLength(0);
+    expect(wrapper.find('.lightbox-dialog').at(0)).toHaveLength(0);
   });
   it('then it is visible in the DOM', () => {
     wrapper.setProps({open: true});
-    expect(wrapper.find('.dialog').at(0)).toHaveLength(1);
+    expect(wrapper.find('.lightbox-dialog').at(0)).toHaveLength(1);
   });
 });
 describe('given a open dialog', () => {
-  let wrapper = mount(<Dialog className="custom-class" open />);
-  let component = wrapper.find('.dialog').at(0);
+  let wrapper = mount(<LightBoxDialog className="custom-class" open />);
+  let component = wrapper.find('.lightbox-dialog').at(0);
   it('should render a dialog', () => {
     expect(component).toHaveLength(1);
   });
-  it('should render a dialog tag with .dialog', () => {
-    expect(component.hasClass('dialog')).toBe(true);
+  it('should render a dialog tag with .lightbox-dialog', () => {
+    expect(component.hasClass('lightbox-dialog')).toBe(true);
   });
   it('should render a dialog with custom classNames', () => {
     expect(component.hasClass('custom-class')).toBe(true);
@@ -40,11 +40,11 @@ describe('given a open dialog', () => {
   describe('when the close button is clicked', () => {
     let spy;
     beforeEach(() => {
-      wrapper = mount(<Dialog className="custom-class" open header={<h2>Heading</h2>} onClose={jest.fn()} />);
+      wrapper = mount(<LightBoxDialog className="custom-class" open header={<h2>Heading</h2>} onClose={jest.fn()} />);
     });
     it('then it should trigger close event', () => {
       spy = jest.spyOn(wrapper.props(), 'onClose');
-      wrapper.find('.dialog__close').simulate('click');
+      wrapper.find('.lightbox-dialog__close').simulate('click');
       expect(spy).toHaveBeenCalled();
     });
   });
