@@ -105,13 +105,12 @@ export const DialogBase = ({
         <div className={`${classPrefix}__main`} onScroll={onScroll}>
           {children}
         </div>
-        {footer ||
-          (buttonPosition === 'bottom' && (
-            <div className={`${classPrefix}__footer`}>
-              {footer}
-              {buttonPosition === 'bottom' && buttonContent}
-            </div>
-          ))}
+        {footer && (buttonPosition === 'bottom' || buttonPosition === 'hidden') && (
+          <div className={`${classPrefix}__footer`}>
+            {footer}
+            {buttonPosition === 'bottom' && buttonContent}
+          </div>
+        )}
       </div>
     </Container>
   );

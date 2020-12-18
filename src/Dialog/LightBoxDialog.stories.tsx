@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {LightBoxDialog} from './components/dialog';
+import {LightBoxDialog} from './';
 import {select, withKnobs} from '@storybook/addon-knobs';
 import {withA11y} from '@storybook/addon-a11y';
 const story: any = {
@@ -20,7 +20,7 @@ const story: any = {
 };
 const defaultProps = {};
 export const _LightBoxDialog = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const props = {...defaultProps, open};
   return (
     <div>
