@@ -16,7 +16,7 @@ import {ReactNode} from 'react';
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   baseEl?: 'div' | 'span' | 'aside';
   open?: boolean;
-  classPrefix?: 'drawer' | 'toast' | 'dialog' | 'drawer-dialog' | 'drawer-dialog' | 'toast-dialog';
+  classPrefix?: 'toast' | 'fullscreen-dialog' | 'lightbox-dialog' | 'panel-dialog' | 'drawer-dialog' | 'toast-dialog';
   windowClass?: string;
   windowType?: string;
   header?: ReactNode;
@@ -36,7 +36,7 @@ const Container = ({baseEl, ...props}): any => React.createElement(baseEl, props
 
 export const DialogBase = ({
   baseEl = 'div',
-  classPrefix = 'drawer',
+  classPrefix = 'drawer-dialog',
   windowClass,
   windowType,
   top,
