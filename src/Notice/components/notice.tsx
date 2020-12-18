@@ -19,6 +19,7 @@ export const getClass = (type: NoticeType) => {
   const preFix = `${type || 'page'}-notice`;
   return (postFix: string = '') => `${preFix}${postFix}`;
 };
+const SectionRows = ({type, ...props}) => React.createElement(type === 'inline' ? 'span' : 'div', props);
 
 export interface NoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
   title?: string;
@@ -54,21 +55,20 @@ export const Notice = ({
   const Section = (props) => React.createElement(type === 'inline' ? 'div' : 'section', props);
   const HTMLProps = {...props, className, role};
   return (
-    <Section aria-labelledby={id} {...HTMLProps}>
-      <NoticeStatus
-        id={id}
-        type={type}
-        variant={variant}
-        iconName={iconName}
-        iconProps={iconProps}
-        a11yText={a11yText}
-      />
+    <Section aria-label={a11yText || variant} {...HTMLProps}>
+      <NoticeStatus type={type} variant={variant} iconName={iconName} iconProps={iconProps} a11yText={a11yText} />
       {(content || title) && (
         <NoticeContent type={type} title={title}>
           {content}
         </NoticeContent>
       )}
-      {children}
+      {type !== 'inline' ? (
+        <SectionRows type={type} className={getVariantClass(`__footer`)}>
+          {children}
+        </SectionRows>
+      ) : (
+        children
+      )}
     </Section>
   );
 };
@@ -90,17 +90,12 @@ export const NoticeStatus = ({
   ...props
 }: NoticeStatusProps<HTMLSpanElement>) => {
   const getVariantClass = getClass(type);
-  return React.createElement(type === 'inline' ? 'span' : 'h4', {
-    ...props,
-    className: classNames(getVariantClass('__status'), props.className),
-    children: (
-      <>
-        {props.children}
-        <span className="clipped">{a11yText}</span>
-        <Icon name={iconName ? iconName : `${variant}-filled`} {...iconProps} />
-      </>
-    )
-  });
+  return (
+    <SectionRows type={type} {...props} className={classNames(getVariantClass('__header'), props.className)}>
+      {props.children}
+      <Icon name={iconName ? iconName : `${variant}-filled`} {...iconProps} aria-label={a11yText || variant} />
+    </SectionRows>
+  );
 };
 
 interface NoticeContentProps<T> extends Skin.Role, React.HTMLProps<T> {
@@ -110,13 +105,13 @@ interface NoticeContentProps<T> extends Skin.Role, React.HTMLProps<T> {
 export const NoticeContent = ({title, type, ...props}: NoticeContentProps<HTMLSpanElement>) => {
   const getVariantClass = getClass(type);
   return (
-    <span {...props} className={classNames(getVariantClass('__content'), props.className)}>
+    <SectionRows type={type} {...props} className={classNames(getVariantClass('__main'), props.className)}>
       {title && type !== 'inline' && (
         <p>
           <span className={getVariantClass('__title')}>{title}</span>
         </p>
       )}
       {props.children}
-    </span>
+    </SectionRows>
   );
 };
