@@ -3,15 +3,26 @@ import DialogBase, {DialogBaseProps} from '../../DialogBase';
 import classNames from 'classnames';
 
 const THRESHOLD_TOUCH = 30;
+const classPrefix = 'drawer-dialog';
 export interface DrawerProps<T> extends DialogBaseProps<T> {
   expanded?: boolean;
   onClose?: any;
-  noHandle?: any;
+  noHandle?: boolean;
   onCollapsed?: any;
   onExpanded?: any;
+  handleLabel?: string;
 }
 
-export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onExpanded, ...rest}: DrawerProps<any>) => {
+export const Drawer = ({
+  children,
+  expanded,
+  onClose,
+  noHandle,
+  onCollapsed,
+  onExpanded,
+  handleLabel = 'Dialog',
+  ...rest
+}: DrawerProps<any>) => {
   let touches: any = [];
   const [state, setState] = React.useState({expanded: expanded || false});
 
@@ -61,9 +72,8 @@ export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onEx
   const handleBackgroundClick = (e) => onClose && onClose(e);
   const top = !noHandle && (
     <button
-      aria-label="Expand Dialog"
-      className="drawer__handle"
-      type="button"
+      aria-label={handleLabel}
+      className={`${classPrefix}__handle`}
       onClick={handleExpand}
       onScroll={handleScroll}
       onTouchStart={handleTouchStart}
@@ -74,15 +84,17 @@ export const Drawer = ({children, expanded, onClose, noHandle, onCollapsed, onEx
   return (
     <DialogBase
       {...rest}
-      classPrefix="drawer"
+      classPrefix={classPrefix}
       buttonPosition="right"
       onCloseBtnClick={handleCloseBtnClick}
-      className={classNames(rest.className, 'drawer--mask-fade-slow')}
-      windowClass={classNames('drawer__window--slide', {'drawer__window--expanded': state.expanded})}
-      OnBackgroundClick={handleBackgroundClick}
+      className={classNames(rest.className, `${classPrefix}--mask-fade-slow`)}
+      windowClass={classNames(`${classPrefix}__window`, `${classPrefix}__window--slide`, {
+        [`${classPrefix}__window--expanded`]: state.expanded
+      })}
+      onBackgroundClick={handleBackgroundClick}
       top={top}
     >
-              {children}
+      {children}
     </DialogBase>
   );
 };

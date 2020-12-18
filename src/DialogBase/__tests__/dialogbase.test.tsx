@@ -33,7 +33,7 @@ describe('DialogBase', () => {
             classPrefix="drawer"
             header={<h2>Heading</h2>}
             onCloseBtnClick={jest.fn()}
-            OnBackgroundClick={jest.fn()}
+            onBackgroundClick={jest.fn()}
             open
           />
         );

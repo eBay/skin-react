@@ -16,8 +16,9 @@ import {ReactNode} from 'react';
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   baseEl?: 'div' | 'span' | 'aside';
   open?: boolean;
-  classPrefix?: 'drawer' | 'toast' | 'dialog';
+  classPrefix?: 'drawer' | 'toast' | 'dialog' | 'drawer-dialog' | 'drawer-dialog' | 'toast-dialog';
   windowClass?: string;
+  windowType?: string;
   header?: ReactNode;
   footer?: ReactNode;
   isModal?: boolean;
@@ -26,7 +27,10 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   ariaLabelledby?: string;
   allyCloseText?: string;
   onCloseBtnClick?: React.MouseEventHandler<HTMLButtonElement>;
-  OnBackgroundClick?: React.MouseEventHandler<HTMLElement>;
+  onBackgroundClick?: React.MouseEventHandler<HTMLElement>;
+  mainId?: string;
+  ignoreEscape?: boolean;
+  closeButton?: ReactNode;
 }
 const Container = ({baseEl, ...props}): any => React.createElement(baseEl, props);
 
@@ -34,6 +38,7 @@ export const DialogBase = ({
   baseEl = 'div',
   classPrefix = 'drawer',
   windowClass,
+  windowType,
   top,
   header,
   buttonPosition = 'left',
@@ -44,29 +49,36 @@ export const DialogBase = ({
   footer,
   onScroll,
   open = false,
-  OnBackgroundClick = () => {},
+  onBackgroundClick = () => {},
+  ignoreEscape,
+  closeButton,
   ...props
 }: DialogBaseProps<HTMLElement>) => {
   const drawerBaseEl = React.useRef(null);
   React.useEffect(() => {
     const handleBackgroundClick = (e) => {
       if (drawerBaseEl && !drawerBaseEl.current.contains(e.target)) {
-        OnBackgroundClick(e);
+        onBackgroundClick(e);
       }
     };
     document.addEventListener('click', handleBackgroundClick, false);
     return () => document.removeEventListener('click', handleBackgroundClick, false);
   }, []);
-  const className = classNames(classPrefix, props.className);
   const containerProps = {
+    ...props,
     ['aria-labelledby']: ariaLabelledby,
     ['aria-modal']: true,
-    role: 'dialog',
+    role: props.role || 'dialog',
+    className: classNames(classPrefix, props.className),
     ['hidden:no-update']: (!open).toString(),
     ['aria-live']: !props.isModal && 'polite',
-    ...props,
-    className,
-    baseEl
+    baseEl,
+    onKeyDown: (event) => {
+      if (!ignoreEscape && event.key === 'Escape') {
+        event.stopPropagation();
+        onCloseBtnClick(event);
+      }
+    }
   };
   const buttonContent = buttonPosition !== 'hidden' && (
     <button
@@ -75,31 +87,31 @@ export const DialogBase = ({
       aria-label={allyCloseText}
       onClick={onCloseBtnClick}
     >
-      <Icon name="close" />
+      {closeButton || <Icon name="close" />}
     </button>
   );
+  const windowClassName = windowType ? `${classPrefix}__${windowType}-window` : `${classPrefix}__window`;
   return (
     <Container {...containerProps}>
-      <div className={classNames(`${classPrefix}__window`, windowClass)} ref={drawerBaseEl}>
+      <div className={classNames(windowClassName, windowClass)} ref={drawerBaseEl}>
         {top}
         {header && (
           <div className={`${classPrefix}__header`}>
             {buttonPosition === 'right' && header}
-            <button
-              className={`${classPrefix}__close`}
-              type="button"
-              aria-label={allyCloseText}
-              onClick={onCloseBtnClick}
-            >
-              <Icon name="close" />
-            </button>
-            {buttonPosition === 'left' && header}
+            {buttonPosition !== 'bottom' && buttonContent}
+            {(buttonPosition === 'left' || buttonPosition === 'hidden') && header}
           </div>
         )}
         <div className={`${classPrefix}__main`} onScroll={onScroll}>
           {children}
         </div>
-        {footer && <div className={`${classPrefix}__footer`}>{footer}</div>}
+        {footer ||
+          (buttonPosition === 'bottom' && (
+            <div className={`${classPrefix}__footer`}>
+              {footer}
+              {buttonPosition === 'bottom' && buttonContent}
+            </div>
+          ))}
       </div>
     </Container>
   );

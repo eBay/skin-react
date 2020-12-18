@@ -17,7 +17,7 @@ const story: any = {
 };
 const defaultProps = {};
 export const _Drawer = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const props = {...defaultProps, open};
   return (
     <div>
