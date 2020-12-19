@@ -36,11 +36,15 @@ export const _NoticeWindow = () => {
         title="Your first order has been placed!"
         iconName="confirmation-filled"
         id="window-notice-1"
-        content="You'll get a confirmation email soon. The rest of your items are now ready to checkout."
         hidden={hidden}
         a11yText="Window Notice"
+        footer={
+          <Button size="large" href={'#'}>
+            Continue
+          </Button>
+        }
       >
-        <Button size="large">Continue</Button>
+        <p>You'll get a confirmation email soon. The rest of your items are now ready to checkout.</p>
       </SkinWindowNotice>
     </div>
   );

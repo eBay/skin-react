@@ -16,7 +16,7 @@ import {ReactNode} from 'react';
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   baseEl?: 'div' | 'span' | 'aside';
   open?: boolean;
-  classPrefix?: 'drawer' | 'toast' | 'dialog' | 'drawer-dialog' | 'drawer-dialog' | 'toast-dialog';
+  classPrefix?: 'toast' | 'fullscreen-dialog' | 'lightbox-dialog' | 'panel-dialog' | 'drawer-dialog' | 'toast-dialog';
   windowClass?: string;
   windowType?: string;
   header?: ReactNode;
@@ -36,7 +36,7 @@ const Container = ({baseEl, ...props}): any => React.createElement(baseEl, props
 
 export const DialogBase = ({
   baseEl = 'div',
-  classPrefix = 'drawer',
+  classPrefix = 'drawer-dialog',
   windowClass,
   windowType,
   top,
@@ -52,6 +52,7 @@ export const DialogBase = ({
   onBackgroundClick = () => {},
   ignoreEscape,
   closeButton,
+  isModal,
   ...props
 }: DialogBaseProps<HTMLElement>) => {
   const drawerBaseEl = React.useRef(null);
@@ -71,7 +72,7 @@ export const DialogBase = ({
     role: props.role || 'dialog',
     className: classNames(classPrefix, props.className),
     ['hidden:no-update']: (!open).toString(),
-    ['aria-live']: !props.isModal && 'polite',
+    ['aria-live']: !isModal && 'polite',
     baseEl,
     onKeyDown: (event) => {
       if (!ignoreEscape && event.key === 'Escape') {
@@ -105,13 +106,12 @@ export const DialogBase = ({
         <div className={`${classPrefix}__main`} onScroll={onScroll}>
           {children}
         </div>
-        {footer ||
-          (buttonPosition === 'bottom' && (
-            <div className={`${classPrefix}__footer`}>
-              {footer}
-              {buttonPosition === 'bottom' && buttonContent}
-            </div>
-          ))}
+        {footer || buttonPosition === 'bottom' ? (
+          <div className={`${classPrefix}__footer`}>
+            {footer}
+            {buttonPosition === 'bottom' && buttonContent}
+          </div>
+        ) : null}
       </div>
     </Container>
   );

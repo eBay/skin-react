@@ -11,7 +11,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import * as ReactDOM from 'react-dom';
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import * as Skin from './skin';
 
 // @ts-ignore
@@ -117,3 +117,12 @@ export const withHideEffect = <P extends unknown>(Component: React.ComponentType
 };
 
 export const hasValue = (input) => input && input.value && input.value.length > 0;
+
+export const useFocusState: any = () => {
+  const htmlElRef = useRef(null);
+  const setFocus = () => {
+    htmlElRef.current && htmlElRef.current.focus();
+  };
+
+  return [htmlElRef, setFocus];
+};
