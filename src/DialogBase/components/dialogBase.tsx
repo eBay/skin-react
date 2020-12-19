@@ -52,6 +52,7 @@ export const DialogBase = ({
   onBackgroundClick = () => {},
   ignoreEscape,
   closeButton,
+  isModal,
   ...props
 }: DialogBaseProps<HTMLElement>) => {
   const drawerBaseEl = React.useRef(null);
@@ -71,7 +72,7 @@ export const DialogBase = ({
     role: props.role || 'dialog',
     className: classNames(classPrefix, props.className),
     ['hidden:no-update']: (!open).toString(),
-    ['aria-live']: !props.isModal && 'polite',
+    ['aria-live']: !isModal && 'polite',
     baseEl,
     onKeyDown: (event) => {
       if (!ignoreEscape && event.key === 'Escape') {
@@ -105,12 +106,12 @@ export const DialogBase = ({
         <div className={`${classPrefix}__main`} onScroll={onScroll}>
           {children}
         </div>
-        {footer && (buttonPosition === 'bottom' || buttonPosition === 'hidden') && (
+        {footer || buttonPosition === 'bottom' ? (
           <div className={`${classPrefix}__footer`}>
             {footer}
             {buttonPosition === 'bottom' && buttonContent}
           </div>
-        )}
+        ) : null}
       </div>
     </Container>
   );
