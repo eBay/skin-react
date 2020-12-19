@@ -15,7 +15,7 @@ const story: any = {
   title: Category.SKINDS6,
   component: Toast
 };
-const defaultProps = {};
+const defaultProps = {allyCloseText: 'Close Toast'};
 export const _Toast = () => {
   const [open, setOpen] = React.useState(false);
   const props = {...defaultProps, open};
@@ -27,14 +27,14 @@ export const _Toast = () => {
       <Toast
         {...props}
         header={
-          <h2 id="toast-title" className="toast__title">
+          <h2 id="toast-title" className="toast-dialog__title">
             Heading
           </h2>
         }
         onClose={() => setOpen(false)}
         footer={
-          <button className="btn btn--secondary" onClick={() => setOpen(!open)}>
-            Close
+          <button accessKey="v" className="btn btn--primary toast-dialog__confirm" onClick={() => setOpen(!open)}>
+            View Account
           </button>
         }
       >
