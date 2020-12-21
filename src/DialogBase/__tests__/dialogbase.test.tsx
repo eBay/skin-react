@@ -40,7 +40,7 @@ describe('DialogBase', () => {
       });
       it('when btn cliked then it should trigger onCloseBtnClick event', () => {
         spy = jest.spyOn(component.props(), 'onCloseBtnClick');
-        component.find('.drawer__close').simulate('click');
+        component.find('.drawer-dialog__close').simulate('click');
         expect(spy).toHaveBeenCalled();
       });
       it('when background clicked then it should trigger onBackgroundClick event', () => {
