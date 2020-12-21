@@ -10,7 +10,8 @@ export interface DrawerProps<T> extends DialogBaseProps<T> {
   noHandle?: boolean;
   onCollapsed?: any;
   onExpanded?: any;
-  handleLabel?: string;
+  a11yMinimizeText?: string;
+  a11yMaximizeText?: string;
 }
 
 export const Drawer = ({
@@ -20,7 +21,8 @@ export const Drawer = ({
   noHandle,
   onCollapsed,
   onExpanded,
-  handleLabel = 'Dialog',
+  a11yMaximizeText = 'Maximize Drawer',
+  a11yMinimizeText = 'Minimize Drawer',
   ...rest
 }: DrawerProps<any>) => {
   let touches: any = [];
@@ -72,7 +74,7 @@ export const Drawer = ({
   const handleBackgroundClick = (e) => onClose && onClose(e);
   const top = !noHandle && (
     <button
-      aria-label={handleLabel}
+      aria-label={!state.expanded ? a11yMaximizeText : a11yMinimizeText}
       className={`${classPrefix}__handle`}
       onClick={handleExpand}
       onScroll={handleScroll}

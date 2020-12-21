@@ -67,12 +67,12 @@ export const DialogBase = ({
   }, []);
   const containerProps = {
     ...props,
-    ['aria-labelledby']: ariaLabelledby,
-    ['aria-modal']: true,
+    'aria-labelledby': ariaLabelledby,
+    'aria-modal': true,
     role: props.role || 'dialog',
     className: classNames(classPrefix, props.className),
-    ['hidden:no-update']: (!open).toString(),
-    ['aria-live']: !isModal && 'polite',
+    'hidden:no-update': (!open).toString(),
+    'aria-live': !isModal && 'polite',
     baseEl,
     onKeyDown: (event) => {
       if (!ignoreEscape && event.key === 'Escape') {
