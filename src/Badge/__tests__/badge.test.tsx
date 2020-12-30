@@ -14,48 +14,48 @@ import {SkinBadge} from '..';
 
 describe('<SkinBadge>', () => {
   it('should not exist', () => {
-    const component = mount(<SkinBadge value={0} />);
+    const component = mount(<SkinBadge number={0} />);
     expect(component.html()).toBe(null);
   });
   it('renders defaults', () => {
-    const component = mount(<SkinBadge value={5} />);
+    const component = mount(<SkinBadge number={5} />);
     expect(component.text()).toBe('5');
   });
 
   it('renders number with rounded-up value', () => {
-    const component = mount(<SkinBadge value={5.6} />);
+    const component = mount(<SkinBadge number={5.6} />);
     expect(component.text()).toBe('5');
   });
 
   it('does not render with negative value', () => {
-    const component = mount(<SkinBadge value={-5} />);
+    const component = mount(<SkinBadge number={-5} />);
     expect(component.html()).toBe(null);
   });
 
   describe('given number is a string', () => {
     it('renders number with coerced string', () => {
-      const component = mount(<SkinBadge value="5" />);
+      const component = mount(<SkinBadge number="5" />);
       expect(component.text()).toBe('5');
     });
 
     it('renders number with rounded-up string', () => {
-      const component = mount(<SkinBadge value="5.4" />);
+      const component = mount(<SkinBadge number="5.4" />);
       expect(component.text()).toBe('5');
     });
 
     it('does not renders with an invalid string', () => {
-      const component = mount(<SkinBadge value="five" />);
+      const component = mount(<SkinBadge number="five" />);
       expect(component.html()).toBe(null);
     });
 
     it('does not renders with a negative string', () => {
-      const component = mount(<SkinBadge value="-5" />);
+      const component = mount(<SkinBadge number="-5" />);
       expect(component.html()).toBe(null);
     });
   });
 
   it('truncates when the value is greater than 99', () => {
-    const component = mount(<SkinBadge value={150} />);
+    const component = mount(<SkinBadge number={150} />);
     expect(component.text()).toBe('99+');
   });
 });

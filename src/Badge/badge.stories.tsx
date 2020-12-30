@@ -46,7 +46,7 @@ export const Badges = () => {
     '1'
   );
   const props = {...defaultProps, bgColor};
-  return <SkinBadge {...props} aria-label="unread items" value={content} />;
+  return <SkinBadge {...props} aria-label="unread items" number={content} />;
 };
 Badges.story = {
   name: 'SkinBadge'

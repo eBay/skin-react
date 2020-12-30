@@ -10,8 +10,8 @@
 
 import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {withKnobs, select} from '@storybook/addon-knobs';
-import Button, {BtnCell, ButtonColors, ButtonSizes, ButtonTypes, SkinFilterButton} from './index';
+import {withKnobs, select, boolean, number} from '@storybook/addon-knobs';
+import Button, {BtnCell, ButtonColors, ButtonSizes, ButtonTypes} from './index';
 import {Icon} from '../Icon';
 import {withInfo} from '@storybook/addon-info';
 import {toStoryObj} from '../../.storybook/util/utils';
@@ -24,21 +24,52 @@ const story: any = {
   decorators: [withKnobs, withA11y]
 };
 
-const defaultProps = {};
-const ColorOptions = toStoryObj(['primary', 'delete', 'secondary']);
-const Sizeoptions = toStoryObj(['truncated', 'large', 'large-truncated']);
-const types: ButtonTypes[] = ['btn', 'fake-btn', 'cta-btn'];
+const defaultProps = {badgeAriaLabel: 'badge Aria Label'};
+const priorityOptions = toStoryObj(['primary', 'delete', 'secondary', '']);
+const sizeOptions = toStoryObj(['large', '']);
+const variants = ['', 'expand', 'fake-link', 'icon'];
 
 export const _Button = () => {
-  const variant = select('Colors', ColorOptions, '') as ButtonColors;
-  const size = select('Sizes', Sizeoptions, '') as ButtonSizes;
-  const props = {...defaultProps, variant, size};
+  const priority = select('priority', priorityOptions, '');
+  const size = select('size', sizeOptions, '');
+  const iconOnly = boolean('iconOnly', false, '');
+  const fluid = boolean('fluid', false, '');
+  const disabled = boolean('disabled', false, '');
+  const partiallyDisabled = boolean('partiallyDisabled', false, '');
+  const transparent = boolean('transparent', false, '');
+  const fixedHeight = boolean('fixedHeight', false, '');
+  const truncate = boolean('truncate', false, '');
+  const num = number(
+    'badgeNumber',
+    0,
+    {
+      range: true,
+      min: 0,
+      max: 200,
+      step: 50
+    },
+    ''
+  );
+  const badgeNumber = num > 0 ? num : undefined;
+  const props = {
+    ...defaultProps,
+    priority,
+    size,
+    iconOnly,
+    fluid,
+    disabled,
+    partiallyDisabled,
+    transparent,
+    fixedHeight,
+    truncate,
+    badgeNumber
+  };
   return (
     <div>
-      {types.map((type, index) => (
+      {variants.map((variant, index) => (
         <div key={index}>
-          <h2>{type}</h2>
-          <Button type={type} {...props} aria-label={`Skin Button ${type}`}>
+          <h2>{variant}</h2>
+          <Button {...props} aria-label={`Skin Button ${variant}`} variant={variant}>
             Button
           </Button>
         </div>
@@ -47,36 +78,4 @@ export const _Button = () => {
   );
 };
 
-export const ButtonIcon = () => {
-  return (
-    <div>
-      <Button variant="primary" {...defaultProps} aria-label="Skin Button">
-        <BtnCell>
-          <Icon className="btn__icon" name="menu" />
-          <span>Button</span>
-        </BtnCell>
-      </Button>
-    </div>
-  );
-};
-
-export const _SkinFilterButton = () => {
-  return (
-    <div>
-      <h2>Skin Filter Button</h2>
-      <SkinFilterButton {...defaultProps} aria-label="Skin Filter Button">
-        SkinFilterButton
-      </SkinFilterButton>
-      <br /> <br /> <br />
-      <h2>Skin Filter Link</h2>
-      <SkinFilterButton {...defaultProps} aria-label="Skin Filter Link" type={'filter-link'}>
-        Link
-      </SkinFilterButton>
-      <h2>Selected Skin Filter Link</h2>
-      <SkinFilterButton {...defaultProps} aria-label="Skin Filter Link" type={'filter-link'} selected>
-        Link
-      </SkinFilterButton>
-    </div>
-  );
-};
 export default story;
