@@ -14,11 +14,11 @@ import {Icon} from '../../Icon';
 import {getHTMLProps} from '../../skin-utils';
 
 export interface DetailsProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
-  label?: string;
+  text?: string;
   type?: 'center' | 'rtl' | 'regular';
   size?: 'small' | 'regular';
 }
-export const Details = ({children, label, type, size, ...props}: DetailsProps<HTMLDetailsElement>) => {
+export const Details = ({children, text, type, size, ...props}: DetailsProps<HTMLDetailsElement>) => {
   const className = classNames('details', props.className);
   const summaryClassName = classNames('details__summary', {
     'details__summary--center': type === 'center',
@@ -29,7 +29,7 @@ export const Details = ({children, label, type, size, ...props}: DetailsProps<HT
   return (
     <details {...HTMLProps}>
       <summary className={summaryClassName}>
-        <span className="details__label">{label}</span>
+        <span className="details__label">{text}</span>
         <span className="details__icon" hidden>
           <Icon name="dropdown" aria-hidden="true" />
         </span>

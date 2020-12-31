@@ -27,9 +27,9 @@ export const _Details = () => {
   return (
     <div>
       <h1>Default Details</h1>
-      <SkinDetails label="Default Detail">SkinDetails</SkinDetails>
+      <SkinDetails text="Default Detail">SkinDetails</SkinDetails>
       <h1>Custom SkinDetails</h1>
-      <SkinDetails label="SkinDetails" type={type} size={size} open>
+      <SkinDetails text="SkinDetails" type={type} size={size} open>
         SkinDetails
       </SkinDetails>
     </div>
