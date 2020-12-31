@@ -9,33 +9,10 @@
  */
 
 import * as React from 'react';
-import {mount} from 'enzyme';
 import {SkinButton as Button} from '..';
 import {render, fireEvent, cleanup} from '@testing-library/react';
 import {toBeInTheDocument} from '@testing-library/jest-dom/matchers';
 expect.extend({toBeInTheDocument});
-
-describe('Button', () => {
-  it('should render a Button with .btn', () => {
-    const component = mount(<Button>Button</Button>);
-    console.log(component.html());
-    expect(component.find('button').hasClass('btn')).toBe(true);
-  });
-  it('should render a Button with .btn:disabled', () => {
-    const component = mount(<Button disabled>Button</Button>);
-    expect(component.props().disabled).toBe(true);
-  });
-  it('should render a button with .expand-btn and custom classNames', () => {
-    const component = mount(
-      <Button className="custom-class" variant="expand">
-        Button
-      </Button>
-    );
-    console.log(component.html());
-    expect(component.find('button').hasClass('expand-btn')).toBe(true);
-    expect(component.find('button').hasClass('custom-class')).toBe(true);
-  });
-});
 
 let component;
 let handleClick = jest.fn();

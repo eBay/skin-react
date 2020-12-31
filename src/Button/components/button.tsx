@@ -60,7 +60,7 @@ export function Button({
   const isBadged = Boolean(badgeNumber && isIconVariant);
   const isIconOnly = isIconVariant || isBadged || (isExpandVariant && iconOnly);
   const baseClass = variantType ? (variantType === 'fake-link' ? variantType : variantType + '-btn') : 'btn';
-  const sizeClass = size && baseClass + '--' + size;
+  const sizeClass = (size && baseClass + '--' + size) || '';
   const truncateClass = truncate && (sizeClass ? sizeClass + '-truncated' : baseClass + '--truncated');
   const transparentClass = transparent ? baseClass + '--transparent' : '';
   const fixedHeightClass = fixedHeight && (sizeClass ? sizeClass + '-fixed-height' : baseClass + '--fixed-height');
