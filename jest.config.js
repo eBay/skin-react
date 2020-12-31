@@ -3,8 +3,9 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.{js,jsx,mjs,ts,tsx}'],
   setupFiles: ['<rootDir>/node_modules/regenerator-runtime/runtime', '<rootDir>/tools/polyfills.js'],
   setupFilesAfterEnv: [
-    '<rootDir>/tools/jest/setup.js',
-    '@testing-library/jest-dom'
+    'jest-extended',
+    '@testing-library/jest-dom/extend-expect',
+    '<rootDir>/tools/jest/setup.js'
   ],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}',

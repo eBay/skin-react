@@ -67,14 +67,6 @@ export function Button({
   const tag = props.href ? 'a' : 'button';
   const hasAriaLabel = Boolean(props['aria-label']);
   const Btn = (btnProps) => React.createElement(tag, btnProps);
-  console.log(props.className, baseClass, truncateClass, fixedHeightClass, transparentClass, {
-    [`${baseClass}--icon-only`]: isIconOnly,
-    [`${baseClass}--badged`]: isBadged,
-    [`${baseClass}--fluid`]: fluid,
-    [sizeClass]: sizeClass && !truncateClass && !fixedHeightClass,
-    [`${baseClass}--${priorityType}`]:
-      priorityType === 'secondary' || priorityType === 'primary' || priorityType === 'delete'
-  });
   return (
     <Btn
       {...props}
@@ -88,7 +80,7 @@ export function Button({
       })}
       data-ebayui={true}
       type={(tag === 'button' && props.type) || 'button'}
-      ariaDisabled={partiallyDisabled && 'true'}
+      aria-disabled={partiallyDisabled && 'true'}
     >
       {hasAriaLabel && !isBadged && <span aria-hidden="true">{props.children}</span>}
       {isBadged && (

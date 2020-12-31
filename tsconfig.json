@@ -15,7 +15,7 @@
     "jsx": "react",
     "importHelpers": true,
     "noImplicitAny": false,
-    "types": ["node", "jest"]
+    "types": ["node", "jest",  "@testing-library/jest-dom"]
   },
   "include": ["src/**/*"],
   "exclude": [

@@ -11,8 +11,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import {SkinBadge} from '../index';
-import {toBeInTheDocument} from '@testing-library/jest-dom/matchers';
-expect.extend({toBeInTheDocument});
 
 it('renders defaults', async () => {
   const {getByText} = await render(<SkinBadge number={5} />);

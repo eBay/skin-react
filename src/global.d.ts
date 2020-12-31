@@ -7,8 +7,10 @@
  *  https://opensource.org/licenses/MIT.
  *  ***********************************************************
  */
+import '@testing-library/jest-dom/extend-expect';
 
 declare module '*.svg' {
+  // @ts-ignore
   import * as React from 'react';
   export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
   const src: string;
