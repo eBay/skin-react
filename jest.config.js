@@ -8,10 +8,9 @@ module.exports = {
     '<rootDir>/tools/jest/setup.js'
   ],
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}',
     '<rootDir>/src/**/*.(spec|test).{js,jsx,mjs,ts,tsx}'
   ],
-  testEnvironment: 'jsdom',
+  testEnvironment: "jest-environment-jsdom-sixteen",
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js|jsx|mjs|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
@@ -21,7 +20,7 @@ module.exports = {
     '^.+\\.mdx$': '@storybook/addon-docs/jest-transform-mdx'
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx|mjs)$'],
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/', 'mocks.{js,jsx,mjs,ts,tsx}' ],
   moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'mjs', 'ts', 'tsx'],
   modulePathIgnorePatterns: ['<rootDir>/.yarn-cache/'],
   moduleNameMapper: {

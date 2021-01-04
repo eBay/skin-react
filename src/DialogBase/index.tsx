@@ -6,7 +6,7 @@ import {DialogBase, DialogBaseProps} from './components/dialogBase';
 
 export const DialogBaseWithState = (props: DialogBaseProps<HTMLElement>) => {
   const renderOverLay = () => {
-    return props.isModal ? (
+    return props.isModal !== false ? (
       <div>
         <FocusLock>
           <RemoveScroll>

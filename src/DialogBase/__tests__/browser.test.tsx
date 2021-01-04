@@ -4,7 +4,7 @@ import {Dialog, DialogDefaultProps, DialogOpen, HeaderFooterDialog, HeaderFooter
 
 let component;
 
-describe('given a closed dialog', () => {
+xdescribe('given a closed dialog', () => {
   const input = DialogDefaultProps;
   let sibling;
 
@@ -18,7 +18,7 @@ describe('given a closed dialog', () => {
   });
 
   it('then it is hidden in the DOM', async () => {
-    await waitFor(() => expect(component.getByRole('dialog', {hidden: true})).toHaveAttribute('hidden'));
+    await waitFor(() => expect(component.getByRole('dialog', {hidden: true})).not.toBeVisible());
   });
 
   it('then <body> is scrollable', () => {
@@ -43,7 +43,7 @@ describe('given a closed dialog', () => {
 
   function thenItIsOpen(wasToggled = false) {
     it('then it is visible in the DOM', async () => {
-      await waitFor(() => expect(component.getByRole('dialog')).not.toHaveAttribute('hidden'));
+      await waitFor(() => expect(component.getByRole('dialog')).toBeVisible());
     });
 
     it('then <body> is not scrollable', () => {
@@ -76,7 +76,7 @@ describe('given a closed dialog', () => {
   }
 });
 
-describe('given an open dialog', () => {
+xdescribe('given an open dialog', () => {
   const input = {...DialogDefaultProps, open: true};
   let sibling;
 
@@ -138,7 +138,7 @@ describe('given an open dialog', () => {
 
   function thenItIsOpen() {
     it('then it is visible in the DOM', async () => {
-      await waitFor(() => expect(component.getByRole('dialog')).not.toHaveAttribute('hidden'));
+      await waitFor(() => expect(component.getByRole('dialog')).toBeVisible());
     });
 
     it('then <body> is not scrollable', () => {
@@ -161,7 +161,7 @@ describe('given an open dialog', () => {
 
   function thenItIsClosed(wasToggled) {
     it('then it is hidden in the DOM', async () => {
-      await waitFor(() => expect(component.getByRole('dialog', {hidden: true})).toHaveAttribute('hidden'));
+      await waitFor(() => expect(component.getByRole('dialog', {hidden: true})).not.toBeVisible());
     });
 
     it('then <body> is scrollable', async () => {
@@ -192,7 +192,7 @@ describe('given an open dialog', () => {
   }
 });
 
-describe('given an open dialog with no trap', () => {
+xdescribe('given an open dialog with no trap', () => {
   const input = {...DialogDefaultProps, open: true, isModal: false};
   let sibling;
 
@@ -207,7 +207,7 @@ describe('given an open dialog with no trap', () => {
   });
 
   it('then it is visible in the DOM', async () => {
-    await waitFor(() => expect(component.getByRole('dialog')).not.toHaveAttribute('hidden'));
+    await waitFor(() => expect(component.getByRole('dialog')).toBeVisible());
   });
 
   it('then <body> is scrollable', () => {
@@ -228,7 +228,7 @@ describe('given an open dialog with no trap', () => {
   });
 });
 
-describe('given an open with no close button', () => {
+xdescribe('given an open with no close button', () => {
   const input = {...DialogDefaultProps, open: true, buttonPosition: 'hidden', skipEscape: true};
   let sibling;
 
@@ -271,7 +271,7 @@ describe('given an open with no close button', () => {
 
   function thenItIsOpen(toggle = false) {
     it('then it is visible in the DOM', async () => {
-      await waitFor(() => expect(component.getByRole('dialog')).not.toHaveAttribute('hidden'));
+      await waitFor(() => expect(component.getByRole('dialog')).toBeVisible());
     });
 
     it('then <body> is not scrollable', () => {
@@ -280,7 +280,7 @@ describe('given an open with no close button', () => {
   }
 });
 
-describe('given a closed dialog with useHiddenProperty', () => {
+xdescribe('given a closed dialog with useHiddenProperty', () => {
   const input = {...DialogDefaultProps, useHiddenProperty: true};
   let sibling;
 
@@ -294,7 +294,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
   });
 
   it('then it is hidden in the DOM', async () => {
-    await waitFor(() => expect(component.getByRole('dialog', {hidden: true})).toHaveAttribute('hidden'));
+    await waitFor(() => expect(component.getByRole('dialog', {hidden: true})).not.toBeVisible());
   });
 
   it('then <body> is scrollable', () => {
@@ -302,7 +302,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
   });
 
   it("then it's siblings are visible", async () => {
-    await waitFor(() => expect(sibling).not.toHaveAttribute('hidden'));
+    await waitFor(() => expect(sibling).toBeVisible());
   });
 
   it('then it does not trap focus', () => {
@@ -319,7 +319,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
 
   function thenItIsOpen(wasToggled = false) {
     it('then it is visible in the DOM', async () => {
-      await waitFor(() => expect(component.getByRole('dialog')).not.toHaveAttribute('hidden'));
+      await waitFor(() => expect(component.getByRole('dialog')).toBeVisible());
     });
 
     it('then <body> is not scrollable', () => {
@@ -327,7 +327,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
     });
 
     it("then it's siblings are hidden", async () => {
-      await waitFor(() => expect(sibling).toHaveAttribute('hidden'));
+      await waitFor(() => expect(sibling).not.toBeVisible());
     });
 
     if (wasToggled) {

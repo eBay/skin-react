@@ -3,7 +3,7 @@ import {render, fireEvent, cleanup} from '@testing-library/react';
 import {Dialog, DialogDefaultProps, DialogOpen, HeaderFooterDialog, HeaderFooterDialogDefaultProps} from './mocks';
 
 describe('dialog-base', () => {
-  it('renders basic version', async () => {
+  xit('renders basic version', async () => {
     const {getByRole, getByLabelText, getByText} = await render(<Dialog />);
 
     expect(getByRole('dialog', {hidden: true})).toHaveAttribute('hidden');
@@ -11,7 +11,7 @@ describe('dialog-base', () => {
     expect(getByText(DialogDefaultProps.children)).toHaveClass('lightbox-dialog__main');
   });
 
-  it('renders with header and footer', async () => {
+  xit('renders with header and footer', async () => {
     const {getByRole, getByLabelText, getByText} = await render(<HeaderFooterDialog />);
 
     expect(getByRole('dialog', {hidden: true})).toHaveAttribute('hidden');
@@ -27,7 +27,7 @@ describe('dialog-base', () => {
     expect(getByRole('dialog')).not.toHaveAttribute('hidden');
   });
 
-  it('renders non modal', async () => {
+  xit('renders non modal', async () => {
     const {getByRole} = await render(<Dialog isModal={false} />);
     expect(getByRole('dialog', {hidden: true})).toHaveAttribute('aria-live', 'polite');
   });
