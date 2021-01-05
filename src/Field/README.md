@@ -1,23 +1,23 @@
-# SkinField
+# Field
 
-## SkinField Usage
+## Field Usage
 
 ```react
-<SkinField isBlock>
-  <SkinFieldLabel htmlFor={`field-confirmation`} isStacked>
+<Field isBlock>
+  <FieldLabel htmlFor={`field-confirmation`} isStacked>
     Field
-  </SkinFieldLabel>
-  <SkinFieldControl>
-    <SkinTextbox id={`field-confirmation`}  />
-  </SkinFieldControl>
-  <SkinFieldDescription id={`field-confirmation-descripiton`} color="confirmation">
+  </FieldLabel>
+  <FieldControl>
+    <Textbox id={`field-confirmation`}  />
+  </FieldControl>
+  <FieldDescription id={`field-confirmation-descripiton`} color="confirmation">
     <span>Field description</span>
-  </SkinFieldDescription>
-</SkinField>
+  </FieldDescription>
+</Field>
 
 ```
 
-## SkinField Attributes
+## Field Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -27,7 +27,7 @@ Name | Type | Stateful | Required | Description
 `isTable` | boolean | No | no | 
 `label` | string | No | no | 
 
-## SkinField Events
+## Field Events
 
 HTML Span Element Events
 

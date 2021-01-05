@@ -8,10 +8,4 @@
  *  ***********************************************************
  */
 
-import Field, {FieldLabel, FieldControl, FieldDescription} from './components/field';
-
-export const SkinField = Field;
-export const SkinFieldLabel = FieldLabel;
-export const SkinFieldControl = FieldControl;
-export const SkinFieldDescription = FieldDescription;
-export default SkinField;
+export {Field, FieldLabel, FieldControl, FieldDescription} from './components/field';

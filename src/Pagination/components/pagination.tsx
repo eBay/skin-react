@@ -11,10 +11,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export interface PaginationProps<T> extends React.HTMLProps<T> {
+export interface PaginationBasicProps<T> extends React.HTMLProps<T> {
   a11yText?: string;
 }
-export const Pagination = ({children, id, a11yText, ...props}: PaginationProps<HTMLElement>) => {
+export const PaginationBasic = ({children, id, a11yText, ...props}: PaginationBasicProps<HTMLElement>) => {
   const className = classNames('pagination', props.className);
   const HTMLProps = {...props, className};
   return (

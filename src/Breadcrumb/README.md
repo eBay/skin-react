@@ -1,21 +1,21 @@
-# SkinBreadcrumb
+# Breadcrumb
 
-### SkinBreadcrumb Usage
+### Breadcrumb Usage
 
 ```react
-<SkinBreadcrumb id="breadcrumbs-heading" onClick={console.log} a11yText="breadcrumbs">
-   <SkinBreadcrumbItem>Hello</SkinBreadcrumbItem>
-   <SkinBreadcrumbItem>Hello 2</SkinBreadcrumbItem>
- </SkinBreadcrumb>
+<Breadcrumb id="breadcrumbs-heading" onClick={console.log} a11yText="breadcrumbs">
+   <BreadcrumbItem>Hello</BreadcrumbItem>
+   <BreadcrumbItem>Hello 2</BreadcrumbItem>
+ </Breadcrumb>
 ```
 
-### SkinBreadcrumb Attributes
+### Breadcrumb Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11yText` | String | No | no | 
 
-### SkinBreadcrumb Events
+### Breadcrumb Events
 
 HTML Element Events
 
@@ -23,15 +23,15 @@ Event | Description | Data
 --- | --- | ---
 `onClick` | click breadcrumb items | `{ el }`
 
-# SkinBreadcrumbItem
+# BreadcrumbItem
 
-### SkinBreadcrumbItem Usage
+### BreadcrumbItem Usage
 
 ```react
-   <SkinBreadcrumbItem>Hello</SkinBreadcrumbItem>
+   <BreadcrumbItem>Hello</BreadcrumbItem>
 ```
 
-### SkinBreadcrumbItem Attributes
+### BreadcrumbItem Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -39,11 +39,11 @@ Name | Type | Stateful | Required | Description
 `href` | String | No | no | Used to create anchor element
 
 
-### SkinBreadcrumbItem Events
+### BreadcrumbItem Events
 
 HTML Anchor Element Events
 
 HTML Button Element Events
 
 
-**Note:** If you want to have client side or ajax based navigation then you should omit the `href` attribute on each item. This will cause each item to be `<button>` instead of an `<a>`. Alternatively you can manually `preventDefault` the provided `originalEvent` on the `SkinBreadcrumb` event.
+**Note:** If you want to have client side or ajax based navigation then you should omit the `href` attribute on each item. This will cause each item to be `<button>` instead of an `<a>`. Alternatively you can manually `preventDefault` the provided `originalEvent` on the `Breadcrumb` event.

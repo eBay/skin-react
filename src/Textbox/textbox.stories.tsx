@@ -13,7 +13,7 @@ import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withKnobs, boolean, select} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import {SkinTextbox, Textbox} from './index';
+import {Textbox, TextboxLabeled} from './index';
 import {toStoryObj, icons} from '../../.storybook/util/utils';
 import {IconName} from '../Icon';
 import {withA11y} from '@storybook/addon-a11y';
@@ -37,9 +37,9 @@ export const _Textbox = () => {
   return (
     <div>
       <h1>Textbox</h1>
-      <SkinTextbox {...props} aria-label="Textbox" />
+      <Textbox {...props} aria-label="Textbox" />
       <h1>Floating Label Textbox</h1>
-      <SkinTextboxLabeled {...props} aria-label="Textbox" label={'Name'} />
+      <TextboxLabeled {...props} aria-label="Textbox" label={'Name'} />
     </div>
   );
 };

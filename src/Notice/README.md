@@ -1,9 +1,9 @@
-# SkinNotice
+# Notice
 
-## SkinNotice Usage
+## Notice Usage
 
 ```react
-<SkinNotice
+<Notice
   title={notice.title}
   variant={notice.color as NoticeVariant}
   id={`page-notice-${index}`}
@@ -16,11 +16,11 @@
     <Button variant="secondary" className="btn--transparent" aria-label="Read More Button">
       Continue
     </Button>
-</SkinNotice>
+</Notice>
 ```
 
 
-## SkinNotice Attributes
+## Notice Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

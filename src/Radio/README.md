@@ -1,18 +1,18 @@
-# SkinRadio
+# Radio
 
-## SkinRadio Usage
+## Radio Usage
 
 ```react
-  <SkinRadio aria-label="Default checkbox example" name="checkbox" disabled/>
+  <Radio aria-label="Default checkbox example" name="checkbox" disabled/>
 ```
 
-## SkinRadio Attributes
+## Radio Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `size` | string | No | no |  'large' or 'small'
 
-## SkinRadio Events
+## Radio Events
 
 HTML HTMLInputElement Element Events
 

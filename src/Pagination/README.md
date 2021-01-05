@@ -1,16 +1,16 @@
-# SkinPagination
+# Pagination
 
-## SkinPagination Usage
+## Pagination Usage
 
 ```react
- <SkinPagination a11yText="SkinPagination" onChangePage={console.log}>
-  <SkinPageItem>
+ <Pagination a11yText="Pagination" onChangePage={console.log}>
+  <PageItem>
     {name}
-  </SkinPageItem>
-</SkinPagination>
+  </PageItem>
+</Pagination>
 ```
 
-## SkinPagination Attributes
+## Pagination Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -23,7 +23,7 @@ Name | Type | Stateful | Required | Description
 `nextHref` | string | No | no | 
 
 
-## SkinPageItem Attributes
+## PageItem Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

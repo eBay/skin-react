@@ -11,10 +11,10 @@
 import * as React from 'react';
 import {FloatingLabel, FloatingLabelProps} from './components/floatingLabel';
 import {hasValue, withForwardRef} from '../skin-utils';
-import {SkinTextbox} from './index';
-const TextBoxWithRef = withForwardRef(SkinTextbox);
+import {Textbox} from './index';
+const TextBoxWithRef = withForwardRef(Textbox);
 const defaultStateProps = {isAnimated: false, isInline: false};
-export const SkinTextboxLabeled = ({
+export const TextboxLabeled = ({
   label,
   onBlur,
   onFocus,
@@ -56,4 +56,4 @@ export const SkinTextboxLabeled = ({
     </FloatingLabel>
   );
 };
-export default SkinTextboxLabeled;
+export default TextboxLabeled;

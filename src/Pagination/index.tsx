@@ -9,13 +9,8 @@
  */
 
 import * as React from 'react';
-import {PageItem} from './components/pageItem';
-import {SkinPagination} from './skin-pagination';
+import {Pagination} from './skin-pagination';
 
-export const SkinPageItem = PageItem;
-export {SkinPagination} from './skin-pagination';
-export {PageControl, PageControlProps} from './components/pageControl';
+export {Pagination, PaginationProps} from './skin-pagination';
 export {PageItem, PageItemProps} from './components/pageItem';
-export {PageList, PageListProps} from './components/pageList';
-export {Pagination, PaginationProps} from './components/pagination';
-export default SkinPagination;
+export default Pagination;

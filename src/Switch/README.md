@@ -3,7 +3,7 @@
 ## SkinSwitch Usage
 
 ```react
-  <SkinSwitch aria-label="Switch" name="checkbox" disabled/>
+  <Switch aria-label="Switch" name="checkbox" disabled/>
 ```
 
 ## SkinSwitch Attributes

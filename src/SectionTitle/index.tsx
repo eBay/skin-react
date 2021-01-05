@@ -7,10 +7,9 @@
  *  https://opensource.org/licenses/MIT.
  *  ***********************************************************
  */
-
-import {SectionTitle} from './components/sectionTitle';
+import {SectionTitle, SectionTitleProps} from './skin-section-title';
 export {SectionInfo, SectionOverflow} from './components/section';
 export {SectionContainer, SectionContainerProps} from './components/sectionContainer';
 export {SectionCTA, SectionCTAProps} from './components/sectionCTA';
-export {SectionTitle, SectionTitleProps} from './components/sectionTitle';
+export {SectionTitle, SectionTitleProps} from './skin-section-title';
 export default SectionTitle;

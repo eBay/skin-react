@@ -101,8 +101,7 @@ describe('Stepper', () => {
         </StepperItem>
       </Stepper>
     );
-    const icon = getStepperItems(component).childAt(0).childAt(0).childAt(0).childAt(0);
-    expect(icon.is(Badge)).toBe(true);
-    expect(icon.prop('value')).toEqual(1);
+    const icon = getStepperItems(component).childAt(0).childAt(0).childAt(0);
+    expect(icon.text()).toEqual('1');
   });
 });

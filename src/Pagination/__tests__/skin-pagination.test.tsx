@@ -10,11 +10,11 @@
 
 import * as React from 'react';
 import {mount, shallow} from 'enzyme';
-import {SkinPageItem, SkinPagination} from '..';
-const SkinPageItems = (num) =>
+import {PageItem, Pagination} from '..';
+const PageItems = (num) =>
   Array(num)
     .fill(1)
-    .map((x, i) => <SkinPageItem key={i}>{i + 1}</SkinPageItem>);
+    .map((x, i) => <PageItem key={i}>{i + 1}</PageItem>);
 const onChangePage = jest.fn(() => true);
 const defaultProps = {
   pageSize: 3,
@@ -22,22 +22,22 @@ const defaultProps = {
 };
 const getMountComponent = (props = {}, pageItems: number = 5) => {
   const mergeProps = {...defaultProps, ...props};
-  return mount(<SkinPagination className="custom-class" {...mergeProps} children={SkinPageItems(pageItems)} />);
+  return mount(<Pagination className="custom-class" {...mergeProps} children={PageItems(pageItems)} />);
 };
-describe('SkinPagination', () => {
+describe('Pagination', () => {
   let spy: any;
   it('should render null', () => {
-    const component = shallow(<SkinPagination className="custom-class" />);
+    const component = shallow(<Pagination className="custom-class" />);
     expect(component.html()).toBe(null);
   });
-  it('should render a SkinPagination(nav) with .pagination and custom classNames', () => {
-    const component = mount(<SkinPagination className="custom-class">{SkinPageItems}</SkinPagination>);
+  it('should render a Pagination(nav) with .pagination and custom classNames', () => {
+    const component = mount(<Pagination className="custom-class">{PageItems}</Pagination>);
     expect(component.hasClass('custom-class')).toBe(true);
   });
   describe('Render', () => {
     afterEach(() => spy && spy.mockClear());
     it('should exist', () => {
-      spy = jest.spyOn(SkinPagination.prototype, 'componentDidMount');
+      spy = jest.spyOn(Pagination.prototype, 'componentDidMount');
       const wrapper = getMountComponent({}, 0);
       const state: any = wrapper.state();
       expect(state.pager.totalItems).toBeFalsy();

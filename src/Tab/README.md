@@ -1,29 +1,29 @@
-# SkinTabs
+# Tabs
 
-## SkinTabs Usage
+## Tabs Usage
 
 ```react
-<SkinTabs>
-    <SkinTab title="Tab 1">
+<Tabs>
+    <Tab title="Tab 1">
       <TabContentStorybook header={`Panel 1 Content`} />
-    </SkinTab>
-    <SkinTab title="Tab 2">
+    </Tab>
+    <Tab title="Tab 2">
       <TabContentStorybook header={`Panel 2 Content`} />
-    </SkinTab>
-    <SkinTab title="Tab 3">
+    </Tab>
+    <Tab title="Tab 3">
       <TabContentStorybook header={`Panel 3 Content`} />
-    </SkinTab>
-</SkinTabs>
+    </Tab>
+</Tabs>
 ```
 
-## SkinTabs Attributes
+## Tabs Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `id` | string | No | no |  
 `isFake` | Boolean | No | No | Whether to use link behavior for tab headings
 
-## SkinTab Attributes
+## Tab Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

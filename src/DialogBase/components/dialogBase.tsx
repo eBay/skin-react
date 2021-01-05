@@ -25,7 +25,7 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   top?: ReactNode;
   buttonPosition?: 'top' | 'right' | 'bottom' | 'left' | 'hidden';
   ariaLabelledby?: string;
-  allyCloseText?: string;
+  a11yCloseText?: string;
   onCloseBtnClick?: React.MouseEventHandler<HTMLButtonElement>;
   onBackgroundClick?: React.MouseEventHandler<HTMLElement>;
   mainId?: string;
@@ -44,8 +44,8 @@ export const DialogBase = ({
   buttonPosition = 'left',
   children,
   ariaLabelledby,
-  allyCloseText,
-  onCloseBtnClick,
+  a11yCloseText,
+  onCloseBtnClick = () => {},
   footer,
   onScroll,
   open = false,
@@ -67,12 +67,12 @@ export const DialogBase = ({
   }, []);
   const containerProps = {
     ...props,
-    ['aria-labelledby']: ariaLabelledby,
-    ['aria-modal']: true,
+    'aria-labelledby': ariaLabelledby,
+    'aria-modal': true,
     role: props.role || 'dialog',
     className: classNames(classPrefix, props.className),
-    ['hidden:no-update']: (!open).toString(),
-    ['aria-live']: !isModal && 'polite',
+    'hidden:no-update': (!open).toString(),
+    'aria-live': !isModal && 'polite',
     baseEl,
     onKeyDown: (event) => {
       if (!ignoreEscape && event.key === 'Escape') {
@@ -85,7 +85,7 @@ export const DialogBase = ({
     <button
       className={`icon-btn ${classPrefix}__close`}
       type="button"
-      aria-label={allyCloseText}
+      aria-label={a11yCloseText}
       onClick={onCloseBtnClick}
     >
       {closeButton || <Icon name="close" />}

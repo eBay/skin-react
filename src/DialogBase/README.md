@@ -19,7 +19,7 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `baseEl`  | string| No | No | ---  div' , 'span', 'aside'
 `open` | Boolean | Yes | No | Whether drawer is open.
-`classPrefix` | drawer or toast or dialog | No | No | "" (default) / modifies the base prefix for all Skin classes in the component
+`classPrefix` | drawer or toast or dialog | No | No | "" (default) / modifies the base prefix for all  classes in the component
 `windowClass` | String | No | No | "" (default) / modifies the base prefix for all Skin classes in the component
 `header` | String | No | No | element placeholder
 `footer` | String | No | No | element placeholder

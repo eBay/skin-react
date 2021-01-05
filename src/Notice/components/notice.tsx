@@ -30,7 +30,7 @@ export interface NoticeProps<T> extends Skin.Role, Omit<React.HTMLProps<T>, 'con
   content?: React.ReactNode;
   a11yText?: string;
 }
-export const Notice = ({
+export const BasicNotice = ({
   content,
   children,
   variant,
@@ -72,7 +72,6 @@ export const Notice = ({
     </Section>
   );
 };
-export default Notice;
 
 interface NoticeStatusProps<T> extends Skin.Role, React.HTMLProps<T> {
   iconName?: IconName;
@@ -115,3 +114,5 @@ export const NoticeContent = ({title, type, ...props}: NoticeContentProps<HTMLSp
     </SectionRows>
   );
 };
+
+export default BasicNotice;

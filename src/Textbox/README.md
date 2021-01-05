@@ -1,12 +1,12 @@
-# SkinTextboxLabeled
+# TextboxLabeled
 
-## SkinTextboxLabeled Usage
+## TextboxLabeled Usage
 
 ```react
-   <SkinTextboxLabeled aria-label="Textbox" label={'Name'} />
+   <TextboxLabeled aria-label="Textbox" label={'Name'} />
 ```
 
-## SkinTextboxLabeled Attributes
+## TextboxLabeled Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

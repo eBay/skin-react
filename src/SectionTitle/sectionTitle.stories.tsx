@@ -12,20 +12,14 @@ import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import DemoComponent from '../../.storybook/util/demo';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {
-  SkinSectionCTA,
-  SkinSectionInfo,
-  SkinSectionTitle,
-  SkinSectionTitleProps,
-  SkinSectionOverflow
-} from './skin-section-title';
+import {SectionCTA, SectionTitle} from './index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
   title: Category.SKINDS6,
-  component: SkinSectionTitle,
+  component: SectionTitle,
   decorators: [withKnobs, withA11y]
 };
 
@@ -39,15 +33,15 @@ export const _SectionTitle = () => {
   return (
     <div>
       <DemoComponent>
-        <SkinSectionTitle {...props} />
+        <SectionTitle {...props} />
       </DemoComponent>
       <br />
       <br />
       <br />
       <DemoComponent>
-        <SkinSectionTitle {...props}>
-          <SkinSectionCTA href="#" title="See All" iconName="arrow-right-bold" />
-        </SkinSectionTitle>
+        <SectionTitle {...props}>
+          <SectionCTA href="#" title="See All" iconName="arrow-right-bold" />
+        </SectionTitle>
       </DemoComponent>
     </div>
   );

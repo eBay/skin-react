@@ -1,12 +1,12 @@
-# SkinDetails
+# Details
 
-## SkinDetails Usage
+## Details Usage
 
 ```react
-<SkinDetails label="Default Detail">SkinDetails</SkinDetails>
+<Details label="Default Detail">Details</Details>
 ```
 
-## SkinDetails Attributes
+## Details Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -15,7 +15,7 @@ Name | Type | Stateful | Required | Description
 `isRtl` | boolean | No | no | 
 `open` | Boolean | No | No | Whether details is open.
 
-## SkinDetails Events
+## Details Events
 HTML Anchor Element Events
 HTML Button Element Events
 

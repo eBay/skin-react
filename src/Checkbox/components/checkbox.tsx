@@ -19,13 +19,14 @@ export interface CheckboxProps extends Omit<React.HTMLProps<HTMLInputElement>, '
   iconStyle?: React.CSSProperties;
   size?: 'large' | 'regular';
 }
-export function Checkbox({size, iconStyle, children, ...props}: CheckboxProps) {
+export function BasicCheckbox({size, iconStyle, children, ...props}: CheckboxProps) {
+  const isLarge = size === 'large';
+  const wrapperClassName = classNames('checkbox', {'checkbox--large': isLarge});
   const className = classNames('checkbox__control', props.className);
   const HTMLProps = {type: 'checkbox', ...props, className};
-  const isLarge = size === 'large';
   const iconSize = isLarge ? '24' : '18';
   return (
-    <span className="checkbox">
+    <span className={wrapperClassName}>
       <input {...HTMLProps} />
       <span className="checkbox__icon" hidden style={iconStyle}>
         <Icon
@@ -45,4 +46,4 @@ export function Checkbox({size, iconStyle, children, ...props}: CheckboxProps) {
     </span>
   );
 }
-export default Checkbox;
+export default BasicCheckbox;

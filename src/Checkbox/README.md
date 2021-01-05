@@ -3,7 +3,7 @@
 ## SkinCheckbox Usage
 
 ```react
-  <SkinCheckbox aria-label="Default checkbox example" name="checkbox" disabled/>
+  <Checkbox aria-label="Default checkbox example" name="checkbox" disabled/>
 ```
 
 ## SkinCheckbox Attributes

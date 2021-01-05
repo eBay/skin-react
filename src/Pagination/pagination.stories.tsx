@@ -11,14 +11,14 @@
 import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {SkinPageItem, SkinPagination} from './index';
+import {PageItem, Pagination} from './index';
 import {boolean, withKnobs, number} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
   title: Category.SKINDS6,
-  component: SkinPagination,
+  component: Pagination,
   decorators: [withKnobs, withA11y]
 };
 
@@ -48,14 +48,14 @@ export const _Pagination = () => {
   return (
     <div>
       <br />
-      <h1>Skin Pagination</h1>
-      <SkinPagination a11yText="SkinPagination" onChangePage={(...args) => console.log(...args)} {...props}>
+      <h1> Pagination</h1>
+      <Pagination a11yText="Pagination" onChangePage={(...args) => console.log(...args)} {...props}>
         {list.map((name, index) => (
-          <SkinPageItem key={`${name}-${hrefBool ? 'link' : 'btn'}}`} {...pageItemsProps}>
+          <PageItem key={`${name}-${hrefBool ? 'link' : 'btn'}}`} {...pageItemsProps}>
             {name}
-          </SkinPageItem>
+          </PageItem>
         ))}
-      </SkinPagination>
+      </Pagination>
     </div>
   );
 };

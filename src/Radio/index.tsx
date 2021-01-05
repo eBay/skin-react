@@ -11,5 +11,4 @@
 import Radio from './components/radio';
 
 export {Radio, RadioProps} from './components/radio';
-export const SkinRadio = Radio;
-export default SkinRadio;
+export default Radio;

@@ -11,5 +11,4 @@
 import CtaButton from './components/ctaButton';
 
 export {CtaButton, CtaButtonProps} from './components/ctaButton';
-export const SkinCtaButton = CtaButton;
-export default SkinCtaButton;
+export default CtaButton;

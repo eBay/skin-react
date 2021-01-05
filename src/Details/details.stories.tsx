@@ -11,7 +11,7 @@
 import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {SkinDetails} from './index';
+import {Details} from './index';
 import {withKnobs, boolean, select} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
@@ -27,11 +27,11 @@ export const _Details = () => {
   return (
     <div>
       <h1>Default Details</h1>
-      <SkinDetails label="Default Detail">SkinDetails</SkinDetails>
-      <h1>Custom SkinDetails</h1>
-      <SkinDetails label="SkinDetails" type={type} size={size} open>
-        SkinDetails
-      </SkinDetails>
+      <Details text="Default Detail">Details</Details>
+      <h1>Custom Details</h1>
+      <Details text="Details" type={type} size={size} open>
+        Details
+      </Details>
     </div>
   );
 };

@@ -9,24 +9,19 @@
  */
 
 import * as React from 'react';
-import SectionTitle, {SectionTitleProps} from './components/sectionTitle';
+import {BasicSectionTitle, BasicSectionTitleProps} from './components/sectionTitle';
 import SectionContainer from './components/sectionContainer';
-import SectionCTA from './components/sectionCTA';
-import SectionInfo, {SectionOverflow} from './components/section';
 
-export interface SkinSectionTitleProps<T> extends SectionTitleProps<T>, React.HTMLProps<T> {
+export interface SectionTitleProps<T> extends BasicSectionTitleProps<T>, React.HTMLProps<T> {
   title?: string;
   subtitle?: string;
 }
-export const SkinSectionTitle = ({title, subtitle, ...props}: SkinSectionTitleProps<HTMLDivElement>) => {
+export const SectionTitle = ({title, subtitle, ...props}: SectionTitleProps<HTMLDivElement>) => {
   return (
-    <SectionTitle {...props}>
+    <BasicSectionTitle {...props}>
       <SectionContainer title={title} subtitle={subtitle} />
       {props.children}
-    </SectionTitle>
+    </BasicSectionTitle>
   );
 };
-export default SkinSectionTitle;
-export const SkinSectionOverflow = SectionOverflow;
-export const SkinSectionInfo = SectionInfo;
-export const SkinSectionCTA = SectionCTA;
+export default SectionTitle;

@@ -1,9 +1,9 @@
-# SkinBadge
+# Badge
 
-## SkinBadge Usage
+## Badge Usage
 
 ```react
-<SkinBadge  aria-label="9 unread items" value={9} />
+<Badge  aria-label="9 unread items" value={9} />
 ```
 
 ## SkinBadge Attributes

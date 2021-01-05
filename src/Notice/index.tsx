@@ -9,13 +9,12 @@
  */
 
 import * as React from 'react';
-import Notice, {NoticeProps} from './components/notice';
-import {WindowNotice} from './components/windowNotice';
+import {BasicNotice, NoticeProps} from './components/notice';
+import {BasicWindowNotice} from './components/windowNotice';
 import {withHideEffect} from '../skin-utils';
 
-export {Notice, NoticeType, NoticeVariant, NoticeProps} from './components/notice';
-export {WindowNotice, WindowNoticeProps} from './components/windowNotice';
-export default Notice;
+export {NoticeType, NoticeVariant, NoticeProps} from './components/notice';
+export {WindowNoticeProps} from './components/windowNotice';
 
-export const SkinNotice = withHideEffect(Notice);
-export const SkinWindowNotice = withHideEffect(WindowNotice);
+export const Notice = withHideEffect(BasicNotice);
+export const WindowNotice = withHideEffect(BasicWindowNotice);

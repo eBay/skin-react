@@ -13,7 +13,7 @@ import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import {NoticeType, NoticeVariant, SkinNotice} from './index';
+import {NoticeType, NoticeVariant, Notice} from './index';
 import {IconName} from '../Icon';
 import Button from '../Button';
 import {toStoryObj} from '../../.storybook/util/utils';
@@ -21,7 +21,7 @@ import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
   title: Category.SKINDS6,
-  component: SkinNotice,
+  component: Notice,
   decorators: [withKnobs, withA11y]
 };
 const noticeList = [
@@ -57,7 +57,7 @@ export const _Notice = () => {
   return (
     <div>
       {noticeList.map((notice, index) => (
-        <SkinNotice
+        <Notice
           {...props}
           title={notice.title}
           variant={notice.color as NoticeVariant}
@@ -69,11 +69,11 @@ export const _Notice = () => {
           key={index}
         >
           {type !== 'inline' && (
-            <Button variant="secondary" className="btn--transparent" aria-label="Read More Button">
+            <Button priority="secondary" className="btn--transparent" aria-label="Read More Button">
               Continue
             </Button>
           )}
-        </SkinNotice>
+        </Notice>
       ))}
     </div>
   );

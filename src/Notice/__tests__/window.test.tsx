@@ -10,8 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import WindowNotice from '../components/windowNotice';
-import {IconName} from '../../Icon';
+import {BasicWindowNotice as WindowNotice} from '../components/windowNotice';
 
 describe('notice', () => {
   it('should render a WindowNotice(section) with .notice and custom classNames', () => {

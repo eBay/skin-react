@@ -1,14 +1,14 @@
-# SkinButton
+# Button
 
-## SkinButton Usage
+## Button Usage
 
 ```react
-<SkinButton variant="primary" aria-label={`Skin Button`}>
+<Button variant="primary" aria-label={` Button`}>
     Button
-</SkinButton>
+</Button>
 ```
 
-## SkinButton Attributes
+## Button Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

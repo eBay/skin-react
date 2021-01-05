@@ -14,11 +14,11 @@ import {DialogBaseWithState} from '..';
 
 describe('DialogBase', () => {
   it('given a closed dialog should return null', () => {
-    const component = mount(<DialogBaseWithState classPrefix="drawer" className="custom-class" />);
+    const component = mount(<DialogBaseWithState classPrefix="drawer-dialog" className="custom-class" />);
     expect(component.html()).toBe(null);
   });
   describe('given a DialogBase', () => {
-    let component = mount(<DialogBaseWithState classPrefix="drawer" className="custom-class" open />);
+    let component = mount(<DialogBaseWithState classPrefix="drawer-dialog" className="custom-class" open />);
     it('should render a DialogBase', () => {
       expect(component).toHaveLength(1);
     });
@@ -30,7 +30,7 @@ describe('DialogBase', () => {
       beforeEach(() => {
         component = mount(
           <DialogBaseWithState
-            classPrefix="drawer"
+            classPrefix="drawer-dialog"
             header={<h2>Heading</h2>}
             onCloseBtnClick={jest.fn()}
             onBackgroundClick={jest.fn()}
@@ -40,7 +40,7 @@ describe('DialogBase', () => {
       });
       it('when btn cliked then it should trigger onCloseBtnClick event', () => {
         spy = jest.spyOn(component.props(), 'onCloseBtnClick');
-        component.find('.drawer__close').simulate('click');
+        component.find('.drawer-dialog__close').simulate('click');
         expect(spy).toHaveBeenCalled();
       });
       it('when background clicked then it should trigger onBackgroundClick event', () => {

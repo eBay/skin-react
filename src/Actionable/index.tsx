@@ -24,5 +24,4 @@ export const Actionable = ({isImg, ...props}: ActionableProps<HTMLButtonElement 
   return React.createElement(getTag(isLink), {...defaultProps, ...props, className});
 };
 
-export const SkinActionable = Actionable;
-export default SkinActionable;
+export default Actionable;

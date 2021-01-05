@@ -19,4 +19,3 @@ export {default as TabItems} from './components/tabItems';
 export const TabPanel = withProps({displayName: 'TabPanel', className: 'tabs__panel', role: 'tab'})();
 export const TabCell = withProps({displayName: 'TabCell', className: 'tabs__cell'})();
 export default Tab;
-//TODO: EBAY Component

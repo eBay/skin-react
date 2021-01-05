@@ -11,7 +11,7 @@
 import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import Checkbox, {SkinCheckbox} from './index';
+import Checkbox from './index';
 import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
@@ -30,7 +30,7 @@ export const _Checkbox = () => {
   const props = {...defaultProps, size, disabled};
   return (
     <div>
-      <SkinCheckbox aria-label="Default checkbox example" name="checkbox" {...props} />
+      <Checkbox aria-label="Default checkbox example" name="checkbox" {...props} />
       <br />
       <br />
       <br />
@@ -39,7 +39,7 @@ export const _Checkbox = () => {
         <legend>Choose an Option</legend>
         {[1, 2, 3].map((item, index) => (
           <span className="field" key={index}>
-            <SkinCheckbox
+            <Checkbox
               id={`group-checkbox-inline-${index}`}
               className="field__control"
               aria-label={`checkbox inline ${index}`}
@@ -61,7 +61,7 @@ export const _Checkbox = () => {
         <legend>Choose an Option</legend>
         {[1, 2, 3].map((item, index) => (
           <div className="field" key={index}>
-            <SkinCheckbox
+            <Checkbox
               id={`group-checkbox-stacked-${index}`}
               className="field__control"
               aria-label={`checkbox stacked ${index}`}

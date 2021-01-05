@@ -33,7 +33,7 @@ export const StepperItem = ({
     if (['attention', 'information', 'confirmation'].includes(type)) {
       return <Icon name={`${type}-filled`} width="24" height="24" />;
     } else if (number) {
-      return <Badge value={number} />;
+      return <Badge number={number} />;
     }
     return <Icon name={type || 'circle'} width="24" height="24" />;
   };

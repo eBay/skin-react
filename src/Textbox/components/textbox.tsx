@@ -24,7 +24,7 @@ export interface TextboxProps<T> extends Skin.Fluid, React.HTMLProps<T> {
   iconProps?: object;
   forwardedRef?: any;
 }
-export const Textbox = ({
+export const BasicTextBox = ({
   isFluid,
   isUnderlined,
   isMultiline,
@@ -57,4 +57,4 @@ export const Textbox = ({
     </TextboxWrapper>
   );
 };
-export default Textbox;
+export default BasicTextBox;
