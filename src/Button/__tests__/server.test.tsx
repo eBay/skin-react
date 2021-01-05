@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SkinButton as Button} from '..';
+import {Button} from '..';
 import {render, fireEvent, cleanup} from '@testing-library/react';
 
 let component;

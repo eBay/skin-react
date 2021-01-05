@@ -9,17 +9,17 @@
  */
 
 import * as React from 'react';
-import Tab, {TabCell, TabContent, TabItem, TabItems, TabPanel} from './';
+import {Tab as BasicTab, TabCell, TabContent, TabItem, TabItems, TabPanel} from './';
 import {withForwardRef} from '../skin-utils';
 import * as Skin from '../skin';
 const TabItemWithRef = withForwardRef(TabItem);
-export interface SkinTabProps<T> extends React.HTMLProps<T> {
+export interface TabProps<T> extends React.HTMLProps<T> {
   index: string | number;
   isSelected: boolean;
   title: string;
 }
 
-export const SkinTab = ({
+export const Tab = ({
   children,
   index,
   selected,
@@ -28,7 +28,7 @@ export const SkinTab = ({
   title,
   tabId,
   ...props
-}: SkinTabProps<HTMLElement> | any) => (
+}: TabProps<HTMLElement> | any) => (
   <TabPanel
     id={`tabpanel_${index}`}
     role="tabpanel"
@@ -40,8 +40,8 @@ export const SkinTab = ({
     <TabCell>{children} </TabCell>
   </TabPanel>
 );
-export interface SkinTabsProps<T> extends Skin.Fake, React.HTMLProps<T> {}
-export class SkinTabs extends React.Component<SkinTabsProps<HTMLElement>, any> {
+export interface TabsProps<T> extends Skin.Fake, React.HTMLProps<T> {}
+export class Tabs extends React.Component<TabsProps<HTMLElement>, any> {
   private tabs: any;
   private activeLink: HTMLDivElement | HTMLAnchorElement;
 
@@ -80,7 +80,7 @@ export class SkinTabs extends React.Component<SkinTabsProps<HTMLElement>, any> {
     const {selected} = this.state;
     const {id = '', isFake} = this.props;
     return (
-      <Tab isFake={isFake}>
+      <BasicTab isFake={isFake}>
         <TabItems isFake={isFake}>
           {this.tabs.map((tab, i) => {
             const tabId = `${id || 'item'}-tab_${i}`;
@@ -120,9 +120,9 @@ export class SkinTabs extends React.Component<SkinTabsProps<HTMLElement>, any> {
             return null;
           })}
         </TabContent>
-      </Tab>
+      </BasicTab>
     );
   }
 }
 
-export default SkinTabs;
+export default Tabs;

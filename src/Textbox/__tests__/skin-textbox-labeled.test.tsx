@@ -10,11 +10,11 @@
 
 import * as React from 'react';
 import {mount} from 'enzyme';
-import SkinTextboxLabeled from '../skin-textbox-labeled';
+import TextboxLabeled from '../skin-textbox-labeled';
 
-describe('SkinLabelTextbox', () => {
+describe('LabelTextbox', () => {
   it('should render a SkinLabelTextbox(input|textbox) with .textbox and custom classNames', () => {
-    const component = mount(<SkinTextboxLabeled className="custom-class" />);
+    const component = mount(<TextboxLabeled className="custom-class" />);
     expect(component.hasClass('custom-class')).toBe(true);
   });
 });

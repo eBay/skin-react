@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Notice, NoticeStatus, NoticeContent} from '../components/notice';
+import {BasicNotice as Notice, NoticeStatus, NoticeContent} from '../components/notice';
 
 describe('notice', () => {
   it('should render a Notice(a) with .notice and custom classNames', () => {

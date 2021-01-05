@@ -1,4 +1,4 @@
-import {SkinDetails} from '..';
+import {Details} from '..';
 import * as React from 'react';
 
 import {render, fireEvent} from '@testing-library/react';
@@ -14,7 +14,7 @@ const defaultProps = {
 
 describe('given the details is in the default state', () => {
   beforeEach(async () => {
-    component = await render(<SkinDetails {...defaultProps} />);
+    component = await render(<Details {...defaultProps} />);
   });
 
   it('should render with open false', () => {
@@ -24,7 +24,7 @@ describe('given the details is in the default state', () => {
 
 describe('given the details is in the open state', () => {
   beforeEach(async () => {
-    component = await render(<SkinDetails {...defaultProps} open />);
+    component = await render(<Details {...defaultProps} open />);
   });
 
   it('should render with open false', () => {
@@ -36,7 +36,7 @@ describe('given the details is in the default state and click is triggered', () 
   beforeEach(async () => {
     handleClick = jest.fn();
     handleToggle = jest.fn();
-    component = await render(<SkinDetails {...defaultProps} onClick={handleClick} onChange={handleToggle} />);
+    component = await render(<Details {...defaultProps} onClick={handleClick} onChange={handleToggle} />);
   });
 
   describe('click on details', () => {
@@ -51,7 +51,7 @@ describe('given the details is in the default state and click is triggered', () 
 
   describe('details should properly toggle open property', () => {
     beforeEach(async () => {
-      await component.rerender(<SkinDetails {...defaultProps} onClick={handleClick} onChange={handleToggle} open />);
+      await component.rerender(<Details {...defaultProps} onClick={handleClick} onChange={handleToggle} open />);
     });
 
     it('then it should have open true', () => {
@@ -73,7 +73,7 @@ describe('given the details is in the open state and click is triggered', () => 
   beforeEach(async () => {
     handleClick = jest.fn();
     handleToggle = jest.fn();
-    component = await render(<SkinDetails {...defaultProps} onClick={handleClick} onChange={handleToggle} />);
+    component = await render(<Details {...defaultProps} onClick={handleClick} onChange={handleToggle} />);
   });
 
   describe('click on details', () => {
@@ -89,7 +89,7 @@ describe('given the details is in the open state and click is triggered', () => 
   describe('details should properly toggle open property', () => {
     beforeEach(async () => {
       await component.rerender(
-        <SkinDetails {...defaultProps} onClick={handleClick} onChange={handleToggle} open={false} />
+        <Details {...defaultProps} onClick={handleClick} onChange={handleToggle} open={false} />
       );
     });
 

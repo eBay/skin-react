@@ -11,7 +11,7 @@
 import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {Breadcrumb, SkinBreadcrumb, SkinBreadcrumbItem} from './index';
+import {Breadcrumb, BreadcrumbItem} from './index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
@@ -38,19 +38,19 @@ export const _Breadcrumb = () => {
   return (
     <div>
       <h3>Breadcrumb with Buttons</h3>
-      <SkinBreadcrumb id="breadcrumbs-heading" {...props} onClick={console.log} a11yText="breadcrumbs">
+      <Breadcrumb id="breadcrumbs-heading" {...props} onClick={console.log} a11yText="breadcrumbs">
         {breadcrumbItems.map((name) => (
-          <SkinBreadcrumbItem key={name}>{name}</SkinBreadcrumbItem>
+          <BreadcrumbItem key={name}>{name}</BreadcrumbItem>
         ))}
-      </SkinBreadcrumb>
+      </Breadcrumb>
       <h3>Breadcrumb with Anchor tags</h3>
-      <SkinBreadcrumb id="breadcrumbs-heading-2" {...props} onClick={console.log} a11yText="breadcrumbs example">
+      <Breadcrumb id="breadcrumbs-heading-2" {...props} onClick={console.log} a11yText="breadcrumbs example">
         {breadcrumbItems.map((name) => (
-          <SkinBreadcrumbItem key={name} href="#">
+          <BreadcrumbItem key={name} href="#">
             {name}
-          </SkinBreadcrumbItem>
+          </BreadcrumbItem>
         ))}
-      </SkinBreadcrumb>
+      </Breadcrumb>
     </div>
   );
 };

@@ -39,7 +39,7 @@ export interface ButtonProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
   badgeNumber?: number; //Number	No	No	used as the number to be placed in the badge
   badgeAriaLabel?: string; //	String	No	Yes (only if badge number is provided)	passed as the aria-label directly to the badge
 }
-export function Button({
+export function BasicButton({
   partiallyDisabled,
   priority,
   size,

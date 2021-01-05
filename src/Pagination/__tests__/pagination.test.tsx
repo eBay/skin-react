@@ -10,11 +10,14 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Pagination, PageItem, PageControl, PageList} from '..';
+import {PageItem} from '..';
+import {PaginationBasic} from '../components/pagination';
+import {PageControl} from '../components/pageControl';
+import {PageList} from '../components/pageList';
 
 describe('Pagination', () => {
   it('should render a Pagination with .pagination', () => {
-    const component = shallow(<Pagination />);
+    const component = shallow(<PaginationBasic />);
     expect(component.hasClass('pagination')).toBe(true);
   });
   it('should render a PageItem with .pagination__item', () => {

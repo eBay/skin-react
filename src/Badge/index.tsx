@@ -8,5 +8,5 @@
  *  ***********************************************************
  */
 import {Badge} from './components/badge';
-export {Badge as SkinBadge, BadgeProps} from './components/badge';
+export {Badge, BadgeProps} from './components/badge';
 export default Badge;

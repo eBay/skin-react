@@ -10,9 +10,9 @@
 
 import * as React from 'react';
 import {withOnChangeState} from '../skin-utils';
-import Switch, {SwitchProps} from './components/switch';
+import BasicSwitch, {SwitchProps} from './components/switch';
 
-export {Switch, SwitchProps} from './components/switch';
-export const SwitchSpan = (props): SwitchProps<HTMLSpanElement> => <Switch {...props} isSpan />;
-export const SkinSwitch = withOnChangeState(Switch);
-export default SkinSwitch;
+export {BasicSwitch, SwitchProps} from './components/switch';
+export const SwitchSpan = (props): SwitchProps<HTMLSpanElement> => <BasicSwitch {...props} isSpan />;
+export const Switch = withOnChangeState(BasicSwitch);
+export default Switch;

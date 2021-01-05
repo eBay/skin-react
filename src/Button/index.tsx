@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {withProps} from '../skin-utils';
-import {Button, ButtonProps} from './components/button';
+import {BasicButton, ButtonProps} from './components/button';
 import {KeyboardEventHandler} from 'react';
 export interface V1ButtonProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
   size?: ButtonSizes;
@@ -33,7 +33,7 @@ export const CTABtnCell = withProps({displayName: 'CTABtnCell', className: 'cta-
 export const FilterBtnCell = withProps({displayName: 'FilterBtnCell', className: 'filter-button__cell', tag: 'span'})();
 export const ExpandBtnCell = withProps({displayName: 'ExpandBtnCell', className: 'expand-btn__cell', tag: 'span'})();
 
-export const SkinButton = ({
+export const Button = ({
   onClick = () => {},
   onEscape = () => {},
   ...props
@@ -44,7 +44,7 @@ export const SkinButton = ({
   const handleKeyDown = (event) => {
     !props.disabled && event.key === 'Escape' && onEscape(event);
   };
-  return <Button {...props} onClick={handleClick} onKeyDown={handleKeyDown} />;
+  return <BasicButton {...props} onClick={handleClick} onKeyDown={handleKeyDown} />;
 };
-export {Button, ButtonProps} from './components/button';
+export {ButtonProps} from './components/button';
 export default Button;

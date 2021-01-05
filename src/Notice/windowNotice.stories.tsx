@@ -14,9 +14,8 @@ import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withA11y} from '@storybook/addon-a11y';
 import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import {SkinNotice, WindowNotice} from './index';
+import {Notice, WindowNotice} from './index';
 import Button from '../Button';
-import {SkinWindowNotice} from './index';
 
 const story: any = {
   title: Category.SKINDS6,
@@ -31,7 +30,7 @@ export const _NoticeWindow = () => {
   const hidden = boolean('hidden', false);
   return (
     <div>
-      <SkinWindowNotice
+      <WindowNotice
         {...defaultProps}
         title="Your first order has been placed!"
         iconName="confirmation-filled"
@@ -39,13 +38,13 @@ export const _NoticeWindow = () => {
         hidden={hidden}
         a11yText="Window Notice"
         footer={
-          <Button size="large" href={'#'}>
+          <Button size="large" aria-label="Continue Button">
             Continue
           </Button>
         }
       >
         <p>You'll get a confirmation email soon. The rest of your items are now ready to checkout.</p>
-      </SkinWindowNotice>
+      </WindowNotice>
     </div>
   );
 };

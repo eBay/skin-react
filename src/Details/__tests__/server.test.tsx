@@ -1,5 +1,5 @@
 import {render} from '@testing-library/react';
-import {SkinDetails} from '..';
+import {Details} from '..';
 import * as React from 'react';
 
 const defaultProps = {
@@ -8,7 +8,7 @@ const defaultProps = {
 };
 describe('details', () => {
   it('renders basic version', async () => {
-    const {getByText} = await render(<SkinDetails {...defaultProps} />);
+    const {getByText} = await render(<Details {...defaultProps} />);
     expect(getByText(defaultProps.text)).toHaveClass('details__label');
     expect(getByText(defaultProps.children)).toHaveProperty('tagName', 'P');
     expect(getByText(defaultProps.text).closest('details')).toHaveProperty('open', false);
@@ -16,7 +16,7 @@ describe('details', () => {
   });
 
   it('renders in open state', async () => {
-    const {getByText} = await render(<SkinDetails {...defaultProps} />);
+    const {getByText} = await render(<Details {...defaultProps} />);
     expect(getByText(defaultProps.text)).toHaveClass('details__label');
     expect(getByText(defaultProps.children)).toHaveProperty('tagName', 'P');
     //expect(getByText(defaultProps.text).closest('details')).toHaveProperty('open', true);
@@ -24,12 +24,12 @@ describe('details', () => {
   });
 
   it('renders small version', async () => {
-    const {getByText} = await render(<SkinDetails {...defaultProps} size="small" />);
+    const {getByText} = await render(<Details {...defaultProps} size="small" />);
     expect(getByText(defaultProps.text).closest('summary')).toHaveClass('details__summary--small');
   });
 
   it('renders center version', async () => {
-    const {getByText} = await render(<SkinDetails {...defaultProps} type="center" />);
+    const {getByText} = await render(<Details {...defaultProps} type="center" />);
     expect(getByText(defaultProps.text).closest('summary')).toHaveClass('details__summary--center');
   });
 });

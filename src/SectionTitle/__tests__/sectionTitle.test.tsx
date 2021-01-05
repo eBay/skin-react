@@ -10,11 +10,11 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {SectionTitle} from '..';
+import {BasicSectionTitle} from '../components/sectionTitle';
 
 describe('SectionTitle', () => {
   it('should render a SectionTitle(div) with default class and custom classNames', () => {
-    const component = shallow(<SectionTitle className="custom-class" />);
+    const component = shallow(<BasicSectionTitle className="custom-class" />);
     expect(component.is('div')).toBe(true);
     expect(component.hasClass('section-title')).toBe(true);
     expect(component.hasClass('custom-class')).toBe(true);

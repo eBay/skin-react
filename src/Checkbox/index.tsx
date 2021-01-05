@@ -10,8 +10,8 @@
 
 import * as React from 'react';
 import {withOnChangeState} from '../skin-utils';
-import {Checkbox} from './components/checkbox';
+import {BasicCheckbox} from './components/checkbox';
 
-export {Checkbox, CheckboxProps} from './components/checkbox';
-export const SkinCheckbox = withOnChangeState(Checkbox);
-export default SkinCheckbox;
+export {CheckboxProps} from './components/checkbox';
+export const Checkbox = withOnChangeState(BasicCheckbox);
+export default Checkbox;

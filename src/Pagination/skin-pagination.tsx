@@ -8,10 +8,12 @@
  *  ***********************************************************
  */
 
-import {Pagination, PageControl, PageList, PaginationProps} from './index';
 import * as React from 'react';
+import {PageControl} from './components/pageControl';
+import {PageList} from './components/pageList';
+import {PaginationBasic, PaginationBasicProps} from './components/pagination';
 
-export interface SkinPaginationProps<T> extends PaginationProps<T>, React.HTMLProps<T> {
+export interface PaginationProps<T> extends PaginationBasicProps<T>, React.HTMLProps<T> {
   initialPage?: number;
   pageSize?: number;
   onChangePage?: any;
@@ -20,7 +22,7 @@ export interface SkinPaginationProps<T> extends PaginationProps<T>, React.HTMLPr
   nextHref?: string;
 }
 
-export class SkinPagination extends React.Component<SkinPaginationProps<HTMLElement>, any> {
+export class Pagination extends React.Component<PaginationProps<HTMLElement>, any> {
   public static defaultProps = {
     initialPage: 1,
     pageSize: 9,
@@ -123,7 +125,7 @@ export class SkinPagination extends React.Component<SkinPaginationProps<HTMLElem
     const isFirstPage = pager.currentPage === 1;
     const isLastPage = pager.currentPage === pager.totalPages;
     return (
-      <Pagination a11yText={a11yText} id={id}>
+      <PaginationBasic a11yText={a11yText} id={id}>
         <PageControl
           aria-label="Previous Page"
           href={prevHref}
@@ -145,7 +147,7 @@ export class SkinPagination extends React.Component<SkinPaginationProps<HTMLElem
           isNext
           onClick={() => this.setPage(pager.currentPage + 1)}
         />
-      </Pagination>
+      </PaginationBasic>
     );
   }
 }

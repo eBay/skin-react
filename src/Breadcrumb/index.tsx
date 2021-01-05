@@ -10,10 +10,8 @@
 
 import * as React from 'react';
 import {BreadcrumbItem} from './components/breadcrumbItem';
-import {SkinBreadcrumb} from './skin-breadcrumb';
+import {Breadcrumb} from './skin-breadcrumb';
 
-export {Breadcrumb} from './components/breadcrumb';
 export {BreadcrumbItem} from './components/breadcrumbItem';
-export const SkinBreadcrumbItem = BreadcrumbItem;
-export {SkinBreadcrumb} from './skin-breadcrumb';
-export default SkinBreadcrumb;
+export {Breadcrumb} from './skin-breadcrumb';
+export default Breadcrumb;

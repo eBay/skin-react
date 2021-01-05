@@ -11,5 +11,4 @@
 import * as React from 'react';
 import {Details} from './components/details';
 export {Details, DetailsProps} from './components/details';
-export const SkinDetails = Details;
-export default SkinDetails;
+export default Details;

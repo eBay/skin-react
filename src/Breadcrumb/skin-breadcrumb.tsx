@@ -9,8 +9,8 @@
  */
 
 import * as React from 'react';
-import {Breadcrumb} from './index';
-export const SkinBreadcrumb = ({children, onClick, ...props}: any) => {
+import {BasicBreadcrumb} from './components/breadcrumb';
+export const Breadcrumb = ({children, onClick, ...props}: any) => {
   const length = children && children.length;
   const modifiedChildren =
     length > 0
@@ -26,6 +26,6 @@ export const SkinBreadcrumb = ({children, onClick, ...props}: any) => {
           });
         })
       : children;
-  return <Breadcrumb {...props} children={modifiedChildren} />;
+  return <BasicBreadcrumb {...props} children={modifiedChildren} />;
 };
-export default SkinBreadcrumb;
+export default Breadcrumb;

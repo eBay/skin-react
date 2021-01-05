@@ -13,7 +13,7 @@ https://github.com/eBay/skin
 * [ ] [Combobox](src/.) 
 * [x] [CTA Button](src/Button/.) 
 * [x] [Details](src/Details/.) 
-* [ ] [Dialog](src/.) (In Progress)
+* [x] [Dialog](src/.)
 * [x] [Expand Button](src/Button/.) 
 * [x] [Field](src/Field/.)
 * [ ] [Filter Button](src/.) 

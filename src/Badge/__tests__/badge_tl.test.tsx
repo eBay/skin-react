@@ -10,46 +10,46 @@
 
 import React from 'react';
 import {render} from '@testing-library/react';
-import {SkinBadge} from '../index';
+import {Badge} from '../index';
 
 it('renders defaults', async () => {
-  const {getByText} = await render(<SkinBadge number={5} />);
+  const {getByText} = await render(<Badge number={5} />);
   expect(getByText('5')).toBeInTheDocument();
 });
 
 it('renders number with rounded-up value', async () => {
-  const {getByText} = await render(<SkinBadge number={5.6} />);
+  const {getByText} = await render(<Badge number={5.6} />);
   expect(getByText('5')).toBeInTheDocument();
 });
 
 it('does not render with negative value', async () => {
-  const {queryByText} = await render(<SkinBadge number={-5} />);
+  const {queryByText} = await render(<Badge number={-5} />);
   expect(queryByText(/\d+/)).toBeNull();
 });
 
 describe('given number is a string', () => {
   it('renders number with coerced string', async () => {
-    const {getByText} = await render(<SkinBadge number="5" />);
+    const {getByText} = await render(<Badge number="5" />);
     expect(getByText('5')).toBeInTheDocument();
   });
 
   it('renders number with rounded-up string', async () => {
-    const {getByText} = await render(<SkinBadge number="5.6" />);
+    const {getByText} = await render(<Badge number="5.6" />);
     expect(getByText('5')).toBeInTheDocument();
   });
 
   it('does not renders with an invalid string', async () => {
-    const {queryByText} = await render(<SkinBadge number="five" />);
+    const {queryByText} = await render(<Badge number="five" />);
     expect(queryByText(/\d+/)).toBeNull();
   });
 
   it('does not renders with a negative string', async () => {
-    const {queryByText} = await render(<SkinBadge number="-5" />);
+    const {queryByText} = await render(<Badge number="-5" />);
     expect(queryByText(/\d+/)).toBeNull();
   });
 });
 
 it('truncates when the value is greater than 99', async () => {
-  const {getByText} = await render(<SkinBadge number={150} />);
+  const {getByText} = await render(<Badge number={150} />);
   expect(getByText('99+')).toBeInTheDocument();
 });

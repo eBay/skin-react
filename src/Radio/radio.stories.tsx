@@ -11,7 +11,7 @@
 import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import Radio, {SkinRadio} from './index';
+import Radio from './index';
 import {select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {toStoryObj} from '../../.storybook/util/utils';
@@ -31,7 +31,7 @@ export const _Radio = () => {
   const props = {...defaultProps};
   return (
     <div>
-      <SkinRadio {...props} size={size} aria-label="Radio" />
+      <Radio {...props} size={size} aria-label="Radio" />
       <br />
       <br />
       <br />
@@ -40,7 +40,7 @@ export const _Radio = () => {
         <legend>Choose an Option</legend>
         {[1, 2, 3].map((item, index) => (
           <span className="field" key={index}>
-            <SkinRadio
+            <Radio
               id={`group-radio-inline-${index}`}
               className="field__control"
               aria-label={`radio inline ${index}`}
@@ -62,7 +62,7 @@ export const _Radio = () => {
         <legend>Choose an Option</legend>
         {[1, 2, 3].map((item, index) => (
           <div className="field" key={index}>
-            <SkinRadio
+            <Radio
               id={`group-radio-stacked-${index}`}
               className="field__control"
               aria-label={`radio stacked ${index}`}

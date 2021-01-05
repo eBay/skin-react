@@ -16,8 +16,11 @@ import * as Skin from '../../skin';
 
 export interface PageControlProps<T> extends Skin.Disabled, Skin.Next, React.HTMLProps<T> {}
 export const PageControl = ({isNext, disabled, ...props}: PageControlProps<HTMLButtonElement | HTMLAnchorElement>) => {
-  const className = classNames(`pagination__${isNext ? 'next' : 'previous'}`, props.className);
   const tag = getFakeTag(!!props.href, 'a', 'button');
+  const className = classNames(
+    `icon-${tag == 'a' ? 'link' : 'btn'} pagination__${isNext ? 'next' : 'previous'}`,
+    props.className
+  );
   const HTMLProps = {
     ['aria-disabled']: disabled,
     children: isNext ? <Icon name="pagination-next" /> : <Icon name="pagination-prev" />,

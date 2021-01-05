@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import CtaButton, {SkinCtaButton} from './index';
+import CtaButton from './index';
 import {select, withKnobs} from '@storybook/addon-knobs';
 import {toStoryObj} from '../../.storybook/util/utils';
 import {withA11y} from '@storybook/addon-a11y';
@@ -30,9 +30,9 @@ export const _CtaButton = () => {
   const props = {...defaultProps};
   return (
     <div>
-      <SkinCtaButton {...props} size={size} href={href}>
+      <CtaButton {...props} size={size} href={href}>
         cta text
-      </SkinCtaButton>
+      </CtaButton>
     </div>
   );
 };

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Radio} from '..';
+import {Radio} from '../components/radio';
 
 describe('Radio', () => {
   it('should render a Radio(span) with .radio and custom classNames', () => {

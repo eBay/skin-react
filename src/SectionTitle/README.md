@@ -1,14 +1,14 @@
-# SkinSectionTitle
+# SectionTitle
 
-## SkinSectionTitle Usage
+## SectionTitle Usage
 
 ```react
-<SkinSectionTitle aria-label="Skin SkinSectionTitle">
+<SectionTitle aria-label=" SectionTitle">
     <Icon name="menu" />
-</SkinSectionTitle>
+</SectionTitle>
 ```
 
-## SkinSectionTitle Attributes
+## SectionTitle Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

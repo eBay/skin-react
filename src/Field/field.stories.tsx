@@ -14,12 +14,12 @@ import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
-import {SkinField, SkinFieldLabel, SkinFieldControl, SkinFieldDescription} from './';
-import SkinTextbox from '../Textbox';
+import {Field, FieldLabel, FieldControl, FieldDescription} from './';
+import Textbox from '../Textbox';
 
 const story: any = {
   title: Category.SKINDS6,
-  component: SkinField,
+  component: Field,
   decorators: [withKnobs, withA11y]
 };
 const defaultProps = {};
@@ -28,17 +28,17 @@ export const _Field = () => {
   return (
     <div>
       {[undefined, 'confirmation', 'information', 'attention'].map((color, i) => (
-        <SkinField {...props} isBlock key={i}>
-          <SkinFieldLabel htmlFor={`field-${color}`} isStacked>
+        <Field {...props} isBlock key={i}>
+          <FieldLabel htmlFor={`field-${color}`} isStacked>
             Field
-          </SkinFieldLabel>
-          <SkinFieldControl>
-            <SkinTextbox id={`field-${color}`} isInvalid={color === 'attention'} />
-          </SkinFieldControl>
-          <SkinFieldDescription id={`field-${color}-descripiton`} color={color}>
+          </FieldLabel>
+          <FieldControl>
+            <Textbox id={`field-${color}`} isInvalid={color === 'attention'} />
+          </FieldControl>
+          <FieldDescription id={`field-${color}-descripiton`} color={color}>
             <span>Field description</span>
-          </SkinFieldDescription>
-        </SkinField>
+          </FieldDescription>
+        </Field>
       ))}
     </div>
   );

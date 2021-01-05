@@ -1,18 +1,18 @@
-# SkinCtaButton
+# CtaButton
 
-## SkinCtaButton Usage
+## CtaButton Usage
 
 ```marko
-<SkinCtaButton href="http://www.ebay.com">text</SkinCtaButton>
+<CtaButton href="http://www.ebay.com">text</CtaButton>
 ```
 
-## SkinCtaButton Attributes
+## CtaButton Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `size` | String | No | No | Can be "large". If not set, defaults to default
 `href` | String | No | Yes | link target
 
-## SkinCtaButton Events
+## CtaButton Events
 
 None

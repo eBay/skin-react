@@ -22,7 +22,7 @@ export interface WindowNoticeProps<T> extends Skin.Role, React.HTMLProps<T> {
   iconProps?: any;
   isFill?: boolean;
 }
-export const WindowNotice = ({
+export const BasicWindowNotice = ({
   title,
   children,
   isFill,
@@ -55,4 +55,4 @@ export const WindowNotice = ({
     </section>
   );
 };
-export default WindowNotice;
+export default BasicWindowNotice;

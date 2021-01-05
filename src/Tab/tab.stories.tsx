@@ -12,9 +12,8 @@ import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withKnobs, boolean} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import Tab, {TabCell, TabContent, TabItem, TabItems, TabPanel} from '../../src/Tab';
 import StoryBook from '../../.storybook/util/story-setup';
-import {SkinTabs, SkinTab} from './skin-tab';
+import {Tabs, Tab} from './skin-tab';
 const story: any = {
   title: Category.SKINDS6,
   component: Tab,
@@ -36,33 +35,33 @@ export const _Tab = () => {
   return (
     <div>
       <h2>Default Tabs </h2>
-      <SkinTabs>
-        <SkinTab title="Tab 1">
+      <Tabs>
+        <Tab title="Tab 1">
           <TabContentStorybook header={`Panel 1 Content`} />
-        </SkinTab>
-        <SkinTab title="Tab 2">
+        </Tab>
+        <Tab title="Tab 2">
           <TabContentStorybook header={`Panel 2 Content`} />
-        </SkinTab>
-        <SkinTab title="Tab 3">
+        </Tab>
+        <Tab title="Tab 3">
           <TabContentStorybook header={`Panel 3 Content`} />
-        </SkinTab>
-      </SkinTabs>
+        </Tab>
+      </Tabs>
 
       <br />
       <br />
       <br />
       <h2>Fake Tabs </h2>
-      <SkinTabs isFake>
-        <SkinTab title="Tab 1" href="#">
+      <Tabs isFake>
+        <Tab title="Tab 1" href="#">
           <TabContentStorybook header={`Panel 1 Content`} />
-        </SkinTab>
-        <SkinTab title="Tab 2" href="#" selected>
+        </Tab>
+        <Tab title="Tab 2" href="#" selected>
           <TabContentStorybook header={`Panel 2 Content`} />
-        </SkinTab>
-        <SkinTab title="Tab 3" href="#">
+        </Tab>
+        <Tab title="Tab 3" href="#">
           <TabContentStorybook header={`Panel 3 Content`} />
-        </SkinTab>
-      </SkinTabs>
+        </Tab>
+      </Tabs>
     </div>
   );
 };
