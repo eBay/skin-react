@@ -1,5 +1,4 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isStoryBook = !!process.env.STORYBOOK;
 
@@ -20,13 +19,8 @@ const config = {
     extensions: ['.js', '.mjs', '.json', '.jsx', '.ts', '.tsx', '.css']
   },
   devtool: 'source-map',
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[contenthash].css',
-      chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css'
-    })
-  ],
-  module: {
+  plugins: [],
+    module: {
     rules: [
       {
         test: /\.tsx?$/,
@@ -36,7 +30,12 @@ const config = {
       {
         test: /\.css$/,
         include: [/node_modules/, /.storybook/, /src/],
-        use: [isStoryBook ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+        use: ['style-loader' , {
+          loader: 'css-loader',
+          options: {
+            esModule: false
+          }
+        }]
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
