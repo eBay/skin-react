@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {DialogProps} from './dialog';
 import {useFocusState} from '../../skin-utils';
 import {useEffect} from 'react';
-import DialogBase from '../../DialogBase';
+import DialogBase from '../../components/DialogBase';
 
 export const AlertDialog = ({confirmText = 'OK', onClose, ...props}: DialogProps<any> & {confirmText?: string}) => {
   const [confirmBtnRef, setConfirmBtnFocus] = useFocusState();

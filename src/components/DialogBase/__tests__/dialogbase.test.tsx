@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {DialogBaseWithState} from '..';
+import {DialogBaseWithState} from '../index';
 
 describe('DialogBase', () => {
   it('given a closed dialog should return null', () => {

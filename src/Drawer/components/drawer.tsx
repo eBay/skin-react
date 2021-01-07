@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DialogBase, {DialogBaseProps} from '../../DialogBase';
+import DialogBase, {DialogBaseProps} from '../../components/DialogBase';
 import classNames from 'classnames';
 
 const THRESHOLD_TOUCH = 30;

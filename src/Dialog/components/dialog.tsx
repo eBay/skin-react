@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DialogBase, {DialogBaseProps} from '../../DialogBase';
+import DialogBase, {DialogBaseProps} from '../../components/DialogBase';
 import classNames from 'classnames';
 
 export interface DialogProps<T> extends DialogBaseProps<T> {

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import {Icon} from '../../Icon';
+import {Icon} from '../../../Icon';
 import {ReactNode} from 'react';
 
 export interface DialogBaseProps<T> extends React.HTMLProps<T> {
