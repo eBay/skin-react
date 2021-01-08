@@ -55,10 +55,7 @@ export const addFakePrefix = addPrefixOrder('fake-');
 
 export const getFakeTag = (isFake: boolean, fakeTag: string = 'a', tag: string = 'div') => (isFake ? fakeTag : tag);
 
-export const DefaultElement: React.FunctionComponent<React.HTMLProps<HTMLElement> & {tag?: string}> = ({
-  tag = 'div',
-  ...props
-}) => React.createElement(tag, props);
+export const DefaultElement = ({tag = 'div', ...props}) => React.createElement(tag, props);
 
 export const withProps = ({displayName, ...injectedProps}) => (WrappedComponent = DefaultElement) => {
   const HOC: React.FunctionComponent<React.HTMLProps<HTMLElement> & Skin.Fake> = ({isFake, ...props}) => {
@@ -126,3 +123,4 @@ export const useFocusState: any = () => {
 
   return [htmlElRef, setFocus];
 };
+export const uniqueId = (n = 7) => Math.random().toString(36).substring(n);

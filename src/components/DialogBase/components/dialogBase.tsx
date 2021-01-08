@@ -32,7 +32,7 @@ export interface DialogBaseProps<T> extends React.HTMLProps<T> {
   ignoreEscape?: boolean;
   closeButton?: ReactNode;
 }
-const Container = ({baseEl, ...props}): any => React.createElement(baseEl, props);
+const Container = ({baseEl, ...props}) => React.createElement(baseEl, props);
 
 export const DialogBase = ({
   baseEl = 'div',

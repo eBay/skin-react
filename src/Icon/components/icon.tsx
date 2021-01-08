@@ -41,7 +41,7 @@ export const Icon = ({a11yText, customClassName, name, isButton, ...props}: Icon
     : {
         'aria-hidden': true
       };
-  const iconProps = {...props, className, ...a11yProps};
+  const iconProps = {...a11yProps, ...props, className};
   return (
     // @ts-ignore
     <svg focusable="false" xmlns="http://www.w3.org/2000/svg" {...iconProps}>
