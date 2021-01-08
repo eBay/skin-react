@@ -27,10 +27,12 @@ describe('given the select with 3 options', () => {
 
     it('then it emits the change event with the correct data', () => {
       expect(handleOnChange).toHaveBeenCalledTimes(1);
-
-      // const [[eventArg]] = handleOnChange.mock;
-      // expect(eventArg).toHaveProperty('index', 1);
-      // expect(eventArg).toHaveProperty('selected').deep.equal([input.options[1].value]);
+      const [[eventArg, selectedIndex, newValue]] = handleOnChange.mock.calls;
+      expect(selectedIndex).toEqual(1);
+      expect(newValue).toEqual('1');
+      //expect(eventArg).toHaveProperty('index', 1);
+      //expect(eventArg).toHaveProperty('selected')
+      //.deep.equal([input.options[1].value]);
     });
   });
 });
