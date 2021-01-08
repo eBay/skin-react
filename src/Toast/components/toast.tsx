@@ -6,8 +6,8 @@ export interface ToastProps<T> extends DialogBaseProps<T> {
   onClose?: any;
 }
 
-export const Toast = ({onClose, ...props}: ToastProps<any>) => {
-  const handleCloseBtnClick = (e) => onClose && onClose(e);
+export const Toast = ({onClose = () => {}, ...props}: ToastProps<any>) => {
+  const handleCloseBtnClick = (e) => onClose(e);
   return (
     <DialogBase
       {...props}
