@@ -18,7 +18,7 @@ export {Details, DetailsProps} from './Details';
 export {DialogProps, AlertDialog, LightBoxDialog, PanelDialog, FullScreenDialog} from './Dialog';
 export {Grid} from './Grid';
 export {Icon, IconSymbols, IconName} from './Icon';
-export {Notice, WindowNotice, NoticeType, NoticeVariant} from './Notice';
+export {WindowNotice, PageNotice, InlineNotice, SectionNotice} from './Notice';
 export {Pagination, PageItem, PaginationProps, PageItemProps} from './Pagination';
 export {Radio} from './Radio';
 export {Spinner, SpinnerProps} from './Spinner';

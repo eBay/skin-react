@@ -9,110 +9,56 @@
  */
 
 import * as React from 'react';
+import NoticeBase, {NoticeBaseProps} from '../../components/NoticeBase';
 import classNames from 'classnames';
-import * as Skin from '../../skin';
-import Icon, {IconName} from '../../Icon';
 
-export type NoticeVariant = 'confirmation' | 'attention' | 'information' | 'celebration';
-export type NoticeType = 'page' | 'section' | 'inline';
-export const getClass = (type: NoticeType) => {
-  const preFix = `${type || 'page'}-notice`;
-  return (postFix: string = '') => `${preFix}${postFix}`;
-};
-const SectionRows = ({type, ...props}) => React.createElement(type === 'inline' ? 'span' : 'div', props);
-
-export interface NoticeProps<T> extends Skin.Role, Omit<React.HTMLProps<T>, 'content'> {
-  title?: string;
-  iconName?: IconName;
-  iconProps?: object;
-  variant?: NoticeVariant;
-  type?: NoticeType;
-  content?: React.ReactNode;
-  a11yText?: string;
-}
-export const BasicNotice = ({
-  content,
-  children,
-  variant,
-  type,
-  iconName,
-  iconProps = {},
-  title,
-  id,
-  a11yText,
-  role = 'region',
-  ...props
-}: NoticeProps<HTMLElement>) => {
-  const getVariantClass = getClass(type);
-  const className = classNames(
-    getVariantClass(),
-    {
-      [getVariantClass(`--${variant}`)]: variant
-    },
-    props.className
-  );
-
-  const Section = (props) => React.createElement(type === 'inline' ? 'div' : 'section', props);
-  const HTMLProps = {...props, className, role};
+export const InlineNotice = ({status = 'attention', ...props}: NoticeBaseProps) => {
   return (
-    <Section aria-label={a11yText || variant} {...HTMLProps}>
-      <NoticeStatus type={type} variant={variant} iconName={iconName} iconProps={iconProps} a11yText={a11yText} />
-      {(content || title) && (
-        <NoticeContent type={type} title={title}>
-          {content}
-        </NoticeContent>
-      )}
-      {type !== 'inline' ? (
-        <SectionRows type={type} className={getVariantClass(`__footer`)}>
-          {children}
-        </SectionRows>
-      ) : (
-        children
-      )}
-    </Section>
+    <NoticeBase
+      {...props}
+      status={status}
+      className={classNames(`inline-notice--${status}`, props.className)}
+      prefixClass="inline-notice"
+      root="div"
+      headerRoot="span"
+      mainRoot="span"
+    />
   );
 };
 
-interface NoticeStatusProps<T> extends Skin.Role, React.HTMLProps<T> {
-  iconName?: IconName;
-  iconProps?: any;
-  variant?: NoticeVariant;
-  type?: NoticeType;
-  a11yText?: string;
-}
-export const NoticeStatus = ({
-  iconName,
-  type,
-  variant,
-  iconProps = {},
-  a11yText,
-  ...props
-}: NoticeStatusProps<HTMLSpanElement>) => {
-  const getVariantClass = getClass(type);
+export const PageNotice = ({status = 'attention', ...props}: NoticeBaseProps) => {
   return (
-    <SectionRows type={type} {...props} className={classNames(getVariantClass('__header'), props.className)}>
-      {props.children}
-      <Icon name={iconName ? iconName : `${variant}-filled`} {...iconProps} aria-label={a11yText || variant} />
-    </SectionRows>
+    <NoticeBase
+      {...props}
+      className={classNames({[`page-notice--${status}`]: status}, props.className)}
+      status={status}
+      role="region"
+      prefixClass="page-notice"
+    />
   );
 };
 
-interface NoticeContentProps<T> extends Skin.Role, React.HTMLProps<T> {
-  title?: string;
-  type?: NoticeType;
-}
-export const NoticeContent = ({title, type, ...props}: NoticeContentProps<HTMLSpanElement>) => {
-  const getVariantClass = getClass(type);
+export const SectionNotice = ({a11yRoleDescription = 'Notice', ...props}: NoticeBaseProps) => {
   return (
-    <SectionRows type={type} {...props} className={classNames(getVariantClass('__main'), props.className)}>
-      {title && type !== 'inline' && (
-        <p>
-          <span className={getVariantClass('__title')}>{title}</span>
-        </p>
-      )}
-      {props.children}
-    </SectionRows>
+    <NoticeBase
+      {...props}
+      role="region"
+      prefix-class="section-notice"
+      main-root="span"
+      a11yRoleDescription={a11yRoleDescription}
+      className={classNames({[`section-notice--${props.status}`]: props.status}, props.className)}
+    />
   );
 };
-
-export default BasicNotice;
+export const WindowNotice = ({window, ...props}: NoticeBaseProps & {window?: 'fullscreen'}) => {
+  return (
+    <NoticeBase
+      {...props}
+      className={classNames({'window-notice--screen': window === 'fullscreen'}, props.className)}
+      role="region"
+      status="confirmation"
+      prefixClass="window-notice"
+    />
+  );
+};
+export default InlineNotice;

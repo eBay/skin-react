@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {DefaultElement, uniqueId} from '../../skin-utils';
 
-type NoticeBaseProps = React.HTMLProps<HTMLSelectElement | HTMLElement> & {
-  status: 'confirmation' | 'attention' | 'information' | 'celebration';
+export type NoticeBaseProps = React.HTMLProps<HTMLSelectElement | HTMLElement> & {
+  status?: 'confirmation' | 'attention' | 'information' | 'celebration';
   a11yText?: string;
   icon?: boolean;
   iconClass?: string;
-  root?: 'section';
-  mainRoot?: 'div';
-  headerRoot?: 'div';
+  root?: 'section' | 'div';
+  mainRoot?: 'div' | 'span';
+  headerRoot?: 'div' | 'span';
   a11yRoleDescription?: string;
   prefixClass?: 'page-notice' | 'section-notice' | 'inline-notice' | string;
   title?: ReactNode;

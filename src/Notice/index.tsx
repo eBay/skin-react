@@ -9,12 +9,4 @@
  */
 
 import * as React from 'react';
-import {BasicNotice, NoticeProps} from './components/notice';
-import {BasicWindowNotice} from './components/windowNotice';
-import {withHideEffect} from '../skin-utils';
-
-export {NoticeType, NoticeVariant, NoticeProps} from './components/notice';
-export {WindowNoticeProps} from './components/windowNotice';
-
-export const Notice = withHideEffect(BasicNotice);
-export const WindowNotice = withHideEffect(BasicWindowNotice);
+export {PageNotice, WindowNotice, InlineNotice, SectionNotice} from './components/notice';
