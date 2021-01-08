@@ -51,6 +51,15 @@ export const _Select = () => {
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </Select>
+      <h3>Borderless </h3>
+      <Select borderless>
+        <option value="0" disabled selected>
+          -select-
+        </option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </Select>
       <h3>Group</h3>
       <Select>
         <Option optgroup="a">1</Option>
