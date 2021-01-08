@@ -68,4 +68,27 @@ export const _PageNotice = () => {
     </div>
   );
 };
+
+export const _WindowNotice = () => {
+  const hidden = boolean('hidden', false);
+  return (
+    <div>
+      <WindowNotice
+        {...defaultProps}
+        title="Your first order has been placed!"
+        id="window-notice-1"
+        hidden={hidden}
+        a11yText="Window Notice"
+        footer={
+          <Button size="large" aria-label="Continue Button">
+            Continue
+          </Button>
+        }
+      >
+        <p>You'll get a confirmation email soon. The rest of your items are now ready to checkout.</p>
+      </WindowNotice>
+    </div>
+  );
+};
+
 export default story;

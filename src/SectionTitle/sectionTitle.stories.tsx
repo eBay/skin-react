@@ -39,9 +39,7 @@ export const _SectionTitle = () => {
       <br />
       <br />
       <DemoComponent>
-        <SectionTitle {...props}>
-          <SectionCTA href="#" title="See All" iconName="arrow-right-bold" />
-        </SectionTitle>
+        <SectionTitle {...props} href="#" ctaText="See All" />
       </DemoComponent>
     </div>
   );

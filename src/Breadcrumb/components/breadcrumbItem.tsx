@@ -16,7 +16,8 @@ export interface BreadcrumbItemProps<T> extends React.HTMLProps<T> {
   isLast?: boolean;
 }
 export const BreadcrumbItem = ({isLast, ...props}: BreadcrumbItemProps<HTMLButtonElement | HTMLAnchorElement>) => {
-  const passedProps = isLast && props.href ? {['aria-current']: 'location'} : {};
+  const current = !props.href && isLast;
+  const passedProps = current ? {['aria-current']: 'location'} : {};
   return (
     <li>
       {React.createElement(getBreadcrumbItemTag(!!props.href), {...passedProps, ...props})}

@@ -31,20 +31,19 @@ const breadcrumbItems = [
   'Smart Watch Accessories',
   'Smart Watch Bands'
 ];
-const isCurrent = (i: number, curr: number): object => (i === curr ? {['aria-current']: 'location'} : {});
 
 export const _Breadcrumb = () => {
   const props = {...defaultProps};
   return (
     <div>
       <h3>Breadcrumb with Buttons</h3>
-      <Breadcrumb id="breadcrumbs-heading" {...props} onClick={console.log} a11yText="breadcrumbs">
+      <Breadcrumb id="breadcrumbs-heading" {...props} onClick={console.log} a11yHeadingText="breadcrumbs">
         {breadcrumbItems.map((name) => (
           <BreadcrumbItem key={name}>{name}</BreadcrumbItem>
         ))}
       </Breadcrumb>
       <h3>Breadcrumb with Anchor tags</h3>
-      <Breadcrumb id="breadcrumbs-heading-2" {...props} onClick={console.log} a11yText="breadcrumbs example">
+      <Breadcrumb id="breadcrumbs-heading-2" {...props} onClick={console.log} a11yHeadingText="breadcrumbs example">
         {breadcrumbItems.map((name) => (
           <BreadcrumbItem key={name} href="#">
             {name}
