@@ -67,6 +67,20 @@ export const _Select = () => {
         <Option>3</Option>
         <Option>4</Option>
       </Select>
+      <h3>Invalid</h3>
+      <Select aria-invalid="true" aria-label="Please select a option">
+        <Option optgroup="a">1</Option>
+        <Option optgroup="a">2</Option>
+        <Option>3</Option>
+        <Option>4</Option>
+      </Select>
+      <h3>Controlled </h3>
+      <Select name="formSelect" value="3">
+        <Option optgroup="a">1</Option>
+        <Option optgroup="a">2</Option>
+        <Option>3</Option>
+        <Option>4</Option>
+      </Select>
     </div>
   );
 };

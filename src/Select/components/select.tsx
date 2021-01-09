@@ -10,8 +10,8 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import {ReactNode} from 'react';
 import {Icon} from '../../Icon';
+import {isControlled} from '../../skin-utils';
 
 const getList = (childrenArray, optGroups = {}) => {
   return childrenArray.reduce((acc, option) => {
@@ -46,18 +46,30 @@ export type OptionProps = React.HTMLProps<HTMLOptionElement> & {
   optgroup?: string;
 };
 export const Option: React.FC<OptionProps> = ({optgroup, ...props}) => <option {...props} />;
-export const Select = ({children, borderless, className, style, onChange = () => {}, ...props}: SelectProps<any>) => {
+export const Select = ({
+  value: controlledValue,
+  defaultValue,
+  children,
+  borderless,
+  className,
+  style,
+  onChange = () => {},
+  ...props
+}: SelectProps<any>) => {
+  const [value, setValue] = React.useState(defaultValue);
   const childrenArray = React.Children.toArray(children);
   const list = getList(childrenArray);
   const handleOnChange = (e) => {
     const {
       target: {value: newValue, selectedIndex}
     } = e;
+
+    !isControlled(controlledValue) && setValue(newValue);
     onChange(e, selectedIndex, newValue);
   };
   return (
     <span className={classNames('select', {'select--borderless': borderless}, className)} style={style}>
-      <select {...props} onChange={handleOnChange}>
+      <select {...props} onChange={handleOnChange} value={isControlled(controlledValue) ? controlledValue : value}>
         {list.map((child, key) => {
           if (child.optgroup) {
             return (
