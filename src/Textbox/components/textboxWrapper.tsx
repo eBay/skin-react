@@ -12,15 +12,11 @@ import * as React from 'react';
 import classNames from 'classnames';
 import * as Skin from '../../skin';
 const getTag = (isFluid: boolean) => (isFluid ? 'div' : 'span');
-
-export interface TextboxWrapperProps<T> extends Skin.Fluid, React.HTMLProps<T> {
-  isPostfixIcon?: boolean;
-}
-export const TextboxWrapper = ({
-  isPostfixIcon,
-  isFluid,
-  ...props
-}: TextboxWrapperProps<HTMLDivElement | HTMLSpanElement>) => {
+export type TextboxWrapperProps = Skin.Fluid &
+  React.HTMLProps<HTMLDivElement | HTMLSpanElement> & {
+    isPostfixIcon?: boolean;
+  };
+export const TextboxWrapper = ({isPostfixIcon, isFluid, ...props}: TextboxWrapperProps) => {
   const cName = classNames(
     'textbox',
     {

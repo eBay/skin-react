@@ -14,16 +14,16 @@ import * as Skin from '../../skin';
 import Icon, {IconName} from '../../Icon';
 import TextboxWrapper from './textboxWrapper';
 const getTag = (isMultiline: boolean) => (isMultiline ? 'textarea' : 'input');
-
-export interface TextboxProps<T> extends Skin.Fluid, React.HTMLProps<T> {
-  isUnderlined?: boolean;
-  isMultiline?: boolean;
-  isPostfixIcon?: boolean;
-  isInvalid?: boolean;
-  iconName?: IconName;
-  iconProps?: object;
-  forwardedRef?: any;
-}
+export type TextboxProps = Skin.Fluid &
+  React.HTMLProps<HTMLTextAreaElement | HTMLInputElement> & {
+    isUnderlined?: boolean;
+    isMultiline?: boolean;
+    isPostfixIcon?: boolean;
+    isInvalid?: boolean;
+    iconName?: IconName;
+    iconProps?: object;
+    forwardedRef?: any;
+  };
 export const BasicTextBox = ({
   isFluid,
   isUnderlined,
@@ -34,7 +34,7 @@ export const BasicTextBox = ({
   forwardedRef,
   iconProps = {width: '16', height: '16', 'aria-hidden': 'true'},
   ...props
-}: TextboxProps<HTMLTextAreaElement | HTMLInputElement>) => {
+}: TextboxProps) => {
   const className = classNames(
     'textbox__control',
     {

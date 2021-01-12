@@ -15,25 +15,17 @@ import {SectionCTA} from './components/sectionCTA';
 import SectionInfo, {SectionOverflow} from './components/section';
 import {ReactNode} from 'react';
 
-export interface SectionTitleProps<T>
-  extends Omit<BasicSectionTitleProps<T>, 'title'>,
-    Omit<React.HTMLProps<T>, 'title'> {
-  title?: ReactNode;
-  subtitle?: string;
-  href?: string;
-  ctaText?: string;
-  info?: ReactNode;
-  overflow?: ReactNode;
-}
-export const SectionTitle = ({
-  title,
-  subtitle,
-  href,
-  ctaText,
-  info,
-  overflow,
-  ...props
-}: SectionTitleProps<HTMLDivElement>) => {
+export type SectionTitleProps = Omit<BasicSectionTitleProps, 'title'> &
+  Omit<React.HTMLProps<HTMLElement>, 'title'> & {
+    title?: ReactNode;
+    subtitle?: string;
+    href?: string;
+    ctaText?: string;
+    info?: ReactNode;
+    overflow?: ReactNode;
+  };
+export type Props = React.HTMLProps<HTMLElement> & {};
+export const SectionTitle = ({title, subtitle, href, ctaText, info, overflow, ...props}: SectionTitleProps) => {
   return (
     <BasicSectionTitle {...props}>
       {title && <SectionContainer title={title} subtitle={subtitle} href={href} />}

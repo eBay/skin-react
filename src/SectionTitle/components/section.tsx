@@ -10,11 +10,13 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-export const SectionInfo = (props: React.HTMLProps<HTMLDivElement>) => {
+export type DivProps = React.HTMLProps<HTMLDivElement>;
+
+export const SectionInfo = (props: DivProps) => {
   const className = classNames('section-title__info', props.className);
   return <div {...props} className={className} />;
 };
-export const SectionOverflow = (props: React.HTMLProps<HTMLDivElement>) => {
+export const SectionOverflow = (props: DivProps) => {
   const className = classNames('section-title__overflow', props.className);
   return <div {...props} className={className} />;
 };
