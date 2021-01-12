@@ -13,16 +13,16 @@ import {PageControl} from './components/pageControl';
 import {PageList} from './components/pageList';
 import {PaginationBasic, PaginationBasicProps} from './components/pagination';
 
-export interface PaginationProps<T> extends PaginationBasicProps<T>, React.HTMLProps<T> {
+export type PaginationProps = PaginationBasicProps & {
   initialPage?: number;
   pageSize?: number;
   onChangePage?: any;
   silentMountOnChangePage: boolean;
   prevHref?: string;
   nextHref?: string;
-}
+};
 
-export class Pagination extends React.Component<PaginationProps<HTMLElement>, any> {
+export class Pagination extends React.Component<PaginationProps, {pager?: object}> {
   public static defaultProps = {
     initialPage: 1,
     pageSize: 9,

@@ -13,12 +13,13 @@ import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {getHTMLProps} from '../../skin-utils';
 
-export interface DetailsProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
+export type DetailsProps = Omit<React.HTMLProps<HTMLDetailsElement>, 'size'> & {
   text?: string;
   type?: 'center' | 'rtl' | 'regular';
   size?: 'small' | 'regular';
-}
-export const Details = ({children, text, type, size, ...props}: DetailsProps<HTMLDetailsElement>) => {
+};
+
+export const Details = ({children, text, type, size, ...props}: DetailsProps) => {
   const className = classNames('details', props.className);
   const summaryClassName = classNames('details__summary', {
     'details__summary--center': type === 'center',

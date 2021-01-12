@@ -10,20 +10,18 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import * as Skin from '../../skin';
 import {DefaultElement} from '../../skin-utils';
-
-export interface BreadcrumbProps<T> extends Skin.Role, React.HTMLProps<T> {
+export type BreadcrumbProps = React.HTMLProps<HTMLElement> & {
   a11yHeadingText?: string;
   a11yHeadingTag?: string;
-}
+};
 export const BasicBreadcrumb = ({
   a11yHeadingText,
   a11yHeadingTag,
   id,
   role = 'navigation',
   ...props
-}: BreadcrumbProps<HTMLElement>) => {
+}: BreadcrumbProps) => {
   const className = classNames('breadcrumbs', props.className);
   const HTMLProps = {...props, className, role};
   return (

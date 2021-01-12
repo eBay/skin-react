@@ -12,15 +12,14 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {IconName} from '..';
 
-export interface IconProps<T> extends React.HTMLProps<T> {
+export type IconProps = React.HTMLProps<SVGElement> & {
   name: IconName | string;
   isButton?: boolean;
   customClassName?: string;
   focusable?: string | boolean;
   a11yText?: string;
-}
-
-export const Icon = ({a11yText, customClassName, name, isButton, ...props}: IconProps<SVGElement>) => {
+};
+export const Icon = ({a11yText, customClassName, name, isButton, ...props}: IconProps) => {
   const iconClass = 'icon--' + name;
   const className = customClassName
     ? customClassName

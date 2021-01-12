@@ -17,10 +17,12 @@ import Icon from '../../Icon';
 const getUncheckedIconName = addPrefix('radio-unchecked');
 const getCheckedIconName = addPrefix('radio-checked');
 
-export interface RadioProps<T> extends Skin.Role, Omit<React.HTMLProps<T>, 'size'> {
-  size?: 'large' | 'small';
-}
-export function Radio({size, ...props}: RadioProps<HTMLInputElement>) {
+export type RadioProps = Skin.Role &
+  Omit<React.HTMLProps<HTMLInputElement>, 'size'> & {
+    size?: 'large' | 'small';
+  };
+
+export function Radio({size, ...props}: RadioProps) {
   const className = classNames('radio__control', props.className);
   const HTMLProps = {type: 'radio', ...props, className};
   return (

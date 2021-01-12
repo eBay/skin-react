@@ -14,10 +14,10 @@ import classNames from 'classnames';
 export const getClass = (isLink: boolean, isImg: boolean) => `${isImg ? 'img' : 'icon'}-${isLink ? 'link' : 'btn'}`;
 export const getTag = (isLink: boolean) => (isLink ? 'a' : 'button');
 
-export interface ActionableProps<T> extends React.HTMLProps<T> {
+export type ActionableProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> & {
   isImg?: boolean;
-}
-export const Actionable = ({isImg, ...props}: ActionableProps<HTMLButtonElement | HTMLAnchorElement>) => {
+};
+export const Actionable = ({isImg, ...props}: ActionableProps) => {
   const isLink = !!props.href;
   const defaultProps = isLink ? {} : {type: 'button'};
   const className = classNames(getClass(isLink, isImg), props.className);

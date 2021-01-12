@@ -12,9 +12,9 @@ import {addFakePrefix} from '../../skin-utils';
 import * as Skin from '../../skin';
 import * as React from 'react';
 import classNames from 'classnames';
+export type TabContentProps = React.HTMLProps<HTMLDivElement> & Skin.Fake & {};
 
-interface TabContentProps<T> extends Skin.Fake, React.HTMLProps<T> {}
-export const TabContent = ({isFake, ...props}: TabContentProps<HTMLDivElement>) => {
+export const TabContent = ({isFake, ...props}: TabContentProps) => {
   const className = classNames(addFakePrefix(isFake, 'tabs__content'), props.className);
   const tabProps = {...props, className};
   return <div {...tabProps} />;

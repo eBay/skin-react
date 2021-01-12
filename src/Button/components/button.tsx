@@ -10,18 +10,6 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import {
-  ButtonColors,
-  ButtonSizes,
-  ButtonTypes,
-  ExpandBtnCell,
-  FilterBtnCell,
-  CTABtnCell,
-  getSize,
-  getColor,
-  getTag
-} from '..';
-import Icon from '../../Icon';
 import Badge from '../../Badge';
 
 export interface ButtonProps<T> extends Omit<React.HTMLProps<T>, 'size'> {

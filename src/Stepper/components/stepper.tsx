@@ -11,11 +11,11 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export interface StepperProps<T> extends React.HTMLProps<T> {
+export type StepperProps = React.HTMLProps<HTMLDivElement> & {
   direction?: string | 'column';
-}
+};
 const _getType = ({type, number}) => (number ? 'default' : type);
-export const Stepper = ({direction = 'row', children, ...props}: StepperProps<any>) => {
+export const Stepper = ({direction = 'row', children, ...props}: StepperProps) => {
   const childrenArray = React.Children.toArray(children);
   // @ts-ignore
   const currentIndex = childrenArray.findIndex((item) => item.props.current);

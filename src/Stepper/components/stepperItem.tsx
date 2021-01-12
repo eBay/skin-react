@@ -12,14 +12,14 @@ import * as React from 'react';
 import classNames from 'classnames';
 import Icon from '../../Icon';
 import Badge from '../../Badge';
-export interface StepperItemProps<T> extends React.HTMLProps<T> {
+
+export type StepperItemProps = React.HTMLProps<HTMLDivElement> & {
   transition?: any;
   type?: 'attention' | 'information' | 'confirmation' | 'circle' | string;
   number?: number;
   typeClass?: 'confirmation' | 'current' | 'upcoming' | 'default';
   current?: boolean;
-}
-
+};
 export const StepperItem = ({
   type,
   number,
@@ -28,7 +28,7 @@ export const StepperItem = ({
   typeClass = 'default',
   current,
   ...props
-}: StepperItemProps<any>) => {
+}: StepperItemProps) => {
   const renderIcon = () => {
     if (['attention', 'information', 'confirmation'].includes(type)) {
       return <Icon name={`${type}-filled`} width="24" height="24" />;

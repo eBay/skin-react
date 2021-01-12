@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {DialogBaseWithClose, DialogProps} from './dialog';
 
-export const FullScreenDialog = (props: DialogProps<any>) => {
+export const FullScreenDialog = (props: DialogProps) => {
   return (
     <DialogBaseWithClose
       {...props}

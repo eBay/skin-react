@@ -13,9 +13,9 @@ import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {getFakeTag} from '../../skin-utils';
 import * as Skin from '../../skin';
+export type PageControlProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> & Skin.Disabled & Skin.Next & {};
 
-export interface PageControlProps<T> extends Skin.Disabled, Skin.Next, React.HTMLProps<T> {}
-export const PageControl = ({isNext, disabled, ...props}: PageControlProps<HTMLButtonElement | HTMLAnchorElement>) => {
+export const PageControl = ({isNext, disabled, ...props}: PageControlProps) => {
   const tag = getFakeTag(!!props.href, 'a', 'button');
   const className = classNames(
     `icon-${tag == 'a' ? 'link' : 'btn'} pagination__${isNext ? 'next' : 'previous'}`,

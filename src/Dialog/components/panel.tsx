@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {DialogBaseWithClose, DialogProps} from './dialog';
 
-export const PanelDialog = ({position, ...props}: DialogProps<any> & {position?: 'end'}) => {
+export const PanelDialog = ({position, ...props}: DialogProps & {position?: 'end'}) => {
   return (
     <DialogBaseWithClose
       {...props}
