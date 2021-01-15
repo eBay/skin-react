@@ -11,19 +11,13 @@ import * as Skin from '../../skin';
 import {addFakePrefix, getFakeTag} from '../../skin-utils';
 import * as React from 'react';
 import classNames from 'classnames';
-
-interface TabItemProps<T> extends Skin.Fake, Skin.Selected, React.HTMLProps<T> {
-  listClassName?: string;
-  forwardedRef?: any;
-}
-
-export const TabItem = ({
-  listClassName,
-  className,
-  selected,
-  forwardedRef,
-  ...props
-}: TabItemProps<HTMLDivElement | HTMLAnchorElement>) => {
+export type TabItemProps = React.HTMLProps<HTMLDivElement | HTMLAnchorElement> &
+  Skin.Fake &
+  Skin.Selected & {
+    listClassName?: string;
+    forwardedRef?: any;
+  };
+export const TabItem = ({listClassName, className, selected, forwardedRef, ...props}: TabItemProps) => {
   const isFake = !!props.href;
   const tag = getFakeTag(isFake, 'li');
   const wrapperClassName = addFakePrefix(isFake, 'tabs__item');

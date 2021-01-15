@@ -13,11 +13,11 @@ import classNames from 'classnames';
 import * as Skin from '../../skin';
 
 export const getTag = (isSpan: boolean) => (isSpan ? 'span' : 'input');
-
-export interface SwitchProps<T> extends Skin.Role, React.HTMLProps<T> {
-  isSpan?: boolean;
-}
-export function BasicSwitch({isSpan, ...props}: SwitchProps<HTMLInputElement | HTMLSpanElement>) {
+export type SwitchProps = React.HTMLProps<HTMLInputElement | HTMLSpanElement> &
+  Skin.Role & {
+    isSpan?: boolean;
+  };
+export function BasicSwitch({isSpan, ...props}: SwitchProps) {
   const className = classNames('switch__control', props.className);
   let HTMLProps = {type: 'checkbox', role: 'switch', 'aria-checked': props.checked, ...props, className};
   if (isSpan) {

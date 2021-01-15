@@ -14,7 +14,7 @@ import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withA11y} from '@storybook/addon-a11y';
 import {boolean, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import {Notice, WindowNotice} from './index';
+import {WindowNotice} from './index';
 import Button from '../Button';
 
 const story: any = {
@@ -26,14 +26,13 @@ const story: any = {
 const defaultProps = {
   id: 'window-notice'
 };
-export const _NoticeWindow = () => {
+export const _WindowNotice = () => {
   const hidden = boolean('hidden', false);
   return (
     <div>
       <WindowNotice
         {...defaultProps}
         title="Your first order has been placed!"
-        iconName="confirmation-filled"
         id="window-notice-1"
         hidden={hidden}
         a11yText="Window Notice"

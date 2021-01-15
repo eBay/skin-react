@@ -12,10 +12,10 @@ import * as React from 'react';
 import classNames from 'classnames';
 import Icon from '../../Icon';
 
-export interface CtaButtonProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
+export type CtaButtonProps = Omit<React.HTMLProps<HTMLAnchorElement>, 'size'> & {
   size?: 'large';
-}
-export function CtaButton({size, ...props}: CtaButtonProps<HTMLAnchorElement>) {
+};
+export function CtaButton({size, ...props}: CtaButtonProps) {
   const className = classNames('cta-btn', size === 'large' ? `cta-btn--${size}` : 'default', props.className);
   const HTMLProps = {...props, className};
   return (

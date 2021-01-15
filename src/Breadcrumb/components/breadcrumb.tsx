@@ -10,19 +10,25 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import * as Skin from '../../skin';
-
-export interface BreadcrumbProps<T> extends Skin.Role, React.HTMLProps<T> {
-  a11yText?: string;
-}
-export const BasicBreadcrumb = ({a11yText, id, role = 'navigation', ...props}: BreadcrumbProps<HTMLElement>) => {
+import {DefaultElement} from '../../skin-utils';
+export type BreadcrumbProps = React.HTMLProps<HTMLElement> & {
+  a11yHeadingText?: string;
+  a11yHeadingTag?: string;
+};
+export const BasicBreadcrumb = ({
+  a11yHeadingText,
+  a11yHeadingTag,
+  id,
+  role = 'navigation',
+  ...props
+}: BreadcrumbProps) => {
   const className = classNames('breadcrumbs', props.className);
   const HTMLProps = {...props, className, role};
   return (
     <nav aria-labelledby={id} {...HTMLProps}>
-      <h2 id={id} className="clipped">
-        {a11yText}
-      </h2>
+      <DefaultElement tag={a11yHeadingTag || 'h2'} id={id} className="clipped">
+        {a11yHeadingText}
+      </DefaultElement>
       <ul>{props.children}</ul>
     </nav>
   );

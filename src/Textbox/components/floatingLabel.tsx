@@ -11,12 +11,11 @@
 import * as React from 'react';
 import classNames from 'classnames';
 export const getTag = (is: boolean) => (is ? 'div' : 'span');
-
-export interface FloatingLabelProps<T> extends React.HTMLProps<T> {
+export type FloatingLabelProps = React.HTMLProps<HTMLLabelElement> & {
   isDiv?: boolean;
   isInline?: boolean;
   isAnimated?: boolean;
-}
+};
 export const FloatingLabel = ({
   children,
   disabled,
@@ -25,7 +24,7 @@ export const FloatingLabel = ({
   isDiv,
   label,
   ...props
-}: FloatingLabelProps<HTMLLabelElement>) => {
+}: FloatingLabelProps) => {
   const className = classNames(
     'floating-label__label',
     {

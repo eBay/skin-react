@@ -3,7 +3,7 @@ import FocusLock from 'react-focus-lock';
 import {RemoveScroll} from 'react-remove-scroll';
 import * as ReactDOM from 'react-dom';
 import {DialogBase, DialogBaseProps} from './components/dialogBase';
-import * as AriaHidder from '../ariaHidder';
+import * as AriaHidder from './ariaHidder';
 
 export const DialogBaseWithState = (props: DialogBaseProps<HTMLElement>) => {
   const isModal = props.isModal !== false;

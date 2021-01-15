@@ -1,10 +1,11 @@
 import * as React from 'react';
-import DialogBase, {DialogBaseProps} from '../../DialogBase';
+import DialogBase, {DialogBaseProps} from '../../components/DialogBase';
 import classNames from 'classnames';
 
 const THRESHOLD_TOUCH = 30;
 const classPrefix = 'drawer-dialog';
-export interface DrawerProps<T> extends DialogBaseProps<T> {
+
+export type DrawerProps = DialogBaseProps<HTMLElement> & {
   expanded?: boolean;
   onClose?: any;
   noHandle?: boolean;
@@ -12,7 +13,7 @@ export interface DrawerProps<T> extends DialogBaseProps<T> {
   onExpanded?: any;
   a11yMinimizeText?: string;
   a11yMaximizeText?: string;
-}
+};
 
 export const Drawer = ({
   children,
@@ -24,7 +25,7 @@ export const Drawer = ({
   a11yMaximizeText = 'Maximize Drawer',
   a11yMinimizeText = 'Minimize Drawer',
   ...rest
-}: DrawerProps<any>) => {
+}: DrawerProps) => {
   let touches: any = [];
   const [state, setState] = React.useState({expanded: expanded || false});
 

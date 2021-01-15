@@ -12,11 +12,12 @@ import * as React from 'react';
 import {Icon} from '../../Icon';
 
 const getBreadcrumbItemTag = (isLink: boolean) => (isLink ? 'a' : 'button');
-export interface BreadcrumbItemProps<T> extends React.HTMLProps<T> {
+export type BreadcrumbItemProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> & {
   isLast?: boolean;
-}
-export const BreadcrumbItem = ({isLast, ...props}: BreadcrumbItemProps<HTMLButtonElement | HTMLAnchorElement>) => {
-  const passedProps = isLast && props.href ? {['aria-current']: 'location'} : {};
+};
+export const BreadcrumbItem = ({isLast, ...props}: BreadcrumbItemProps) => {
+  const current = !props.href && isLast;
+  const passedProps = current ? {['aria-current']: 'location'} : {};
   return (
     <li>
       {React.createElement(getBreadcrumbItemTag(!!props.href), {...passedProps, ...props})}

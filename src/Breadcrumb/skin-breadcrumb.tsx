@@ -14,7 +14,7 @@ export const Breadcrumb = ({children, onClick, ...props}: any) => {
   const length = children && children.length;
   const modifiedChildren =
     length > 0
-      ? React.Children.map(children, (item: any, index) => {
+      ? React.Children.map(children, (item, index) => {
           const isLast = index === length - 1;
           const current = !item.props.href && isLast;
           const passedProps = current ? {['aria-current']: 'location'} : {};

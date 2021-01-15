@@ -12,16 +12,15 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 export const addClassNamePrefix = (prefix: string) => (className?: string) => `${prefix}${className || ''}`;
-const getClassName = addClassNamePrefix('section-title');
-export interface BasicSectionTitleProps<T> extends React.HTMLProps<T> {
+export type BasicSectionTitleProps = React.HTMLProps<HTMLDivElement> & {
   sectionSize?: 'small' | 'large' | 'giant';
-}
+};
 
-export const BasicSectionTitle = ({sectionSize, ...props}: BasicSectionTitleProps<HTMLDivElement>) => {
+export const BasicSectionTitle = ({sectionSize, ...props}: BasicSectionTitleProps) => {
   const className = classNames(
-    getClassName(),
+    'section-title',
     {
-      [getClassName(sectionSize ? `-${sectionSize}` : '')]: sectionSize
+      [`section-title--${sectionSize}`]: sectionSize
     },
     props.className
   );

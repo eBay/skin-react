@@ -13,6 +13,6 @@ import {withOnChangeState} from '../skin-utils';
 import BasicSwitch, {SwitchProps} from './components/switch';
 
 export {BasicSwitch, SwitchProps} from './components/switch';
-export const SwitchSpan = (props): SwitchProps<HTMLSpanElement> => <BasicSwitch {...props} isSpan />;
+export const SwitchSpan = (props): SwitchProps => <BasicSwitch {...props} isSpan />;
 export const Switch = withOnChangeState(BasicSwitch);
 export default Switch;

@@ -12,11 +12,11 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {getFakeTag} from '../../skin-utils';
 import * as Skin from '../../skin';
-
-export interface PageItemProps<T> extends Skin.Selected, React.HTMLProps<T> {
-  isCurrent?: boolean;
-}
-export const PageItem = ({selected, isCurrent, ...props}: PageItemProps<HTMLButtonElement | HTMLAnchorElement>) => {
+export type PageItemProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> &
+  Skin.Selected & {
+    isCurrent?: boolean;
+  };
+export const PageItem = ({selected, isCurrent, ...props}: PageItemProps) => {
   const tag = getFakeTag(!!props.href, 'a', 'button');
   const className = classNames('pagination__item', props.className);
   const HTMLProps = {...props, ['aria-current']: isCurrent ? 'page' : '', className};

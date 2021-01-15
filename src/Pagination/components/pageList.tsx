@@ -11,8 +11,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export interface PageListProps<T> extends React.HTMLProps<T> {}
-export const PageList = ({...props}: PageListProps<HTMLOListElement>) => {
+export type PageListProps = React.HTMLProps<HTMLOListElement>;
+export const PageList = ({...props}: PageListProps) => {
   const className = classNames('pagination__items', props.className);
   const HTMLProps = {...props, className};
   // @ts-ignore

@@ -11,17 +11,18 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {ReactNode} from 'react';
-
-export interface SectionContainerProps<T> extends React.HTMLProps<T> {
-  title?: string;
+export type SectionContainerProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'> & {
+  title?: ReactNode;
   subtitle?: ReactNode;
-}
-export const SectionContainer = ({title, subtitle, ...props}: SectionContainerProps<HTMLDivElement>) => {
+  href?: string;
+};
+export const SectionContainer = ({title, subtitle, href, children, ...props}: SectionContainerProps) => {
   const className = classNames('section-title__title-container', props.className);
   return (
     <div {...props} className={className}>
-      <h2 className="section-title__title">{title}</h2>
+      <h2 className="section-title__title">{href && <a href={href}>{title}</a>}</h2>
       <span className="section-title__subtitle">{subtitle}</span>
+      {children}
     </div>
   );
 };

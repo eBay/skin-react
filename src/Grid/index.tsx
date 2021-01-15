@@ -16,10 +16,10 @@ export const Grid = withProps({displayName: 'Grid', className: 'grid'})();
 
 export default Grid;
 
-export interface GridGroupProps<T> extends React.HTMLProps<T> {
+export type GridGroupProps = React.HTMLProps<HTMLDivElement> & {
   isMultiline?: boolean;
-}
-export function GridGroup({isMultiline, ...props}: GridGroupProps<HTMLDivElement>) {
+};
+export function GridGroup({isMultiline, ...props}: GridGroupProps) {
   const className = classNames(
     'grid__group',
     {
@@ -56,9 +56,9 @@ const getCellClassName = (size: CellSize, platform: Platform = '') => {
     return `${prefix}${size}of16${platform ? '-' + platform : ''}`;
   }
 };
-export interface GridCellProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
+export type GridCellProps = Omit<React.HTMLProps<HTMLDivElement>, 'size'> & {
   size?: CellSize | object;
-}
+};
 const getSize = (size: CellSize | object) => {
   if (typeof size === 'object') {
     return Object.keys(size).reduce((acc, curr) => {
@@ -74,7 +74,7 @@ const getSize = (size: CellSize | object) => {
   const cellClassName = getCellClassName(size);
   return cellClassName ? {[cellClassName]: true} : {};
 };
-export function GridCell({size, ...props}: GridCellProps<HTMLDivElement>) {
+export function GridCell({size, ...props}: GridCellProps) {
   const className = classNames('grid__cell', getSize(size), props.className);
   const gridCellProps = {...props, className};
   return <div {...gridCellProps} />;

@@ -19,7 +19,7 @@ export const TextboxLabeled = ({
   onBlur,
   onFocus,
   ...props
-}: FloatingLabelProps<HTMLInputElement | HTMLTextAreaElement>) => {
+}: React.HTMLProps<HTMLTextAreaElement | HTMLInputElement>) => {
   const textBoxEl = React.useRef();
   const [state, setState] = React.useState(defaultStateProps);
   React.useEffect(() => {

@@ -11,10 +11,11 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export interface SpinnerProps<T> extends Omit<React.HTMLProps<T>, 'size'> {
+export type SpinnerProps = Omit<React.HTMLProps<HTMLSpanElement>, 'size'> & {
   size?: 'large' | 'regular';
-}
-export const Spinner = ({size, ...props}: SpinnerProps<HTMLSpanElement>) => {
+};
+
+export const Spinner = ({size, ...props}: SpinnerProps) => {
   const className = classNames(
     'spinner',
     {

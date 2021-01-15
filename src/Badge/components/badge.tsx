@@ -20,11 +20,11 @@ import {
 } from '../../skin-utils';
 import * as Skin from '../../skin';
 
-export interface BadgeProps<T> extends Skin.BgColor, Skin.Color, React.HTMLProps<T> {
+export type BadgeProps = React.HTMLProps<HTMLSpanElement> & {
   type?: 'menu' | 'icon';
   number: string | number;
-}
-export const Badge = ({number, type, ...props}: BadgeProps<HTMLSpanElement>) => {
+};
+export const Badge = ({number, type, ...props}: BadgeProps) => {
   const parsedNumber = Math.round(parseInt(number as string, 10));
   if (parsedNumber > 0) {
     const children = parsedNumber > 99 ? '99+' : parsedNumber;

@@ -13,21 +13,14 @@ import classNames from 'classnames';
 
 export const getTag = (isBlock: boolean) => (isBlock ? 'div' : 'span');
 
-export interface FieldProps<T> extends React.HTMLProps<T> {
+export type FieldProps = React.HTMLProps<HTMLSpanElement | HTMLDivElement> & {
   isBlock?: boolean;
   isAlignTop?: boolean;
   isTable?: boolean;
   isFluid?: boolean;
   label?: string;
-}
-export const Field = ({
-  isBlock,
-  isAlignTop,
-  isTable,
-  isFluid,
-  label,
-  ...props
-}: FieldProps<HTMLSpanElement | HTMLDivElement>) => {
+};
+export const Field = ({isBlock, isAlignTop, isTable, isFluid, label, ...props}: FieldProps) => {
   const className = classNames(
     'field',
     {
@@ -41,11 +34,11 @@ export const Field = ({
 };
 export default Field;
 
-export interface FieldLabelProps<T> extends React.HTMLProps<T> {
+export type FieldLabelProps = React.HTMLProps<HTMLLabelElement> & {
   isEnd?: boolean;
   isStacked?: boolean;
-}
-export const FieldLabel = ({isEnd, isStacked, ...props}: FieldLabelProps<HTMLLabelElement>) => {
+};
+export const FieldLabel = ({isEnd, isStacked, ...props}: FieldLabelProps) => {
   const className = classNames(
     'field__label',
     {
@@ -58,11 +51,11 @@ export const FieldLabel = ({isEnd, isStacked, ...props}: FieldLabelProps<HTMLLab
   return <label {...props} className={className} />;
 };
 
-export interface FieldControlProps<T> extends React.HTMLProps<T> {
+export type FieldControlProps = React.HTMLProps<HTMLSpanElement | HTMLDivElement> & {
   isFluid?: boolean;
   isBlock?: boolean;
-}
-export const FieldControl = ({isFluid, isBlock, ...props}: FieldControlProps<HTMLSpanElement | HTMLDivElement>) => {
+};
+export const FieldControl = ({isFluid, isBlock, ...props}: FieldControlProps) => {
   const className = classNames(
     'field__control',
     {
@@ -73,15 +66,11 @@ export const FieldControl = ({isFluid, isBlock, ...props}: FieldControlProps<HTM
   return React.createElement(getTag(isBlock), {...props, className});
 };
 
-export interface FieldDescriptionProps<T> extends React.HTMLProps<T> {
+export type FieldDescriptionProps = React.HTMLProps<HTMLSpanElement | HTMLDivElement> & {
   color?: 'confirmation' | 'information' | 'attention' | string;
   isBlock?: boolean;
-}
-export const FieldDescription = ({
-  isBlock,
-  color,
-  ...props
-}: FieldDescriptionProps<HTMLSpanElement | HTMLDivElement>) => {
+};
+export const FieldDescription = ({isBlock, color, ...props}: FieldDescriptionProps) => {
   const className = classNames(
     'field__description',
     {
