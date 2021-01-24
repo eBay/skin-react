@@ -34,7 +34,7 @@ export const Tab = ({children, index, selected, href, isSelected, title, tabId, 
 );
 export interface TabsProps<T> extends Skin.Fake, React.HTMLProps<T> {}
 export class Tabs extends React.Component<TabsProps<HTMLElement>, {selected?: boolean}> {
-  private tabs;
+  private readonly tabs;
   private activeLink: HTMLDivElement | HTMLAnchorElement;
 
   constructor(props) {

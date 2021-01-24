@@ -3,7 +3,7 @@ let domNodes = [];
 
 // document.querySelectorAll('#storybook-preview-iframe')[0]?.contentWindow.document.body.querySelectorAll('a')
 
-export const setElement = (element: string = 'body > *') => {
+export const setElement = (element = 'body > *') => {
   // @ts-ignore
   const doc = document.querySelectorAll('#storybook-preview-iframe')[0]?.contentDocument || document;
   globalElement = doc.querySelectorAll(element) || globalElement;

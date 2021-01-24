@@ -3,8 +3,8 @@ import {Button} from '..';
 import {render, fireEvent, cleanup} from '@testing-library/react';
 
 let component;
-let handleClick = jest.fn();
-let handleEscape = jest.fn();
+const handleClick = jest.fn();
+const handleEscape = jest.fn();
 
 const properties = {
   priority: ['primary', 'secondary', 'delete'],
@@ -15,7 +15,7 @@ Object.keys(properties).forEach((property) => {
   const values = properties[property];
   values.forEach((value) => {
     it(`renders button with ${property}=${value}`, async () => {
-      let props = {[property]: value};
+      const props = {[property]: value};
       const {getByRole} = await render(<Button {...props} />);
       expect(getByRole('button')).toHaveClass(`btn--${value}`);
     });
@@ -53,7 +53,7 @@ it('does not apply priority class for unsupported value', async () => {
 });
 
 it('renders fake version', async () => {
-  let props = {
+  const props = {
     href: '#',
     size: 'large',
     priority: 'primary',

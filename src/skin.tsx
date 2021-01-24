@@ -56,9 +56,6 @@ export interface BgColor {
 export interface Fake {
   isFake?: boolean;
 }
-export interface Selected {
-  selected?: boolean;
-}
 export interface Disabled {
   disabled?: boolean;
 }
@@ -67,9 +64,6 @@ export interface Next {
 }
 export interface Current {
   isCurrent?: boolean;
-}
-export interface Selected {
-  selected?: boolean;
 }
 export interface Fluid {
   isFluid?: boolean;

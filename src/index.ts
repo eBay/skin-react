@@ -17,7 +17,7 @@ export {CtaButton, CtaButtonProps} from './CtaButton';
 export {Details, DetailsProps} from './Details';
 export {DialogProps, AlertDialog, LightBoxDialog, PanelDialog, FullScreenDialog} from './Dialog';
 export {Drawer, DrawerProps} from './Drawer';
-export {Grid} from './Grid';
+export {Grid, GridGroup, GridCell, GridCellProps, GridGroupProps} from './Grid';
 export {Icon, IconSymbols, IconName} from './Icon';
 export {WindowNotice, PageNotice, InlineNotice, SectionNotice} from './Notice';
 export {Pagination, PageItem, PaginationProps, PageItemProps} from './Pagination';

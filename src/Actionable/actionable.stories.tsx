@@ -15,11 +15,12 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 import {Icon, Actionable} from '..';
+import withSkinIcons from '../../.storybook/util/demo';
 
 const story: any = {
   title: Category.SKINDS6,
   component: Actionable,
-  decorators: [withKnobs, withA11y]
+  decorators: [withKnobs, withA11y,withSkinIcons]
 };
 const defaultProps = {};
 export const _Actionable = () => {

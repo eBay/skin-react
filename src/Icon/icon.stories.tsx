@@ -26,7 +26,7 @@ export const _Icon = () => (
   <div style={{display: 'flex', flexWrap: 'wrap'}}>
     {icons.map((name) => (
       <div key={name} style={{flex: '1 0 21%'}}>
-        <Icon name={name as IconName} style={{margin: '30px', maxWidth: '29px', maxHeight: '29px'}} />
+        <Icon name={name} style={{margin: '30px', maxWidth: '29px', maxHeight: '29px'}} />
         {name}
       </div>
     ))}

@@ -1,11 +1,6 @@
 import * as React from 'react';
+import {IconSymbols} from '../../src/Icon';
 
-export interface DemoComponentProps<T> extends React.HTMLProps<T> {}
-export const DemoComponent = (props: DemoComponentProps<HTMLDivElement>) => {
-  return (
-    <div {...props} style={{backgroundColor: 'white', border: '1px dashed #ccc', ...props.style}}>
-      <div style={{margin: '8px'}}>{props.children}</div>
-    </div>
-  );
-};
-export default DemoComponent;
+export const withSkinIcons = (Story) => <div style={{ margin: '3em' }} ><Story/><IconSymbols/></div>
+
+export default withSkinIcons;

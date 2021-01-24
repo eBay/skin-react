@@ -27,7 +27,7 @@ describe('given an closed dialog', () => {
 });
 describe('given a open dialog', () => {
   let wrapper = mount(<LightBoxDialog className="custom-class" open />);
-  let component = wrapper.find('.lightbox-dialog').at(0);
+  const component = wrapper.find('.lightbox-dialog').at(0);
   it('should render a dialog', () => {
     expect(component).toHaveLength(1);
   });

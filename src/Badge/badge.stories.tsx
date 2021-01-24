@@ -33,7 +33,7 @@ const BgColorOptions = {
 };
 
 export const Badges = () => {
-  const bgColor = select('Background Color', BgColorOptions, '', 'BG color') as BgColorsEnum;
+  const bgColor = select('Background Color', BgColorOptions, '', 'BG color');
   const content = number(
     'number',
     100,
