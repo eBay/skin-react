@@ -1,9 +1,13 @@
+import * as React from 'react';
+
 const LEFT = -1;
 const RIGHT = 1;
-function getTemplateData(state) {
-  const {config, autoplayInterval, items, itemsPerSlide, slideWidth, gap} = state;
+export const getTemplateData = (state) =>{
+  const {config, autoplayInterval, itemsPerSlide, slideWidth, gap} = state;
+  const items = React.Children.toArray(state.children) || [];
   const hasOverride = config.offsetOverride !== undefined;
   const isSingleSlide = items.length <= itemsPerSlide;
+  state.items = items
   state.index = normalizeIndex(state, state.index);
 
   const offset = getOffset(state);
@@ -21,26 +25,35 @@ function getTemplateData(state) {
   }
 
   items.forEach((item, i) => {
-    const {style, transform} = item;
+    if (!React.isValidElement(item)) {
+    // @ts-ignore
+      const {style, transform} = item.props;
     const marginRight = i !== items.length - 1 && `${gap}px`;
 
     // Account for users providing a style string or object for each item.
     if (typeof style === 'string') {
-      item.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
-      if (transform) item.style += `transform:${transform}`;
+      // @ts-ignore
+      item.props.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
+      if (transform) {
+        // @ts-ignore
+        item.props.style += `transform:${transform}`;
+      }
     } else {
-      item.style = Object.assign({}, style, {
+      // @ts-ignore
+      item.props.style = {...style,
         width: itemWidth,
-        'margin-right': marginRight,
-        transform
-      });
+          marginRight,
+          transform
+      }
     }
 
-    item.fullyVisible =
-      item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+    // item.fullyVisible =
+    //   item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+  }
   });
 
-  const data = Object.assign({}, state, {
+  return {
+    ...state,
     items,
     slide,
     offset: hasOverride ? config.offsetOverride : offset,
@@ -50,9 +63,7 @@ function getTemplateData(state) {
     prevControlDisabled,
     nextControlDisabled,
     bothControlsDisabled
-  });
-
-  return data;
+  };
 }
 
 function onRender() {
@@ -308,7 +319,7 @@ function move(delta) {
  * @param {object} state The widget state.
  * @return {number}
  */
-function getOffset(state) {
+export const getOffset = (state) =>{
   const {items, index} = state;
   if (!items.length) {
     return 0;

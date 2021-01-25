@@ -42,10 +42,10 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
   const statusId =
     (discrete && 'carousel-status-' + props.id) || props.a11yStatusText || (props.a11yHeadingText && props.id);
   const carouselListStyle = !config.nativeScrolling &&
-    props.offset && {
+    (props.offset) && {
       transform: 'translate3d(' + props.offset * -1 + 'px,0,0)',
       transition: props.disableTransition ? 'none' : undefined
-    };
+    }||undefined;
   const containerClassName = classNames('carousel__container', {
     'carousel__container--controls-disabled': props.bothControlsDisabled
   });

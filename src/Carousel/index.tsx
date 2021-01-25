@@ -10,6 +10,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
+import {getTemplateData} from './carousel-utils';
 // Used for carousel slide direction.
 
 export const Carousel = ({...props}: CarouselProps & any) => {
@@ -56,17 +57,17 @@ export const Carousel = ({...props}: CarouselProps & any) => {
       state.interacting = false;
     }
   }
+  const data = getTemplateData({...state, ...props});
 
-  state.children = React.Children.map(props.children, (item, i) => {
-    const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
-    return React.cloneElement(item, {
-      ...item.props,
-      className: isStartOfSlide ? ['carousel__snap-point', item.props.className] : item.props.className
-    });
-  });
-
-  const data = {...state, ...props};
-  return <CarouselComponent {...data} />;
+  return <CarouselComponent {...data} >
+    {React.Children.map(data.children, (item, i) => {
+      const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+      return React.cloneElement(item, {
+        ...item.props,
+        className: isStartOfSlide ? ['carousel__snap-point', item.props.className] : item.props.className
+      });
+    })}
+  </CarouselComponent>;
 };
 
 export {CarouselProps} from './components/carousel';
