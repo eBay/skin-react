@@ -11,8 +11,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
 // Used for carousel slide direction.
-const LEFT = -1;
-const RIGHT = 1;
+
 export const Carousel = ({...props}: CarouselProps & any) => {
   const gap = parseInt(props.gap, 10);
   const [state,setState] = React.useState({
@@ -30,6 +29,9 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     a11yPauseText: props.a11yPauseText || 'Pause',
     a11yPlayText: props.a11yPlayText || 'Play',
   })
+  React.useEffect(() => {
+    //onMount
+  });
 
   const { itemsPerSlide } = state;
   if (itemsPerSlide) {
