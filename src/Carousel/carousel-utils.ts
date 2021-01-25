@@ -3,11 +3,9 @@ import * as React from 'react';
 const LEFT = -1;
 const RIGHT = 1;
 export const getTemplateData = (state) =>{
-  const {config, autoplayInterval, itemsPerSlide, slideWidth, gap} = state;
-  const items = React.Children.toArray(state.children) || [];
+  const {config, autoplayInterval, itemsPerSlide, slideWidth, gap, items} = state;
   const hasOverride = config.offsetOverride !== undefined;
   const isSingleSlide = items.length <= itemsPerSlide;
-  state.items = items
   state.index = normalizeIndex(state, state.index);
 
   const offset = getOffset(state);
@@ -21,7 +19,7 @@ export const getTemplateData = (state) =>{
     slide = getSlide(state);
     itemWidth = `calc(${100 / itemsInSlide}% - ${((itemsInSlide - 1) * gap) / itemsInSlide}px)`;
     totalSlides = getSlide(state, items.length);
-    a11yStatusText = state.a11yStatusText.replace('{currentSlide}', slide + 1).replace('{totalSlides}', totalSlides);
+    a11yStatusText = (state.a11yStatusText||'').replace('{currentSlide}', slide + 1).replace('{totalSlides}', totalSlides);
   }
 
   items.forEach((item, i) => {
