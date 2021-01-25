@@ -38,10 +38,8 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
 }
 
 export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, ...props}: CarouselProps) => {
- const [state,setState] = React.useState({})
-  const data = {...state,...props}
   const discrete = props.totalSlides >= 1;
-  const statusId = (discrete && 'carousel-status-' + props.id) ||(data.a11yStatusText || data.a11yHeadingText && data.id)
+  const statusId = (discrete && 'carousel-status-' + props.id) ||(props.a11yStatusText || props.a11yHeadingText && props.id)
   const carouselListStyle = !config.nativeScrolling &&
     props.offset && {
       transform: 'translate3d(' + props.offset * -1 + 'px,0,0)',
@@ -84,7 +82,9 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
       aria-labelledby={statusId}
       role="group"
       aria-roledescription="carousel"
-      {...data}>
+      {...props}
+      className = {classNames('carousel__viewport', props.className)}
+    >
       <div
         className={containerClassName}
         onFocus={handleStartEvent}
@@ -93,12 +93,12 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
         onMouseOut={handleEndInteraction}
         onTouchEnd={handleEndInteraction}
       >
-        {(data.a11yStatusText || data.a11yHeadingText) &&
+        {(props.a11yStatusText || props.a11yHeadingText) &&
         (<DefaultElement tag={discrete ? a11yStatusTag : a11yHeadingTag}
                          id={statusId}
                          class="clipped"
                          aria-live={ discrete ? props.autoplayInterval && !props.paused ? "off" : "polite" : false}>
-          <span>{discrete?data.a11yStatusText: data.a11yHeadingText}</span>
+          <span>{discrete?props.a11yStatusText: props.a11yHeadingText}</span>
         </DefaultElement>)
         }
         <button
