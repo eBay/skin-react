@@ -1,30 +1,28 @@
 const LEFT = -1;
 const RIGHT = 1;
 function getTemplateData(state) {
-  const { config, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
+  const {config, autoplayInterval, items, itemsPerSlide, slideWidth, gap} = state;
   const hasOverride = config.offsetOverride !== undefined;
   const isSingleSlide = items.length <= itemsPerSlide;
   state.index = normalizeIndex(state, state.index);
 
   const offset = getOffset(state);
-  const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
-  const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
+  const prevControlDisabled = isSingleSlide || (!autoplayInterval && offset === 0);
+  const nextControlDisabled = isSingleSlide || (!autoplayInterval && offset === getMaxOffset(state));
   const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
   let slide, itemWidth, totalSlides, a11yStatusText;
 
   if (itemsPerSlide) {
     const itemsInSlide = itemsPerSlide + state.peek;
     slide = getSlide(state);
-    itemWidth = `calc(${100 / itemsInSlide}% - ${(itemsInSlide - 1) * gap / itemsInSlide}px)`;
+    itemWidth = `calc(${100 / itemsInSlide}% - ${((itemsInSlide - 1) * gap) / itemsInSlide}px)`;
     totalSlides = getSlide(state, items.length);
-    a11yStatusText = state.a11yStatusText
-      .replace('{currentSlide}', slide + 1)
-      .replace('{totalSlides}', totalSlides);
+    a11yStatusText = state.a11yStatusText.replace('{currentSlide}', slide + 1).replace('{totalSlides}', totalSlides);
   }
 
   items.forEach((item, i) => {
-    const { style, transform } = item;
-    const marginRight = i !== (items.length - 1) && `${gap}px`;
+    const {style, transform} = item;
+    const marginRight = i !== items.length - 1 && `${gap}px`;
 
     // Account for users providing a style string or object for each item.
     if (typeof style === 'string') {
@@ -32,17 +30,14 @@ function getTemplateData(state) {
       if (transform) item.style += `transform:${transform}`;
     } else {
       item.style = Object.assign({}, style, {
-        'width': itemWidth,
+        width: itemWidth,
         'margin-right': marginRight,
         transform
       });
     }
 
-    item.fullyVisible = (
-      item.left === undefined ||
-      item.left - offset >= -0.01 &&
-      item.right - offset <= slideWidth + 0.01
-    );
+    item.fullyVisible =
+      item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
   });
 
   const data = Object.assign({}, state, {
@@ -61,8 +56,8 @@ function getTemplateData(state) {
 }
 
 function onRender() {
-  const { containerEl, listEl, state } = this;
-  const { config, items, autoplayInterval, paused, interacting } = state;
+  const {containerEl, listEl, state} = this;
+  const {config, items, autoplayInterval, paused, interacting} = state;
 
   // Do nothing for empty carousels.
   if (!items.length) {
@@ -83,7 +78,7 @@ function onRender() {
     // Ensure only visible items within the carousel are focusable.
     // We don't have access to these items in the template so me must update manually.
     this.focusFrame = requestAnimationFrame(() => {
-      forEls(listEl, itemEl => {
+      forEls(listEl, (itemEl) => {
         //TODO:
         // focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
         //   ? child => child.removeAttribute('tabindex')
@@ -125,8 +120,8 @@ function onRender() {
 
   // Otherwise recalculates the items / slide sizes.
   this.renderFrame = requestAnimationFrame(() => {
-    const { width: containerWidth } = containerEl.getBoundingClientRect();
-    const { left: currentLeft } = listEl.firstElementChild.getBoundingClientRect();
+    const {width: containerWidth} = containerEl.getBoundingClientRect();
+    const {left: currentLeft} = listEl.firstElementChild.getBoundingClientRect();
 
     this.setStateDirty('slideWidth', containerWidth);
     config.preserveItems = true;
@@ -135,7 +130,7 @@ function onRender() {
     // Update item positions in the dom.
     forEls(listEl, (itemEl, i) => {
       const item = items[i];
-      const { left, right } = itemEl.getBoundingClientRect();
+      const {left, right} = itemEl.getBoundingClientRect();
       item.left = left - currentLeft;
       item.right = right - currentLeft;
     });
@@ -157,12 +152,12 @@ function cleanupAsync() {
 }
 
 function emitUpdate() {
-  const { state: { config, items } } = this;
+  const {
+    state: {config, items}
+  } = this;
   config.scrollTransitioning = false;
   this.emit('move', {
-    visibleIndexes: items
-      .filter(({ fullyVisible }) => fullyVisible)
-      .map(item => items.indexOf(item))
+    visibleIndexes: items.filter(({fullyVisible}) => fullyVisible).map((item) => items.indexOf(item))
   });
 }
 
@@ -176,11 +171,11 @@ function handleMove(direction, originalEvent) {
   if (this.isMoving) {
     return;
   }
-  const { state } = this;
+  const {state} = this;
   const nextIndex = this.move(direction);
   const slide = getSlide(state, nextIndex);
-  this.emit('slide', { slide: slide + 1, originalEvent });
-  this.emit(`${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
+  this.emit('slide', {slide: slide + 1, originalEvent});
+  this.emit(`${direction === 1 ? 'next' : 'previous'}`, {originalEvent});
 }
 
 /**
@@ -189,13 +184,15 @@ function handleMove(direction, originalEvent) {
  * @param {MouseEvent} originalEvent
  */
 function togglePlay(originalEvent) {
-  const { state: { config, paused } } = this;
+  const {
+    state: {config, paused}
+  } = this;
   config.preserveItems = true;
   this.setState('paused', !paused);
   if (paused && !this.isMoving) {
     this.move(RIGHT);
   }
-  this.emit(`${paused ? 'play' : 'pause'}`, { originalEvent });
+  this.emit(`${paused ? 'play' : 'pause'}`, {originalEvent});
 }
 
 /**
@@ -204,8 +201,8 @@ function togglePlay(originalEvent) {
  * @param {number} scrollLeft The current scroll position of the carousel.
  */
 function handleScroll(scrollLeft) {
-  const { state } = this;
-  const { config, items, gap } = state;
+  const {state} = this;
+  const {config, items, gap} = state;
   let closest;
 
   if (scrollLeft >= getMaxOffset(state) - gap) {
@@ -235,7 +232,7 @@ function handleScroll(scrollLeft) {
     config.skipScrolling = true;
     config.preserveItems = true;
     this.setState('index', closest);
-    this.emit('scroll', { index: closest });
+    this.emit('scroll', {index: closest});
   }
 }
 
@@ -254,8 +251,8 @@ function handleEndInteraction() {
  * @return {number} the updated index.
  */
 function move(delta) {
-  const { state } = this;
-  const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, peek, config } = state;
+  const {state} = this;
+  const {index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, peek, config} = state;
   const nextIndex = getNextIndex(state, delta);
   let offsetOverride;
 
@@ -270,7 +267,7 @@ function move(delta) {
       offsetOverride = -slideWidth - gap;
 
       // Move the items in the last slide to be before the first slide.
-      for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
+      for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
         const item = items[items.length - i - 1];
         item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap) * -1}px)`;
       }
@@ -279,9 +276,9 @@ function move(delta) {
       offsetOverride = getMaxOffset(state) + slideWidth + gap;
 
       // Moves the items in the first slide to be after the last slide.
-      for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
+      for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
         const item = items[i];
-        item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap)}px)`;
+        item.transform = `translateX(${getMaxOffset(state) + slideWidth + gap}px)`;
       }
     }
 
@@ -295,7 +292,9 @@ function move(delta) {
     if (offsetOverride !== undefined) {
       // If we are in autoplay mode and went outside of the normal offset
       // We make sure to restore all of the items that got moved around.
-      items.forEach(item => { item.transform = undefined; });
+      items.forEach((item) => {
+        item.transform = undefined;
+      });
     }
   });
 
@@ -310,7 +309,7 @@ function move(delta) {
  * @return {number}
  */
 function getOffset(state) {
-  const { items, index } = state;
+  const {items, index} = state;
   if (!items.length) {
     return 0;
   }
@@ -323,7 +322,7 @@ function getOffset(state) {
  * @param {object} state The widget state.
  * @return {number}
  */
-function getMaxOffset({ items, slideWidth }) {
+function getMaxOffset({items, slideWidth}) {
   if (!items.length) {
     return 0;
   }
@@ -338,7 +337,7 @@ function getMaxOffset({ items, slideWidth }) {
  * @param {number?} i the index to get the slide for.
  * @return {number}
  */
-function getSlide({ index, itemsPerSlide }, i = index) {
+function getSlide({index, itemsPerSlide}, i = index) {
   if (!itemsPerSlide) {
     return;
   }
@@ -352,7 +351,7 @@ function getSlide({ index, itemsPerSlide }, i = index) {
  * @param {object} state The widget state.
  * @param {number} index the index to normalize.
  */
-function normalizeIndex({ items, itemsPerSlide }, index) {
+function normalizeIndex({items, itemsPerSlide}, index) {
   if (index > 0) {
     let result = index;
     result %= items.length || 1; // Ensure index is within bounds.
@@ -372,7 +371,7 @@ function normalizeIndex({ items, itemsPerSlide }, index) {
  * @return {number}
  */
 function getNextIndex(state, delta) {
-  const { index, items, slideWidth, itemsPerSlide } = state;
+  const {index, items, slideWidth, itemsPerSlide} = state;
   let i = index;
   let item;
 
@@ -382,7 +381,7 @@ function getNextIndex(state, delta) {
   } else {
     // Find the index of the next item that is not fully in view.
     do {
-      item = items[i += delta];
+      item = items[(i += delta)];
     } while (item && item.fullyVisible);
 
     if (delta === LEFT && !itemsPerSlide) {

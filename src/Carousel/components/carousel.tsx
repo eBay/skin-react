@@ -35,11 +35,12 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   handleEndInteraction?: any;
   handleMove?: any;
   togglePlay?: any;
-}
+};
 
 export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, ...props}: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
-  const statusId = (discrete && 'carousel-status-' + props.id) ||(props.a11yStatusText || props.a11yHeadingText && props.id)
+  const statusId =
+    (discrete && 'carousel-status-' + props.id) || props.a11yStatusText || (props.a11yHeadingText && props.id);
   const carouselListStyle = !config.nativeScrolling &&
     props.offset && {
       transform: 'translate3d(' + props.offset * -1 + 'px,0,0)',
@@ -83,7 +84,7 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
       role="group"
       aria-roledescription="carousel"
       {...props}
-      className = {classNames('carousel__viewport', props.className)}
+      className={classNames('carousel__viewport', props.className)}
     >
       <div
         className={containerClassName}
@@ -93,14 +94,16 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
         onMouseOut={handleEndInteraction}
         onTouchEnd={handleEndInteraction}
       >
-        {(props.a11yStatusText || props.a11yHeadingText) &&
-        (<DefaultElement tag={discrete ? a11yStatusTag : a11yHeadingTag}
-                         id={statusId}
-                         class="clipped"
-                         aria-live={ discrete ? props.autoplayInterval && !props.paused ? "off" : "polite" : false}>
-          <span>{discrete?props.a11yStatusText: props.a11yHeadingText}</span>
-        </DefaultElement>)
-        }
+        {(props.a11yStatusText || props.a11yHeadingText) && (
+          <DefaultElement
+            tag={discrete ? a11yStatusTag : a11yHeadingTag}
+            id={statusId}
+            class="clipped"
+            aria-live={discrete ? (props.autoplayInterval && !props.paused ? 'off' : 'polite') : false}
+          >
+            <span>{discrete ? props.a11yStatusText : props.a11yHeadingText}</span>
+          </DefaultElement>
+        )}
         <button
           className="carousel__control carousel__control--prev"
           type="button"
@@ -116,7 +119,10 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
             'carousel__viewport--mask': !props.itemsPerSlide && !props.nextControlDisabled && !props.autoplayInterval
           })}
         >
-          <ul className={classNames('carousel__list', {"carousel__list--image-treatment":props === "matte"})} style={carouselListStyle}>
+          <ul
+            className={classNames('carousel__list', {'carousel__list--image-treatment': props === 'matte'})}
+            style={carouselListStyle}
+          >
             {children}
           </ul>
         </div>
@@ -143,6 +149,6 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
       </div>
     </div>
   );
-}
+};
 
 export default Carousel;

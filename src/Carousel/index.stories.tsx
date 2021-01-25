@@ -35,34 +35,24 @@ const BgColorOptions = {
 };
 const liStyles = {
   backgroundColor: '#f1f8fe',
-color: '#111820',
-fontSize: '24px',
-height: '120px',
-lineHeight: '120px',
-marginRight: '16px',
-width: '200px',
-}
+  color: '#111820',
+  fontSize: '24px',
+  height: '120px',
+  lineHeight: '120px',
+  marginRight: '16px',
+  width: '200px'
+};
 export const Carousels = () => {
-  const bgColor = select('Background Color', BgColorOptions, '', 'BG color') as BgColorsEnum;
-  const content = number(
-    'number',
-    100,
-    {
-      range: true,
-      min: 1,
-      max: 200,
-      step: 50
-    },
-    '1'
+  const props = {...defaultProps};
+  return (
+    <Carousel {...props}>
+      {times(10, (x) => (
+        <li key={x} style={liStyles}>
+          Card {x}
+        </li>
+      ))}
+    </Carousel>
   );
-  const props = {...defaultProps, bgColor};
-  return <Carousel {...props} aria-label="unread items" value={content} >
-    {times(10, (x) => (
-      <li key={x} style={liStyles}>
-        Card {x}
-      </li>
-    ))}
-  </Carousel>;
 };
 
 export default story;

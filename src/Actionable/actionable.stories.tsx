@@ -20,7 +20,7 @@ import withSkinIcons from '../../.storybook/util/demo';
 const story: any = {
   title: Category.SKINDS6,
   component: Actionable,
-  decorators: [withKnobs, withA11y,withSkinIcons]
+  decorators: [withKnobs, withA11y, withSkinIcons]
 };
 const defaultProps = {};
 export const _Actionable = () => {
