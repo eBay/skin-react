@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const LEFT = -1;
 const RIGHT = 1;
-export const getTemplateData = (state) =>{
+export const getTemplateData = (state) => {
   const {config, autoplayInterval, itemsPerSlide, slideWidth, gap, items} = state;
   const hasOverride = config.offsetOverride !== undefined;
   const isSingleSlide = items.length <= itemsPerSlide;
@@ -19,35 +19,38 @@ export const getTemplateData = (state) =>{
     slide = getSlide(state);
     itemWidth = `calc(${100 / itemsInSlide}% - ${((itemsInSlide - 1) * gap) / itemsInSlide}px)`;
     totalSlides = getSlide(state, items.length);
-    a11yStatusText = (state.a11yStatusText||'').replace('{currentSlide}', slide + 1).replace('{totalSlides}', totalSlides);
+    a11yStatusText = (state.a11yStatusText || '')
+      .replace('{currentSlide}', slide + 1)
+      .replace('{totalSlides}', totalSlides);
   }
 
   items.forEach((item, i) => {
     if (!React.isValidElement(item)) {
-    // @ts-ignore
+      // @ts-ignore
       const {style, transform} = item.props;
-    const marginRight = i !== items.length - 1 && `${gap}px`;
+      const marginRight = i !== items.length - 1 && `${gap}px`;
 
-    // Account for users providing a style string or object for each item.
-    if (typeof style === 'string') {
-      // @ts-ignore
-      item.props.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
-      if (transform) {
+      // Account for users providing a style string or object for each item.
+      if (typeof style === 'string') {
         // @ts-ignore
-        item.props.style += `transform:${transform}`;
-      }
-    } else {
-      // @ts-ignore
-      item.props.style = {...style,
-        width: itemWidth,
+        item.props.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
+        if (transform) {
+          // @ts-ignore
+          item.props.style += `transform:${transform}`;
+        }
+      } else {
+        // @ts-ignore
+        item.props.style = {
+          ...style,
+          width: itemWidth,
           marginRight,
           transform
+        };
       }
-    }
 
-    // item.fullyVisible =
-    //   item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
-  }
+      // item.fullyVisible =
+      //   item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+    }
   });
 
   return {
@@ -62,7 +65,7 @@ export const getTemplateData = (state) =>{
     nextControlDisabled,
     bothControlsDisabled
   };
-}
+};
 
 function onRender() {
   const {containerEl, listEl, state} = this;
@@ -317,13 +320,13 @@ function move(delta) {
  * @param {object} state The widget state.
  * @return {number}
  */
-export const getOffset = (state) =>{
+export const getOffset = (state) => {
   const {items, index} = state;
   if (!items.length) {
     return 0;
   }
   return Math.min(items[index].left, getMaxOffset(state)) || 0;
-}
+};
 
 /**
  * Given the current widget state, finds the last valid offset.

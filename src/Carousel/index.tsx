@@ -17,7 +17,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
   const gap = parseInt(props.gap, 10);
   const [state, setState] = React.useState({
     ...props,
-    className:classNames('carousel',props.className),
+    className: classNames('carousel', props.className),
     config: {}, // A place to store values that should not trigger an update by themselves.
     gap: isNaN(gap) ? 16 : gap,
     index: parseInt(props.index, 10) || 0,
@@ -60,15 +60,17 @@ export const Carousel = ({...props}: CarouselProps & any) => {
   }
   const data = getTemplateData({...state, ...props});
 
-  return <CarouselComponent {...data} >
-    {React.Children.map(data.items, (item, i) => {
-      const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
-      return React.cloneElement(item, {
-        ...item.props,
-        className: classNames({'carousel__snap-point':isStartOfSlide}, item.props.className)
-      });
-    })}
-  </CarouselComponent>;
+  return (
+    <CarouselComponent {...data}>
+      {React.Children.map(data.items, (item, i) => {
+        const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+        return React.cloneElement(item, {
+          ...item.props,
+          className: classNames({'carousel__snap-point': isStartOfSlide}, item.props.className)
+        });
+      })}
+    </CarouselComponent>
+  );
 };
 
 export {CarouselProps} from './components/carousel';
