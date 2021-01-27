@@ -39,7 +39,15 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   onEndInteraction?: any;
 };
 
-export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {},onStartInteraction, onEndInteraction, ...props}: CarouselProps) => {
+export const Carousel = ({
+  a11yStatusTag,
+  a11yHeadingTag,
+  children,
+  config = {},
+  onStartInteraction,
+  onEndInteraction,
+  ...props
+}: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
   const statusId =
     (discrete && 'carousel-status-' + props.id) || props.a11yStatusText || (props.a11yHeadingText && props.id);

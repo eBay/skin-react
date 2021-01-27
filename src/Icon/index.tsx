@@ -11,7 +11,7 @@
 import * as React from 'react';
 import Icon from './components/icon';
 // @ts-ignore
-import IconSymbolsComponent from '-!svg-react-loader!@ebay/skin/dist/svg/ds6/icons.svg';
+import IconSymbolsComponent from '-!svg-react-loader!./components/icons.svg';
 
 export const IconSymbols = (props) => (
   <span style={{display: 'none'}} hidden {...props}>

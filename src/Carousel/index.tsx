@@ -62,11 +62,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
   const handleStartInteraction = () => data.autoplayInterval && setState({interacting: true});
   const handleEndInteraction = () => data.autoplayInterval && setState({interacting: false});
   return (
-    <CarouselComponent
-      {...data}
-      onStartInteraction={handleStartInteraction}
-      onEndInteraction={handleEndInteraction}
-    >
+    <CarouselComponent {...data} onStartInteraction={handleStartInteraction} onEndInteraction={handleEndInteraction}>
       {React.Children.map(data.items, (item, i) => {
         const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
         return React.cloneElement(item, {

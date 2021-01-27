@@ -27,6 +27,7 @@ for (const theme of THEME_NAMES) {
     const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
     icons[name] = true;
   }
+  fs.copyFileSync(svgFile, path.join(outputDir, 'icons.svg'));
 }
 const iconsList = Object.keys(icons);
 
