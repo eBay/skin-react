@@ -35,9 +35,11 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   handleEndInteraction?: any;
   handleMove?: any;
   togglePlay?: any;
+  onStartInteraction?: any;
+  onEndInteraction?: any;
 };
 
-export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, ...props}: CarouselProps) => {
+export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {},onStartInteraction, onEndInteraction, ...props}: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
   const statusId =
     (discrete && 'carousel-status-' + props.id) || props.a11yStatusText || (props.a11yHeadingText && props.id);
@@ -51,16 +53,8 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
   const containerClassName = classNames('carousel__container', {
     'carousel__container--controls-disabled': props.bothControlsDisabled
   });
-  const handleStartEvent = (e) => {
-    if (props.autoplayInterval) {
-      console.log('handleStartInteraction');
-    }
-  };
-  const handleEndInteraction = (e) => {
-    if (props.autoplayInterval) {
-      console.log('handleEndInteraction');
-    }
-  };
+  const handleStartInteraction = (e) => props.autoplayInterval && onStartInteraction(e);
+  const handleEndInteraction = (e) => props.autoplayInterval && onEndInteraction(e);
   const handlePrevClick = (e) => {
     if (!props.prevControlDisabled) {
       console.log('handleMove', -1);
@@ -90,9 +84,9 @@ export const Carousel = ({a11yStatusTag, a11yHeadingTag, children, config = {}, 
     >
       <div
         className={containerClassName}
-        onFocus={handleStartEvent}
-        onTouchStart={handleStartEvent}
-        onMouseOver={handleStartEvent}
+        onFocus={handleStartInteraction}
+        onTouchStart={handleStartInteraction}
+        onMouseOver={handleStartInteraction}
         onMouseOut={handleEndInteraction}
         onTouchEnd={handleEndInteraction}
       >

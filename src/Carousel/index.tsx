@@ -31,10 +31,10 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     a11yPauseText: props.a11yPauseText || 'Pause',
     a11yPlayText: props.a11yPlayText || 'Play'
   });
+  state.items = React.Children.toArray(state.children) || [];
   React.useEffect(() => {
     //onMount
   });
-  state.items = React.Children.toArray(state.children) || [];
   const {itemsPerSlide} = state;
   if (itemsPerSlide) {
     state.peek = itemsPerSlide % 1;
@@ -59,9 +59,14 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     }
   }
   const data = getTemplateData({...state, ...props});
-
+  const handleStartInteraction = () => data.autoplayInterval && setState({interacting: true});
+  const handleEndInteraction = () => data.autoplayInterval && setState({interacting: false});
   return (
-    <CarouselComponent {...data}>
+    <CarouselComponent
+      {...data}
+      onStartInteraction={handleStartInteraction}
+      onEndInteraction={handleEndInteraction}
+    >
       {React.Children.map(data.items, (item, i) => {
         const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
         return React.cloneElement(item, {

@@ -2,7 +2,7 @@
   "name": "skin-react",
   "version": "2.0.0-beta.5",
   "description": "A set of React Components for Ebay Skin CSS",
-  "main": "lib/index.js",
+  "main": "lib/src/index.js",
   "scripts": {
     "start": "npm run storybook",
     "sanity-check": "yarn lint && yarn build && yarn test",

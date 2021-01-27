@@ -7,7 +7,6 @@ export const getTemplateData = (state) => {
   const hasOverride = config.offsetOverride !== undefined;
   const isSingleSlide = items.length <= itemsPerSlide;
   state.index = normalizeIndex(state, state.index);
-
   const offset = getOffset(state);
   const prevControlDisabled = isSingleSlide || (!autoplayInterval && offset === 0);
   const nextControlDisabled = isSingleSlide || (!autoplayInterval && offset === getMaxOffset(state));
@@ -246,14 +245,6 @@ function handleScroll(scrollLeft) {
     this.setState('index', closest);
     this.emit('scroll', {index: closest});
   }
-}
-
-function handleStartInteraction() {
-  this.setState('interacting', true);
-}
-
-function handleEndInteraction() {
-  this.setState('interacting', false);
 }
 
 /**
