@@ -1,9 +1,9 @@
 {
   "name": "skin-react",
-  "version": "2.0.0-beta.14",
+  "version": "2.0.0-beta.15",
   "description": "A set of React Components for Ebay Skin CSS",
-  "main": "lib/src/index.js",
-  "types": "lib/src/index.d.ts",
+  "main": "esm/src/index.js",
+  "types": "esm/src/index.d.ts",
   "scripts": {
     "start": "npm run storybook",
     "sanity-check": "yarn lint && yarn build && yarn test",
@@ -138,6 +138,6 @@
   ],
   "license": "MIT",
   "release": {
-    "publishDir": "lib/src"
+    "publishDir": "esm/src"
   }
 }
