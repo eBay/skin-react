@@ -10,14 +10,6 @@
 
 import * as React from 'react';
 import Icon from './components/icon';
-// @ts-ignore
-import IconSymbolsComponent from '-!svg-react-loader!./components/icons.svg';
-
-export const IconSymbols = (props) => (
-  <span style={{display: 'none'}} hidden {...props}>
-    <IconSymbolsComponent />
-  </span>
-);
 export {Icon} from './components/icon';
 export {IconName} from './components/iconName';
 export default Icon;
