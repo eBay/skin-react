@@ -1,6 +1,6 @@
 {
   "name": "skin-react",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0-beta.7",
   "description": "A set of React Components for Ebay Skin CSS",
   "main": "lib/src/index.js",
   "scripts": {
