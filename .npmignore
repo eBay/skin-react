@@ -6,7 +6,7 @@ webpack
 stories
 preprocessor.js
 npm-debug.log
-src
+.storybook
 test
 reports
 docs
