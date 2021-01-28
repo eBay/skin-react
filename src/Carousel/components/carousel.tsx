@@ -35,6 +35,9 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   togglePlay?: any;
   onStartInteraction?: any;
   onEndInteraction?: any;
+  listEl?: any;
+  nextEl?: any;
+  containerEl?: any;
 };
 
 export const Carousel = ({
@@ -45,6 +48,9 @@ export const Carousel = ({
   handleMove,
   onStartInteraction,
   onEndInteraction,
+                           listEl,
+nextEl,
+containerEl,
   ...props
 }: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
@@ -96,6 +102,7 @@ export const Carousel = ({
         onMouseOver={handleStartInteraction}
         onMouseOut={handleEndInteraction}
         onTouchEnd={handleEndInteraction}
+        ref={containerEl}
       >
         {(props.a11yStatusText || props.a11yHeadingText) && (
           <DefaultElement
@@ -125,6 +132,7 @@ export const Carousel = ({
           <ul
             className={classNames('carousel__list', {'carousel__list--image-treatment': props === 'matte'})}
             style={carouselListStyle}
+            ref={listEl}
           >
             {children}
           </ul>
@@ -136,6 +144,7 @@ export const Carousel = ({
           aria-describedby={statusId}
           aria-label={props.a11yNextText}
           aria-disabled={props.nextControlDisabled && true}
+          ref={nextEl}
         >
           <Icon name="carousel-next" />
         </button>
