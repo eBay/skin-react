@@ -11,7 +11,6 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
 import {getTemplateData} from './carousel-utils';
-// Used for carousel slide direction.
 
 export const Carousel = ({...props}: CarouselProps & any) => {
   const gap = parseInt(props.gap, 10);

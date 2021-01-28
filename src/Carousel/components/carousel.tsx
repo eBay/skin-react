@@ -31,8 +31,6 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   a11yHeadingTag?: any;
   a11yStatusText?: any;
   a11yHeadingText?: any;
-  handleStartInteraction?: any;
-  handleEndInteraction?: any;
   handleMove?: any;
   togglePlay?: any;
   onStartInteraction?: any;
@@ -44,6 +42,7 @@ export const Carousel = ({
   a11yHeadingTag,
   children,
   config = {},
+  handleMove,
   onStartInteraction,
   onEndInteraction,
   ...props
@@ -65,20 +64,20 @@ export const Carousel = ({
   const handleEndInteraction = (e) => props.autoplayInterval && onEndInteraction(e);
   const handlePrevClick = (e) => {
     if (!props.prevControlDisabled) {
-      console.log('handleMove', -1);
+      handleMove(-1, e);
     }
   };
   const handleNextClick = (e) => {
     if (!props.nextControlDisabled) {
-      console.log('handleMove', 1);
+      handleMove(1, e);
     }
   };
   const handleOnFocus = (e) => {
     if (props.autoplayInterval) {
-      console.log('handleStartInteraction');
+      handleStartInteraction(e);
     } else if ('') {
       if (props.autoplayInterval) {
-        console.log('handleEndInteraction');
+        handleEndInteraction(e);
       }
     }
   };

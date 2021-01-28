@@ -27,7 +27,15 @@ for (const theme of THEME_NAMES) {
     const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
     icons[name] = true;
   }
-  fs.copyFileSync(svgFile, path.join(outputDir, 'icons.svg'));
+  fs.copyFileSync(path.join(__dirname, 'icon-symbols.text'), path.join(outputDir, 'icon-symbols.tsx'));
+  const iconSymbolsContent = fs.readFileSync(path.join(outputDir, 'icon-symbols.tsx'), 'utf-8');
+  let newIconSymbolsContent =iconSymbolsContent.replace(/TODO_REPLACE/,svgContent);
+  newIconSymbolsContent = newIconSymbolsContent.replace(/<\?xml version="1.0" encoding="utf-8"\?>/,'');
+  newIconSymbolsContent = newIconSymbolsContent.replace(/file-rule/g,'fileRule')
+  newIconSymbolsContent = newIconSymbolsContent.replace(/fill-rule/g,'fillRule');
+  newIconSymbolsContent = newIconSymbolsContent.replace(/clip-rule/g,'clipRule');
+  newIconSymbolsContent = newIconSymbolsContent.replace(/stroke-width/g,'strokeWidth');
+  fs.writeFileSync(path.join(outputDir, 'icon-symbols.tsx'), newIconSymbolsContent);
 }
 const iconsList = Object.keys(icons);
 
