@@ -41,7 +41,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
   React.useEffect(() =>{
     const debouncedHandleResize = debounce(()=>{
       const {containerWidth } = getBoundaries(state)
-      setState({...state, preserveItems: false, slideWidth: containerWidth})
+      setState({...state, slideWidth: containerWidth, config: {...state.config, preserveItems: false}})
     }, 1000)
     const {containerWidth, currentLeft } = getBoundaries(state)
     // Update item positions in the dom.
