@@ -2,7 +2,6 @@ import * as React from 'react';
 import {processHtmlAttributes} from '../skin-utils';
 
 const LEFT = -1;
-const RIGHT = 1;
 export const getTemplateData = (state) => {
   const {config, autoplayInterval, itemsPerSlide, slideWidth, gap, items} = state;
   const hasOverride = config.offsetOverride !== undefined;
@@ -66,182 +65,11 @@ export const getTemplateData = (state) => {
   };
 };
 
-function onRender() {
-  const {containerEl, listEl, state} = this;
-  const {config, items, autoplayInterval, paused, interacting} = state;
-
-  // Do nothing for empty carousels.
-  if (!items.length) {
-    return;
-  }
-
-  // Force a rerender to start the offset override animation.
-  if (config.offsetOverride) {
-    config.offsetOverride = undefined;
-    this.renderFrame = requestAnimationFrame(() => this.setStateDirty());
-    return;
-  }
-
-  // Track if we are on a normal render or a render caused by recalculating.
-  if (config.preserveItems) {
-    config.preserveItems = false;
-
-    // Ensure only visible items within the carousel are focusable.
-    // We don't have access to these items in the template so me must update manually.
-    this.focusFrame = requestAnimationFrame(() => {
-      forEls(listEl, (itemEl) => {
-        //TODO:
-        // focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
-        //   ? child => child.removeAttribute('tabindex')
-        //   : child => child.setAttribute('tabindex', '-1')
-        // );
-      });
-    });
-
-    if (config.nativeScrolling) {
-      if (config.skipScrolling) {
-        this.emitUpdate();
-        config.skipScrolling = false;
-      } else {
-        const offset = getOffset(state);
-        if (offset !== listEl.scrollLeft) {
-          // Animate to the new scrolling position and emit update events afterward.
-          config.scrollTransitioning = true;
-          //TODO: this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
-        } else if (this.isMoving) {
-          // Animate to the new scrolling position and emit update events afterward.
-          config.scrollTransitioning = true;
-          //TODO: this.cancelScrollTransition = scrollTransition(listEl, getOffset(state), this.emitUpdate);
-        }
-      }
-    }
-
-    return;
-  }
-
-  // Otherwise recalculates the items / slide sizes.
-  this.renderFrame = requestAnimationFrame(() => {
-    const {width: containerWidth} = containerEl.getBoundingClientRect();
-    const {left: currentLeft} = listEl.firstElementChild.getBoundingClientRect();
-
-    this.setStateDirty('slideWidth', containerWidth);
-    config.preserveItems = true;
-    config.nativeScrolling = isNativeScrolling(listEl);
-
-    // Update item positions in the dom.
-    forEls(listEl, (itemEl, i) => {
-      const item = items[i];
-      const {left, right} = itemEl.getBoundingClientRect();
-      item.left = left - currentLeft;
-      item.right = right - currentLeft;
-    });
-  });
-}
-
-/**
- * Called before updates and before the widget is destroyed to remove any pending async timers / actions.
- */
-function cleanupAsync() {
-  clearTimeout(this.autoplayTimeout);
-  cancelAnimationFrame(this.renderFrame);
-  cancelAnimationFrame(this.focusFrame);
-
-  if (this.cancelScrollTransition) {
-    this.cancelScrollTransition();
-    this.cancelScrollTransition = undefined;
-  }
-}
-
-function emitUpdate() {
-  const {
-    state: {config, items}
-  } = this;
-  config.scrollTransitioning = false;
-  this.emit('move', {
-    visibleIndexes: items.filter(({fullyVisible}) => fullyVisible).map((item) => items.indexOf(item))
-  });
-}
-
-/**
- * Moves the carousel in the `data-direction` of the clicked element if possible.
- *
- * @param {MouseEvent} originalEvent
- * @param {HTMLElement} target
- */
-function handleMove(direction, originalEvent) {
-  if (this.isMoving) {
-    return;
-  }
-  const {state} = this;
-  const nextIndex = this.move(direction);
-  const slide = getSlide(state, nextIndex);
-  this.emit('slide', {slide: slide + 1, originalEvent});
-  this.emit(`${direction === 1 ? 'next' : 'previous'}`, {originalEvent});
-}
-
-/**
- * Toggles the play state of an autoplay carousel.
- *
- * @param {MouseEvent} originalEvent
- */
-function togglePlay(originalEvent) {
-  const {
-    state: {config, paused}
-  } = this;
-  config.preserveItems = true;
-  this.setState('paused', !paused);
-  if (paused && !this.isMoving) {
-    this.move(RIGHT);
-  }
-  this.emit(`${paused ? 'play' : 'pause'}`, {originalEvent});
-}
-
-/**
- * Find the closest item index to the scroll offset and triggers an update.
- *
- * @param {number} scrollLeft The current scroll position of the carousel.
- */
-function handleScroll(scrollLeft) {
-  const {state} = this;
-  const {config, items, gap} = state;
-  let closest;
-
-  if (scrollLeft >= getMaxOffset(state) - gap) {
-    closest = items.length - 1;
-  } else {
-    // Find the closest item using a binary search on each carousel slide.
-    const itemsPerSlide = state.itemsPerSlide || 1;
-    const totalItems = items.length;
-    let low = 0;
-    let high = Math.ceil(totalItems / itemsPerSlide) - 1;
-
-    while (high - low > 1) {
-      const mid = Math.floor((low + high) / 2);
-      if (scrollLeft > items[mid * itemsPerSlide].left) {
-        low = mid;
-      } else {
-        high = mid;
-      }
-    }
-
-    const deltaLow = Math.abs(scrollLeft - items[low * itemsPerSlide].left);
-    const deltaHigh = Math.abs(scrollLeft - items[high * itemsPerSlide].left);
-    closest = normalizeIndex(state, (deltaLow > deltaHigh ? high : low) * itemsPerSlide);
-  }
-
-  if (state.index !== closest) {
-    config.skipScrolling = true;
-    config.preserveItems = true;
-    this.setState('index', closest);
-    this.emit('scroll', {index: closest});
-  }
-}
-
 /**
  * Causes the carousel to move to the provided index.
  *
  * @param {-1|1} delta 1 for right and -1 for left.
- * @return {number} the updated index. //TODO : return newState object
+ * @return {number} the updated index.
  */
 export const move = (delta, state) => {
   const nextIndex = getNextIndex(state, delta);
@@ -341,31 +169,6 @@ export const getNextIndex = (state, delta) => {
 
   return normalizeIndex(state, i);
 };
-
-/**
- * Calls a function on each element within a parent element.
- *
- * @param {HTMLElement} parent The parent to walk through.
- * @param {(el: HTMLElement, i: number) => any} fn The function to call.
- */
-export const forEls = (parent, fn) => {
-  let i = 0;
-  let child = parent?.current?.firstElementChild;
-  while (child) {
-    fn(child, i++);
-    child = child.nextElementSibling;
-  }
-};
-
-/**
- * Checks if an element is using native scrolling.
- *
- * @param {HTMLElement} el the element to check
- * @return {boolean}
- */
-function isNativeScrolling(el) {
-  return getComputedStyle(el).overflowX !== 'visible';
-}
 
 export const getHTMLProps = (props) =>
   processHtmlAttributes(props, [
