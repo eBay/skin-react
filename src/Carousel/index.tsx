@@ -38,12 +38,12 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     containerEl,
     items: React.Children.toArray(props.children) || []
   });
-  React.useEffect(() =>{
-    const debouncedHandleResize = debounce(()=>{
-      const {containerWidth } = getBoundaries(state)
-      setState({...state, slideWidth: containerWidth, config: {...state.config, preserveItems: false}})
-    }, 1000)
-    const {containerWidth, currentLeft } = getBoundaries(state)
+  React.useEffect(() => {
+    const debouncedHandleResize = debounce(() => {
+      const {containerWidth} = getBoundaries(state);
+      setState({...state, slideWidth: containerWidth, config: {...state.config, preserveItems: false}});
+    }, 1000);
+    const {containerWidth, currentLeft} = getBoundaries(state);
     // Update item positions in the dom.
     const children = state.listEl?.current?.children || [];
     const prevItems = React.Children.toArray(props.children) || [];
@@ -59,10 +59,10 @@ export const Carousel = ({...props}: CarouselProps & any) => {
       });
       setState({...state, items, config: {...state.config, preserveItems: true}, slideWidth: containerWidth});
     }
-    window.addEventListener('resize', debouncedHandleResize)
+    window.addEventListener('resize', debouncedHandleResize);
     return () => {
-      window.removeEventListener('resize', debouncedHandleResize)
-    }
+      window.removeEventListener('resize', debouncedHandleResize);
+    };
   });
 
   const {itemsPerSlide} = state;
