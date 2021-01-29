@@ -10,9 +10,12 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
-import {getTemplateData} from './carousel-utils';
+import {getNextIndex, getTemplateData, move} from './carousel-utils';
 
 export const Carousel = ({...props}: CarouselProps & any) => {
+  const listEl= React.createRef();
+  const nextEl= React.createRef();
+  const containerEl= React.createRef();
   const gap = parseInt(props.gap, 10);
   const [state, setState] = React.useState({
     ...props,
@@ -28,11 +31,33 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     a11yHeadingText: props.a11yHeadingText,
     a11yHeadingTag: props.a11yHeadingTag || 'h2',
     a11yPauseText: props.a11yPauseText || 'Pause',
-    a11yPlayText: props.a11yPlayText || 'Play'
+    a11yPlayText: props.a11yPlayText || 'Play',
+    listEl,
+    nextEl,
+    containerEl,
+    items: React.Children.toArray(props.children) || []
   });
-  state.items = React.Children.toArray(state.children) || [];
   React.useEffect(() => {
-    //onMount
+    // @ts-ignore
+    const { width: containerWidth } = state.containerEl?.current?.getBoundingClientRect()||{};
+    // @ts-ignore
+    const { left: currentLeft } = state.listEl?.current?.firstElementChild?.getBoundingClientRect()||{};
+    // Update item positions in the dom.
+    // @ts-ignore
+    const children = state.listEl?.current?.children || []
+    const prevItems = React.Children.toArray(props.children) || []
+    if(!state.config.preserveItems){
+      const items = prevItems.map((item:object, i) => {
+        const itemEl = children[i]
+        const { left, right } = itemEl?.getBoundingClientRect()||{};
+        return {
+          ...item,
+          left: left - currentLeft,
+          right: right - currentLeft
+        }
+      });
+      setState({...state,items, config:{...state.config, preserveItems:true}, slideWidth:containerWidth})
+    }
   });
   const {itemsPerSlide} = state;
   if (itemsPerSlide) {
@@ -57,11 +82,15 @@ export const Carousel = ({...props}: CarouselProps & any) => {
       state.interacting = false;
     }
   }
-  const data = getTemplateData({...state, ...props});
+  const {firstRender,...data} = getTemplateData({...state, ...props});
   const handleStartInteraction = () => data.autoplayInterval && setState({interacting: true});
   const handleEndInteraction = () => data.autoplayInterval && setState({interacting: false});
+  const handleMove = ( direction) => {
+    const newState = move(direction,state);
+    setState(newState)
+  };
   return (
-    <CarouselComponent {...data} onStartInteraction={handleStartInteraction} onEndInteraction={handleEndInteraction}>
+    <CarouselComponent {...data} onStartInteraction={handleStartInteraction} onEndInteraction={handleEndInteraction} onMove={handleMove}>
       {React.Children.map(data.items, (item, i) => {
         const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
         return React.cloneElement(item, {

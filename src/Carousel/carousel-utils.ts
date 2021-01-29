@@ -47,8 +47,7 @@ export const getTemplateData = (state) => {
         };
       }
 
-      // item.fullyVisible =
-      //   item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+       item.fullyVisible = item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
     }
   });
 
@@ -251,59 +250,12 @@ function handleScroll(scrollLeft) {
  * Causes the carousel to move to the provided index.
  *
  * @param {-1|1} delta 1 for right and -1 for left.
- * @return {number} the updated index.
+ * @return {number} the updated index. //TODO : return newState object
  */
-function move(delta) {
-  const {state} = this;
-  const {index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, peek, config} = state;
+export const move = (delta, state) =>{
   const nextIndex = getNextIndex(state, delta);
-  let offsetOverride;
-
-  config.preserveItems = true;
-  this.isMoving = true;
-
-  // When we are in autoplay mode we overshoot the desired index to land on a clone
-  // of one of the ends. Then after the transition is over we update to the proper position.
-  if (autoplayInterval) {
-    if (delta === RIGHT && nextIndex < index) {
-      // Transitions to one slide before the beginning.
-      offsetOverride = -slideWidth - gap;
-
-      // Move the items in the last slide to be before the first slide.
-      for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
-        const item = items[items.length - i - 1];
-        item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap) * -1}px)`;
-      }
-    } else if (delta === LEFT && nextIndex > index) {
-      // Transitions one slide past the end.
-      offsetOverride = getMaxOffset(state) + slideWidth + gap;
-
-      // Moves the items in the first slide to be after the last slide.
-      for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
-        const item = items[i];
-        item.transform = `translateX(${getMaxOffset(state) + slideWidth + gap}px)`;
-      }
-    }
-
-    config.offsetOverride = offsetOverride;
-  }
-
-  this.setState('index', nextIndex);
-  this.once('move', () => {
-    this.isMoving = false;
-
-    if (offsetOverride !== undefined) {
-      // If we are in autoplay mode and went outside of the normal offset
-      // We make sure to restore all of the items that got moved around.
-      items.forEach((item) => {
-        item.transform = undefined;
-      });
-    }
-  });
-
-  return nextIndex;
+  return {...state, config:{...state.config, preserveItems:false}, index: nextIndex};
 }
-
 /**
  * Given the current widget state, finds the active offset left of the selected item.
  * Also automatically caps the offset at the max offset.
@@ -340,7 +292,7 @@ function getMaxOffset({items, slideWidth}) {
  * @param {number?} i the index to get the slide for.
  * @return {number}
  */
-function getSlide({index, itemsPerSlide}, i = index) {
+const getSlide = ({index, itemsPerSlide}, i = index) =>{
   if (!itemsPerSlide) {
     return;
   }
@@ -373,11 +325,10 @@ function normalizeIndex({items, itemsPerSlide}, index) {
  * @param {-1|1} delta 1 for right and -1 for left.
  * @return {number}
  */
-function getNextIndex(state, delta) {
+export const getNextIndex=(state, delta)=> {
   const {index, items, slideWidth, itemsPerSlide} = state;
   let i = index;
   let item;
-
   // If going backward from 0, we go to the end.
   if (delta === LEFT && i === 0) {
     i = items.length - 1;

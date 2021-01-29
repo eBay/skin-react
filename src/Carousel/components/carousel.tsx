@@ -31,7 +31,7 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   a11yHeadingTag?: any;
   a11yStatusText?: any;
   a11yHeadingText?: any;
-  handleMove?: any;
+  onMove?: any;
   togglePlay?: any;
   onStartInteraction?: any;
   onEndInteraction?: any;
@@ -45,7 +45,7 @@ export const Carousel = ({
   a11yHeadingTag,
   children,
   config = {},
-  handleMove,
+  onMove=()=>{},
   onStartInteraction,
   onEndInteraction,
                            listEl,
@@ -70,12 +70,12 @@ containerEl,
   const handleEndInteraction = (e) => props.autoplayInterval && onEndInteraction(e);
   const handlePrevClick = (e) => {
     if (!props.prevControlDisabled) {
-      handleMove(-1, e);
+      onMove(-1, e);
     }
   };
   const handleNextClick = (e) => {
     if (!props.nextControlDisabled) {
-      handleMove(1, e);
+      onMove(1, e);
     }
   };
   const handleOnFocus = (e) => {
@@ -108,7 +108,7 @@ containerEl,
           <DefaultElement
             tag={discrete ? a11yStatusTag : a11yHeadingTag}
             id={statusId}
-            class="clipped"
+            className="clipped"
             aria-live={discrete ? (props.autoplayInterval && !props.paused ? 'off' : 'polite') : false}
           >
             <span>{discrete ? props.a11yStatusText : props.a11yHeadingText}</span>
