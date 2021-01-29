@@ -110,7 +110,6 @@ export const withHideEffect = <P extends unknown>(Component: React.ComponentType
   notice.displayName = getDisplayName(Component);
   return notice;
 };
-
 export const hasValue = (input) => input && input.value && input.value.length > 0;
 
 export const useFocusState: any = () => {
@@ -122,3 +121,22 @@ export const useFocusState: any = () => {
   return [htmlElRef, setFocus];
 };
 export const uniqueId = (n = 7) => Math.random().toString(36).substring(n);
+export const processHtmlAttributes = (input, ignore = []) => {
+  const attributes = {};
+  const htmlAttributes = input.htmlAttributes;
+
+  let obj = htmlAttributes || {};
+  if (htmlAttributes) {
+    obj = {...htmlAttributes};
+  }
+  Object.keys(input).forEach((key) => {
+    if (ignore.indexOf(key) === -1 && !obj[key]) {
+      obj[key] = input[key];
+    }
+  });
+  Object.keys(obj).forEach((key) => {
+    attributes[key] = obj[key];
+  });
+
+  return attributes;
+};

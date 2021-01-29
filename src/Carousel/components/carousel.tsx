@@ -12,6 +12,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {DefaultElement} from '../../skin-utils';
+import {getHTMLProps} from '../carousel-utils';
 export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   config?: any;
   offset?: any;
@@ -45,12 +46,12 @@ export const Carousel = ({
   a11yHeadingTag,
   children,
   config = {},
-  onMove=()=>{},
+  onMove = () => {},
   onStartInteraction,
   onEndInteraction,
-                           listEl,
-nextEl,
-containerEl,
+  listEl,
+  nextEl,
+  containerEl,
   ...props
 }: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
@@ -92,7 +93,7 @@ containerEl,
       aria-labelledby={statusId}
       role="group"
       aria-roledescription="carousel"
-      {...props}
+      {...getHTMLProps(props)}
       className={classNames('carousel__viewport', props.className)}
     >
       <div

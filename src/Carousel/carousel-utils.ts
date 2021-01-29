@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {processHtmlAttributes} from '../skin-utils';
 
 const LEFT = -1;
 const RIGHT = 1;
@@ -12,7 +13,6 @@ export const getTemplateData = (state) => {
   const nextControlDisabled = isSingleSlide || (!autoplayInterval && offset === getMaxOffset(state));
   const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
   let slide, itemWidth, totalSlides, a11yStatusText;
-
   if (itemsPerSlide) {
     const itemsInSlide = itemsPerSlide + state.peek;
     slide = getSlide(state);
@@ -47,7 +47,8 @@ export const getTemplateData = (state) => {
         };
       }
 
-       item.fullyVisible = item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+      item.fullyVisible =
+        item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
     }
   });
 
@@ -113,16 +114,6 @@ function onRender() {
           //TODO: this.cancelScrollTransition = scrollTransition(listEl, getOffset(state), this.emitUpdate);
         }
       }
-    }
-
-    if (autoplayInterval && !paused && !interacting) {
-      const moveRight = this.move.bind(this, RIGHT);
-      this.autoplayTimeout = setTimeout(() => {
-        if (this.isMoving) {
-          return this.once('move', moveRight);
-        }
-        moveRight();
-      }, autoplayInterval);
     }
 
     return;
@@ -252,10 +243,10 @@ function handleScroll(scrollLeft) {
  * @param {-1|1} delta 1 for right and -1 for left.
  * @return {number} the updated index. //TODO : return newState object
  */
-export const move = (delta, state) =>{
+export const move = (delta, state) => {
   const nextIndex = getNextIndex(state, delta);
-  return {...state, config:{...state.config, preserveItems:false}, index: nextIndex};
-}
+  return {...state, config: {...state.config, preserveItems: false}, index: nextIndex};
+};
 /**
  * Given the current widget state, finds the active offset left of the selected item.
  * Also automatically caps the offset at the max offset.
@@ -292,13 +283,13 @@ function getMaxOffset({items, slideWidth}) {
  * @param {number?} i the index to get the slide for.
  * @return {number}
  */
-const getSlide = ({index, itemsPerSlide}, i = index) =>{
+const getSlide = ({index, itemsPerSlide}, i = index) => {
   if (!itemsPerSlide) {
     return;
   }
 
   return Math.ceil(i / itemsPerSlide);
-}
+};
 
 /**
  * Ensures that an index is valid.
@@ -325,7 +316,7 @@ function normalizeIndex({items, itemsPerSlide}, index) {
  * @param {-1|1} delta 1 for right and -1 for left.
  * @return {number}
  */
-export const getNextIndex=(state, delta)=> {
+export const getNextIndex = (state, delta) => {
   const {index, items, slideWidth, itemsPerSlide} = state;
   let i = index;
   let item;
@@ -349,7 +340,7 @@ export const getNextIndex=(state, delta)=> {
   }
 
   return normalizeIndex(state, i);
-}
+};
 
 /**
  * Calls a function on each element within a parent element.
@@ -357,14 +348,14 @@ export const getNextIndex=(state, delta)=> {
  * @param {HTMLElement} parent The parent to walk through.
  * @param {(el: HTMLElement, i: number) => any} fn The function to call.
  */
-function forEls(parent, fn) {
+export const forEls = (parent, fn) => {
   let i = 0;
-  let child = parent.firstElementChild;
+  let child = parent?.current?.firstElementChild;
   while (child) {
     fn(child, i++);
     child = child.nextElementSibling;
   }
-}
+};
 
 /**
  * Checks if an element is using native scrolling.
@@ -375,3 +366,29 @@ function forEls(parent, fn) {
 function isNativeScrolling(el) {
   return getComputedStyle(el).overflowX !== 'visible';
 }
+
+export const getHTMLProps = (props) =>
+  processHtmlAttributes(props, [
+    'index',
+    'type',
+    'slide',
+    'gap',
+    'autoplay',
+    'paused',
+    'itemsPerSlide',
+    'a11yPreviousText',
+    'a11yNextText',
+    'a11yStatusText',
+    'a11yStatusTag',
+    'a11yHeadingText',
+    'a11yHeadingTag',
+    'a11yPlayText',
+    'a11yPauseText',
+    'items',
+    'slideWidth',
+    'disableTransition',
+    'totalSlides',
+    'prevControlDisabled',
+    'nextControlDisabled',
+    'bothControlsDisabled'
+  ]);
