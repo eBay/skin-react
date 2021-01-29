@@ -23,34 +23,26 @@ export const getTemplateData = (state) => {
   }
 
   items.forEach((item, i) => {
-    if (!React.isValidElement(item)) {
-      // @ts-ignore
-      const {style, transform} = item.props;
-      const marginRight = i !== items.length - 1 && `${gap}px`;
+    const {style, transform} = item.props;
+    const marginRight = i !== items.length - 1 && `${gap}px`;
 
-      // Account for users providing a style string or object for each item.
-      if (typeof style === 'string') {
-        // @ts-ignore
-        item.props.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
-        if (transform) {
-          // @ts-ignore
-          item.props.style += `transform:${transform}`;
-        }
-      } else {
-        // @ts-ignore
-        item.props.style = {
-          ...style,
-          width: itemWidth,
-          marginRight,
-          transform
-        };
+    // Account for users providing a style string or object for each item.
+    if (typeof style === 'string') {
+      item.props.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
+      if (transform) {
+        item.props.style += `transform:${transform}`;
       }
-
-      item.fullyVisible =
-        item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+    } else {
+      item.props.style = {
+        ...style,
+        width: itemWidth,
+        marginRight,
+        transform
+      };
     }
+    item.fullyVisible =
+      item.left === undefined || (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
   });
-
   return {
     ...state,
     items,
@@ -193,7 +185,8 @@ export const getHTMLProps = (props) =>
     'totalSlides',
     'prevControlDisabled',
     'nextControlDisabled',
-    'bothControlsDisabled'
+    'bothControlsDisabled',
+    'offset'
   ]);
 
 export const getBoundaries = (state) => {

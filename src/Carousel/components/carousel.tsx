@@ -89,13 +89,7 @@ export const Carousel = ({
     }
   };
   return (
-    <div
-      aria-labelledby={statusId}
-      role="group"
-      aria-roledescription="carousel"
-      {...getHTMLProps(props)}
-      className={classNames('carousel__viewport', props.className)}
-    >
+    <div aria-labelledby={statusId} role="group" aria-roledescription="carousel" {...getHTMLProps(props)}>
       <div
         className={containerClassName}
         onFocus={handleStartInteraction}

@@ -94,10 +94,11 @@ export const Carousel = ({...props}: CarouselProps & any) => {
       onMove={handleMove}
     >
       {React.Children.map(data.items, (item, i) => {
-        const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+        const isStartOfSlide = data.itemsPerSlide ? i % data.itemsPerSlide === 0 : true;
         return React.cloneElement(item, {
           ...item.props,
-          className: classNames({'carousel__snap-point': isStartOfSlide}, item.props.className)
+          className: classNames({'carousel__snap-point': isStartOfSlide}, item.props.className),
+          'aria-hidden': !item.fullyVisible && 'true'
         });
       })}
     </CarouselComponent>
