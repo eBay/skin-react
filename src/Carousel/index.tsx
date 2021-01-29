@@ -10,7 +10,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
-import {getNextIndex, getTemplateData, move} from './carousel-utils';
+import {getBoundaries, getNextIndex, getTemplateData, move} from './carousel-utils';
+import {debounce} from '../skin-utils';
 
 export const Carousel = ({...props}: CarouselProps & any) => {
   const listEl = React.createRef();
@@ -37,9 +38,12 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     containerEl,
     items: React.Children.toArray(props.children) || []
   });
-  React.useEffect(() => {
-    const {width: containerWidth} = state.containerEl?.current?.getBoundingClientRect() || {};
-    const {left: currentLeft} = state.listEl?.current?.firstElementChild?.getBoundingClientRect() || {};
+  React.useEffect(() =>{
+    const debouncedHandleResize = debounce(()=>{
+      const {containerWidth } = getBoundaries(state)
+      setState({...state, preserveItems: false, slideWidth: containerWidth})
+    }, 1000)
+    const {containerWidth, currentLeft } = getBoundaries(state)
     // Update item positions in the dom.
     const children = state.listEl?.current?.children || [];
     const prevItems = React.Children.toArray(props.children) || [];
@@ -55,7 +59,12 @@ export const Carousel = ({...props}: CarouselProps & any) => {
       });
       setState({...state, items, config: {...state.config, preserveItems: true}, slideWidth: containerWidth});
     }
+    window.addEventListener('resize', debouncedHandleResize)
+    return () => {
+      window.removeEventListener('resize', debouncedHandleResize)
+    }
   });
+
   const {itemsPerSlide} = state;
   if (itemsPerSlide) {
     state.peek = itemsPerSlide % 1;
@@ -70,7 +79,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
       state.className = state.className + ' carousel--peek';
     }
   }
-  const {firstRender, ...data} = getTemplateData({...state, ...props});
+  const data = getTemplateData({...state, ...props});
   const handleStartInteraction = () => data.autoplayInterval && setState({interacting: true});
   const handleEndInteraction = () => data.autoplayInterval && setState({interacting: false});
   const handleMove = (direction) => {

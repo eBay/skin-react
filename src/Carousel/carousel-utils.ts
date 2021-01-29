@@ -195,3 +195,9 @@ export const getHTMLProps = (props) =>
     'nextControlDisabled',
     'bothControlsDisabled'
   ]);
+
+export const getBoundaries = (state)=> {
+  const {width: containerWidth} = state?.containerEl?.current?.getBoundingClientRect() || {};
+  const {left: currentLeft} = state?.listEl?.current?.firstElementChild?.getBoundingClientRect() || {};
+  return {containerWidth, currentLeft}
+}
