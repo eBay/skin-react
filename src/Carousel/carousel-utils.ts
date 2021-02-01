@@ -65,7 +65,7 @@ export const getTemplateData = (state) => {
  */
 export const move = (delta, state) => {
   const nextIndex = getNextIndex(state, delta);
-  return {...state, config: {...state.config, preserveItems: false}, index: nextIndex};
+  return {...state, config: {...state.config, preserveItems: true}, index: nextIndex};
 };
 /**
  * Given the current widget state, finds the active offset left of the selected item.
@@ -194,3 +194,11 @@ export const getBoundaries = (state) => {
   const {left: currentLeft} = state?.listEl?.current?.firstElementChild?.getBoundingClientRect() || {};
   return {containerWidth, currentLeft};
 };
+
+/**
+ * Checks if an element is using native scrolling.
+ *
+ * @param {HTMLElement} el the element to check
+ * @return {boolean}
+ */
+export const isNativeScrolling = (el) => getComputedStyle(el).overflowX !== 'visible';

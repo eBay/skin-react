@@ -39,6 +39,7 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   listEl?: any;
   nextEl?: any;
   containerEl?: any;
+  handleScroll?: any;
 };
 
 export const Carousel = ({
@@ -52,6 +53,7 @@ export const Carousel = ({
   listEl,
   nextEl,
   containerEl,
+  handleScroll,
   ...props
 }: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
@@ -77,15 +79,6 @@ export const Carousel = ({
   const handleNextClick = (e) => {
     if (!props.nextControlDisabled) {
       onMove(1, e);
-    }
-  };
-  const handleOnFocus = (e) => {
-    if (props.autoplayInterval) {
-      handleStartInteraction(e);
-    } else if ('') {
-      if (props.autoplayInterval) {
-        handleEndInteraction(e);
-      }
     }
   };
   return (
@@ -128,6 +121,7 @@ export const Carousel = ({
             className={classNames('carousel__list', {'carousel__list--image-treatment': props === 'matte'})}
             style={carouselListStyle}
             ref={listEl}
+            onScroll={handleScroll}
           >
             {children}
           </ul>

@@ -10,7 +10,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
-import {getBoundaries, getNextIndex, getTemplateData, move} from './carousel-utils';
+import {getBoundaries, getNextIndex, getTemplateData, isNativeScrolling, move} from './carousel-utils';
 import {debounce} from '../skin-utils';
 
 export const Carousel = ({...props}: CarouselProps & any) => {
@@ -42,12 +42,13 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     const debouncedHandleResize = debounce(() => {
       const {containerWidth} = getBoundaries(state);
       setState({...state, slideWidth: containerWidth, config: {...state.config, preserveItems: false}});
+      console.log(state);
     }, 1000);
-    const {containerWidth, currentLeft} = getBoundaries(state);
-    // Update item positions in the dom.
-    const children = state.listEl?.current?.children || [];
-    const prevItems = React.Children.toArray(props.children) || [];
     if (!state.config.preserveItems) {
+      const {containerWidth, currentLeft} = getBoundaries(state);
+      // Update item positions in the dom.
+      const children = state.listEl?.current?.children || [];
+      const prevItems = React.Children.toArray(props.children) || [];
       const items = prevItems.map((item: object, i) => {
         const itemEl = children[i];
         const {left, right} = itemEl?.getBoundingClientRect() || {};
@@ -57,6 +58,9 @@ export const Carousel = ({...props}: CarouselProps & any) => {
           right: right - currentLeft
         };
       });
+      if (isNativeScrolling(state?.listEl?.current)) {
+        state.config.nativeScrolling = true;
+      }
       setState({...state, items, config: {...state.config, preserveItems: true}, slideWidth: containerWidth});
     }
     window.addEventListener('resize', debouncedHandleResize);
