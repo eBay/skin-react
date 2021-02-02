@@ -1,0 +1,7 @@
+import * as React from 'react';
+
+export const IconSymbols = (props) => (
+  <span style={{display: 'none'}} hidden {...props}>
+  TODO_REPLACE
+  </span>
+);

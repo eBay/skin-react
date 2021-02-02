@@ -8,7 +8,7 @@
  *  ***********************************************************
  */
 
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import {
   removeProp,
   withProps,
@@ -72,9 +72,7 @@ describe('withOnChangeState HOC', () => {
   const TestComponent = (props) => <span {...props} />;
   it('should render a component with injected Props', () => {
     const ComponentWithState = withOnChangeState(TestComponent);
-    const component = shallow(<ComponentWithState className="custom-class" />);
-    const state: any = component.state();
-    expect(state.checked).toBe(false);
+    const component = mount(<ComponentWithState className="custom-class" />);
     expect(component.hasClass('custom-class')).toBe(true);
   });
 });

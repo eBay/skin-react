@@ -42,10 +42,10 @@ export const isBetween = (min: number, max: number) => (value: number) => value 
 
 export const is = (options: object) => (str: string): boolean => options[str] || false;
 
-export const addPrefix = (prefix: string) => (className: string = '', showPrefix?: boolean) =>
+export const addPrefix = (prefix: string) => (className = '', showPrefix?: boolean) =>
   `${showPrefix ? prefix : ''}${className}`;
 
-export const addPostfix = (postfix: string) => (className: string = '', showPostfix?: boolean) =>
+export const addPostfix = (postfix: string) => (className = '', showPostfix?: boolean) =>
   `${className}${showPostfix ? postfix : ''}`;
 
 export const addPrefixOrder = (prefix: string) => (showPrefix: boolean, className: string) =>
@@ -53,7 +53,7 @@ export const addPrefixOrder = (prefix: string) => (showPrefix: boolean, classNam
 
 export const addFakePrefix = addPrefixOrder('fake-');
 
-export const getFakeTag = (isFake: boolean, fakeTag: string = 'a', tag: string = 'div') => (isFake ? fakeTag : tag);
+export const getFakeTag = (isFake: boolean, fakeTag = 'a', tag = 'div') => (isFake ? fakeTag : tag);
 
 export const DefaultElement = ({tag = 'div', ...props}) => React.createElement(tag, props);
 
@@ -70,25 +70,23 @@ export const withProps = ({displayName, ...injectedProps}) => (WrappedComponent 
 export const getDisplayName = (Component) =>
   !Component ? 'Component' : Component.displayName || Component.name || 'Component';
 
-export function withOnChangeState<P>(Component: React.ComponentType<P>) {
-  const displayName = getDisplayName(Component);
-  return class extends React.Component<P> {
-    public static displayName = `withOnChangeState(${displayName})`;
-    constructor(props) {
-      super(props);
-      this.state = {
-        checked: props.checked || false
-      };
-    }
-    handleChange = (e) => {
+export const withOnChangeState = <Props,>(Component: React.FC<Props>) => {
+  const WithOnChangeState = React.forwardRef<React.FC<Props>, Props>((props, ref) => {
+    // @ts-ignore
+    const [state, setState] = React.useState({checked: props.checked || false});
+    const handleChange = (e) => {
       const input = e.target || {};
       // @ts-ignore
-      this.props.onChange && this.props.onChange(e, input);
-      this.setState({checked: input.checked});
+      props.onChange && props.onChange(e, input);
+      setState({checked: input.checked});
     };
-    render = () => <Component {...this.props} {...this.state} onChange={this.handleChange} />;
-  };
-}
+    return <Component {...props} {...state} onChange={handleChange} />;
+  });
+
+  WithOnChangeState.displayName = getDisplayName(Component);
+
+  return WithOnChangeState;
+};
 
 export const withForwardRef: any = <P extends unknown>(Component: React.ComponentType<P>) => {
   const ForwardRef = React.forwardRef((props: React.HTMLProps<P> | any, ref) => (
@@ -112,7 +110,6 @@ export const withHideEffect = <P extends unknown>(Component: React.ComponentType
   notice.displayName = getDisplayName(Component);
   return notice;
 };
-
 export const hasValue = (input) => input && input.value && input.value.length > 0;
 
 export const useFocusState: any = () => {
@@ -124,3 +121,31 @@ export const useFocusState: any = () => {
   return [htmlElRef, setFocus];
 };
 export const uniqueId = (n = 7) => Math.random().toString(36).substring(n);
+export const processHtmlAttributes = (input, ignore = []) => {
+  const attributes = {};
+  const htmlAttributes = input.htmlAttributes;
+
+  let obj = htmlAttributes || {};
+  if (htmlAttributes) {
+    obj = {...htmlAttributes};
+  }
+  Object.keys(input).forEach((key) => {
+    if (ignore.indexOf(key) === -1 && !obj[key]) {
+      obj[key] = input[key];
+    }
+  });
+  Object.keys(obj).forEach((key) => {
+    attributes[key] = obj[key];
+  });
+
+  return attributes;
+};
+export const debounce = (func: Function, timeout: number) => {
+  let timer: NodeJS.Timeout | any;
+  return (...args: any) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args);
+    }, timeout);
+  };
+};

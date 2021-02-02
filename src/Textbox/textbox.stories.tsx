@@ -31,7 +31,7 @@ export const _Textbox = () => {
   const isMultiline = boolean('isMultiline', false);
   const isUnderlined = boolean('isUnderlined', false);
   const isFluid = boolean('isFluid', false);
-  const iconName = select('iconName', iconOptions, '') as IconName;
+  const iconName = select('iconName', iconOptions, '');
   const isPostfixIcon = boolean('isPostfixIcon', false);
   const props = {...defaultProps, isFluid, isUnderlined, isMultiline, iconName, isPostfixIcon};
   return (

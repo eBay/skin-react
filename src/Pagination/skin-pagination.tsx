@@ -75,7 +75,7 @@ export class Pagination extends React.Component<PaginationProps, {pager?: object
     }
   }
 
-  public getPager(totalItems: any, currentPage: any, pageSize: number = 9) {
+  public getPager(totalItems: any, currentPage: any, pageSize = 9) {
     currentPage = currentPage || 1;
     const totalPages = totalItems;
     let startPage: any;

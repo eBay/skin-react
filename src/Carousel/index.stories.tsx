@@ -12,14 +12,16 @@ import * as React from 'react';
 import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {withKnobs, select, boolean, number} from '@storybook/addon-knobs';
-import {withInfo} from '@storybook/addon-info';
-import {Badge} from './index';
+import {Carousel} from './index';
 import {BgColorsEnum, ColorsEnum} from '../skin';
 import {withA11y} from '@storybook/addon-a11y';
+import {times} from '../test-utils';
+import {BreadcrumbItem} from '../Breadcrumb/components/breadcrumbItem';
+import {Breadcrumb} from '../Breadcrumb/skin-breadcrumb';
 
 const story: any = {
   title: Category.SKINDS6,
-  component: Badge,
+  component: Carousel,
   decorators: [withKnobs, withA11y]
 };
 const defaultProps = {};
@@ -31,24 +33,26 @@ const BgColorOptions = {
   ...BgColorsEnum,
   none: ''
 };
-
-export const Badges = () => {
-  const bgColor = select('Background Color', BgColorOptions, '', 'BG color');
-  const content = number(
-    'number',
-    100,
-    {
-      range: true,
-      min: 1,
-      max: 200,
-      step: 50
-    },
-    '1'
+const liStyles = {
+  backgroundColor: '#f1f8fe',
+  color: '#111820',
+  fontSize: '24px',
+  height: '120px',
+  lineHeight: '120px',
+  marginRight: '16px',
+  width: '200px'
+};
+export const Carousels = () => {
+  const props = {...defaultProps};
+  return (
+    <Carousel {...props}>
+      {times(10, (x) => (
+        <li key={x} style={liStyles}>
+          Card {x}
+        </li>
+      ))}
+    </Carousel>
   );
-  const props = {...defaultProps, bgColor};
-  return <Badge {...props} aria-label="unread items" number={content} />;
 };
-Badges.story = {
-  name: 'Badge'
-};
+
 export default story;

@@ -12,10 +12,10 @@ import {addFakePrefix, getFakeTag} from '../../skin-utils';
 import * as React from 'react';
 import classNames from 'classnames';
 export type TabItemProps = React.HTMLProps<HTMLDivElement | HTMLAnchorElement> &
-  Skin.Fake &
-  Skin.Selected & {
+  Skin.Fake & {
     listClassName?: string;
     forwardedRef?: any;
+    selected?: boolean;
   };
 export const TabItem = ({listClassName, className, selected, forwardedRef, ...props}: TabItemProps) => {
   const isFake = !!props.href;

@@ -12,10 +12,10 @@ import * as React from 'react';
 import classNames from 'classnames';
 import {getFakeTag} from '../../skin-utils';
 import * as Skin from '../../skin';
-export type PageItemProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> &
-  Skin.Selected & {
-    isCurrent?: boolean;
-  };
+export type PageItemProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> & {
+  isCurrent?: boolean;
+  selected?: boolean;
+};
 export const PageItem = ({selected, isCurrent, ...props}: PageItemProps) => {
   const tag = getFakeTag(!!props.href, 'a', 'button');
   const className = classNames('pagination__item', props.className);

@@ -24,8 +24,6 @@
     "example",
     "lib",
     "esm",
-    "src/**/*.test.*",
-    "**/__tests__/**",
     "build",
     "scripts"
   ],

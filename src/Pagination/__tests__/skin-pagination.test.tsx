@@ -20,7 +20,7 @@ const defaultProps = {
   pageSize: 3,
   onChangePage
 };
-const getMountComponent = (props = {}, pageItems: number = 5) => {
+const getMountComponent = (props = {}, pageItems = 5) => {
   const mergeProps = {...defaultProps, ...props};
   return mount(<Pagination className="custom-class" {...mergeProps} children={PageItems(pageItems)} />);
 };

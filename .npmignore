@@ -2,11 +2,12 @@
 **/webpack*.js
 **/tsconfig*.json
 **/node_modules
+*stories.*
 webpack
 stories
 preprocessor.js
 npm-debug.log
-src
+.storybook
 test
 reports
 docs
