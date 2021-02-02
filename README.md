@@ -9,7 +9,7 @@ https://github.com/eBay/skin
 * [x] [badge](src/Badge/.)
 * [x] [breadcrumbs](src/Breadcrumb/.)
 * [x] [button](src/Button/.)
-* [ ] [carousel](src/.)
+* [ ] [carousel](src/.)(in Progress)
 * [x] [checkbox](src/Checkbox/.)
 * [ ] [combobox-readonly](src/.)
 * [ ] [combobox](src/.)
@@ -65,14 +65,8 @@ skin-react eases the use of the original skin for developers who are more conver
 ### html skin #
 ```javascript
 
-<button class="btn btn--primary">
-    <span class="btn__cell">
-        <svg aria-hidden="true" focusable="false" class="icon icon--menu btn__icon">
-          <use xlink:href="#icon-menu"></use>
-        </svg>
-        <span>Button</span>
-    </span>
-</button>
+<button class="btn btn--primary btn--large">Button</button>
+<a class="fake-btn fake-btn--primary fake-btn--large" href="#">Large Link</a>
 
 ```
 ### skin-react
@@ -81,14 +75,10 @@ import * as React from 'react';
 import {Button, BtnCell, Icon} from 'skin-react';
 
 function Example() {
-  return (
-    <Button btnColor="primary" >
-        <BtnCell>
-          <Icon className="btn__icon" iconType="menu" />
-          <span>Button</span>
-        </BtnCell>
-    </Button>
-  )
+  return (<>
+    <Button variant="primary" size="large">Button</Button>
+    <Button variant="primary" size="large" href="#">Button</Button>
+  </>)
 }
 ```
 
@@ -109,7 +99,7 @@ ReactDOM.render(
 stylesheet is required to use these components.
 ```javascript
     //The following line can be included in your root .js/ts file
-    import '@ebay/skin/dist/spinner/ds6/spinner.css';
+    import '@ebay/skin/_cdn/skin/v12.0.0/ds6/skin.min.css';
 ```
 
 ## Accessibility (A11Y)
