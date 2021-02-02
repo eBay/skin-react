@@ -101,6 +101,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     scrollTransition(listNode, offset);
     setState(newState);
   };
+  console.log('Beta version not yet Fully tested')
   return (
     <CarouselComponent
       {...data}
