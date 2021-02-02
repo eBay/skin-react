@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {processHtmlAttributes} from '../skin-utils';
 const supportsScrollBehavior = typeof window !== 'undefined' && 'scrollBehavior' in document.body.style;
 const LEFT = -1;
@@ -205,7 +204,6 @@ export const isNativeScrolling = (el) => getComputedStyle(el).overflowX !== 'vis
 
 export const scrollTransition = (el, to, fn = () => {}) => {
   if (supportsScrollBehavior) {
-    console.log('To:', to);
     el.scrollTo({left: to});
   }
 };
