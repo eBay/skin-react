@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {processHtmlAttributes} from '../skin-utils';
-
+const supportsScrollBehavior = typeof window !== 'undefined' && 'scrollBehavior' in document.body.style;
 const LEFT = -1;
 export const getTemplateData = (state) => {
   const {config, autoplayInterval, itemsPerSlide, slideWidth, gap, items} = state;
@@ -103,7 +103,7 @@ function getMaxOffset({items, slideWidth}) {
  * @param {number?} i the index to get the slide for.
  * @return {number}
  */
-const getSlide = ({index, itemsPerSlide}, i = index) => {
+export const getSlide = ({index, itemsPerSlide}, i = index) => {
   if (!itemsPerSlide) {
     return;
   }
@@ -202,3 +202,10 @@ export const getBoundaries = (state) => {
  * @return {boolean}
  */
 export const isNativeScrolling = (el) => getComputedStyle(el).overflowX !== 'visible';
+
+ export const scrollTransition = (el, to, fn = ()=>{}) =>{
+  if (supportsScrollBehavior) {
+    console.log('To:', to)
+    el.scrollTo({ left: to });
+  }
+}

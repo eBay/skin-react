@@ -11,7 +11,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
-import {DefaultElement} from '../../skin-utils';
+import {DefaultElement, uniqueId} from '../../skin-utils';
 import {getHTMLProps} from '../carousel-utils';
 export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
   config?: any;
@@ -43,7 +43,8 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
 };
 
 export const Carousel = ({
-  a11yStatusTag,
+                           id = uniqueId(),
+                           a11yStatusTag,
   a11yHeadingTag,
   children,
   config = {},
@@ -58,7 +59,7 @@ export const Carousel = ({
 }: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
   const statusId =
-    (discrete && 'carousel-status-' + props.id) || props.a11yStatusText || (props.a11yHeadingText && props.id);
+    (discrete && 'carousel-status-' + id) || props.a11yStatusText || (props.a11yHeadingText && id);
   const carouselListStyle =
     (!config.nativeScrolling &&
       props.offset && {
@@ -82,7 +83,7 @@ export const Carousel = ({
     }
   };
   return (
-    <div aria-labelledby={statusId} role="group" aria-roledescription="carousel" {...getHTMLProps(props)}>
+    <div aria-labelledby={statusId} role="group" aria-roledescription="carousel" {...getHTMLProps(props)} id={id}>
       <div
         className={containerClassName}
         onFocus={handleStartInteraction}

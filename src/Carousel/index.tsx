@@ -10,7 +10,13 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
-import {getBoundaries, getNextIndex, getTemplateData, isNativeScrolling, move} from './carousel-utils';
+import {
+  getBoundaries, getOffset,
+  getTemplateData,
+  isNativeScrolling,
+  move,
+  scrollTransition
+} from './carousel-utils';
 import {debounce} from '../skin-utils';
 
 export const Carousel = ({...props}: CarouselProps & any) => {
@@ -38,16 +44,17 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     containerEl,
     items: React.Children.toArray(props.children) || []
   });
+  let listNode = state?.listEl?.current;
+  const debouncedHandleResize = debounce(() => {
+    const {containerWidth} = getBoundaries(state);
+    setState({...state, slideWidth: containerWidth, config: {...state.config, preserveItems: false}});
+  }, 1000);
   React.useEffect(() => {
-    const debouncedHandleResize = debounce(() => {
-      const {containerWidth} = getBoundaries(state);
-      setState({...state, slideWidth: containerWidth, config: {...state.config, preserveItems: false}});
-      console.log(state);
-    }, 1000);
+    listNode = state?.listEl?.current;
     if (!state.config.preserveItems) {
       const {containerWidth, currentLeft} = getBoundaries(state);
       // Update item positions in the dom.
-      const children = state.listEl?.current?.children || [];
+      const children = listNode?.children || [];
       const prevItems = React.Children.toArray(props.children) || [];
       const items = prevItems.map((item: object, i) => {
         const itemEl = children[i];
@@ -58,7 +65,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
           right: right - currentLeft
         };
       });
-      if (isNativeScrolling(state?.listEl?.current)) {
+      if (isNativeScrolling(listNode)) {
         state.config.nativeScrolling = true;
       }
       setState({...state, items, config: {...state.config, preserveItems: true}, slideWidth: containerWidth});
@@ -88,6 +95,10 @@ export const Carousel = ({...props}: CarouselProps & any) => {
   const handleEndInteraction = () => data.autoplayInterval && setState({interacting: false});
   const handleMove = (direction) => {
     const newState = move(direction, state);
+    const offset = getOffset(newState);
+    // Animate to the new scrolling position and emit update events afterward.
+    newState.config.scrollTransitioning = true;
+    scrollTransition(listNode, offset);
     setState(newState);
   };
   return (
