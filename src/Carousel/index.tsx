@@ -10,13 +10,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import {Carousel as CarouselComponent, CarouselProps} from './components/carousel';
-import {
-  getBoundaries, getOffset,
-  getTemplateData,
-  isNativeScrolling,
-  move,
-  scrollTransition
-} from './carousel-utils';
+import {getBoundaries, getOffset, getTemplateData, isNativeScrolling, move, scrollTransition} from './carousel-utils';
 import {debounce} from '../skin-utils';
 
 export const Carousel = ({...props}: CarouselProps & any) => {
@@ -101,7 +95,7 @@ export const Carousel = ({...props}: CarouselProps & any) => {
     scrollTransition(listNode, offset);
     setState(newState);
   };
-  console.log('Beta version not yet Fully tested')
+  console.log('Beta version not yet Fully tested');
   return (
     <CarouselComponent
       {...data}

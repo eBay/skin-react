@@ -203,9 +203,9 @@ export const getBoundaries = (state) => {
  */
 export const isNativeScrolling = (el) => getComputedStyle(el).overflowX !== 'visible';
 
- export const scrollTransition = (el, to, fn = ()=>{}) =>{
+export const scrollTransition = (el, to, fn = () => {}) => {
   if (supportsScrollBehavior) {
-    console.log('To:', to)
-    el.scrollTo({ left: to });
+    console.log('To:', to);
+    el.scrollTo({left: to});
   }
-}
+};

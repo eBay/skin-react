@@ -43,8 +43,8 @@ export type CarouselProps = React.HTMLProps<HTMLDivElement> & {
 };
 
 export const Carousel = ({
-                           id = uniqueId(),
-                           a11yStatusTag,
+  id = uniqueId(),
+  a11yStatusTag,
   a11yHeadingTag,
   children,
   config = {},
@@ -58,8 +58,7 @@ export const Carousel = ({
   ...props
 }: CarouselProps) => {
   const discrete = props.totalSlides >= 1;
-  const statusId =
-    (discrete && 'carousel-status-' + id) || props.a11yStatusText || (props.a11yHeadingText && id);
+  const statusId = (discrete && 'carousel-status-' + id) || props.a11yStatusText || (props.a11yHeadingText && id);
   const carouselListStyle =
     (!config.nativeScrolling &&
       props.offset && {
