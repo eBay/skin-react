@@ -11,8 +11,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export const getClass = (isLink: boolean, isImg: boolean) => `${isImg ? 'img' : 'icon'}-${isLink ? 'link' : 'btn'}`;
-export const getTag = (isLink: boolean) => (isLink ? 'a' : 'button');
+const getClass = (isLink: boolean, isImg: boolean) => `${isImg ? 'img' : 'icon'}-${isLink ? 'link' : 'btn'}`;
+const getTag = (isLink: boolean) => (isLink ? 'a' : 'button');
 
 export type ActionableProps = React.HTMLProps<HTMLButtonElement | HTMLAnchorElement> & {
   isImg?: boolean;

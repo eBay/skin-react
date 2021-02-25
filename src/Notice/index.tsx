@@ -9,4 +9,4 @@
  */
 
 import * as React from 'react';
-export {PageNotice, WindowNotice, InlineNotice, SectionNotice} from './components/notice';
+export * from './components/notice';
