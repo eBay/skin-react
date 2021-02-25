@@ -193,4 +193,7 @@ export type IconName =
   | 'sign-out'
   | 'top-seller'
   | 'user-profile'
+  | 'stepper-confirmation'
+  | 'stepper-information'
+  | 'stepper-attention'
   | 'dropdown';

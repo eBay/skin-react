@@ -50,10 +50,10 @@ export const SectionNotice = ({a11yRoleDescription = 'Notice', ...props}: Notice
     />
   );
 };
-export const WindowNotice = ({status,window, ...props}: NoticeBaseProps & {window?: 'fullscreen'}) => {
+export const WindowNotice = ({status, window, ...props}: NoticeBaseProps & {window?: 'fullscreen'}) => {
   return (
     <NoticeBase
-      status={status||'confirmation'}
+      status={status || 'confirmation'}
       {...props}
       className={classNames({'window-notice--screen': window === 'fullscreen'}, props.className)}
       role="region"

@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import { SectionTitle} from './index';
+import {SectionTitle} from './index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withA11y} from '@storybook/addon-a11y';
 
@@ -29,11 +29,11 @@ export const _SectionTitle = () => {
   const props = {...defaultProps};
   return (
     <div>
-        <SectionTitle {...props} />
+      <SectionTitle {...props} />
       <br />
       <br />
       <br />
-        <SectionTitle {...props} href="#" ctaText="See All" />
+      <SectionTitle {...props} href="#" ctaText="See All" />
     </div>
   );
 };

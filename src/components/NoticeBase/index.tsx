@@ -47,7 +47,9 @@ export const NoticeBase = ({
         aria-roledescription={a11yRoleDescription}
         id={id}
       >
-        {icon !== false && status && <Icon name={`${status}-filled`} aria-label={a11yText || status} className={iconClass} />}
+        {icon !== false && status && (
+          <Icon name={`${status}-filled`} aria-label={a11yText || status} className={iconClass} />
+        )}
       </DefaultElement>
       <DefaultElement className={`${prefixClass}__main`} tag={mainRoot || 'div'}>
         {title && <h2 className={`${prefixClass}__title`}>{title}</h2>}
