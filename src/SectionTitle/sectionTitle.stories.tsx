@@ -9,12 +9,9 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import DemoComponent from '../../.storybook/util/demo';
 import {Category} from '../../.storybook/util/stories-hierarchy';
-import {SectionCTA, SectionTitle} from './index';
+import { SectionTitle} from './index';
 import {withKnobs} from '@storybook/addon-knobs';
-import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
@@ -32,15 +29,11 @@ export const _SectionTitle = () => {
   const props = {...defaultProps};
   return (
     <div>
-      <DemoComponent>
         <SectionTitle {...props} />
-      </DemoComponent>
       <br />
       <br />
       <br />
-      <DemoComponent>
         <SectionTitle {...props} href="#" ctaText="See All" />
-      </DemoComponent>
     </div>
   );
 };

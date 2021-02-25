@@ -24,48 +24,31 @@ const story: any = {
   component: PageNotice,
   decorators: [withKnobs, withA11y]
 };
-const noticeList = [
-  {
-    title: 'Your first order has been placed!',
-    color: 'celebration',
-    icon: 'confirmation-filled'
-  },
-  {
-    color: 'confirmation',
-    icon: 'confirmation-filled'
-  },
-  {
-    color: 'information',
-    icon: 'information-filled'
-  },
-  {
-    color: 'attention',
-    icon: 'attention-filled'
-  }
-];
+const statusList= ['','confirmation' , 'attention' , 'information' , 'celebration']
+
 
 const defaultProps = {
-  id: 'page-notice'
 };
 const typeOptions = toStoryObj(['page', 'section', 'inline']);
 
 export const _PageNotice = () => {
   return (
-    <div>
-      <PageNotice
-        {...defaultProps}
-        title={'Title copy goes here'}
-        id={`page-notice-1`}
-        a11yText={`page notice 1`}
-        footer={
-          <Button priority="secondary" className="btn--transparent" aria-label="Read More Button">
-            Action
-          </Button>
-        }
-      >
-        <p>Details...</p>
-      </PageNotice>
-    </div>
+    statusList.map((status,i)=>(<div key={i}>
+        <PageNotice
+          {...defaultProps}
+          status={status}
+          title={'Title copy goes here'}
+          id={`page-notice-${i}`}
+          a11yText={`page notice ${i}`}
+          footer={
+            <Button priority="secondary" className="btn--transparent" aria-label="Read More Button">
+              Action
+            </Button>
+          }
+        >
+          <p>Details...</p>
+        </PageNotice>
+      </div>))
   );
 };
 
