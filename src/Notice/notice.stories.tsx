@@ -13,7 +13,7 @@ import StoryBook from '../../.storybook/util/story-setup';
 import {Category} from '../../.storybook/util/stories-hierarchy';
 import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import {PageNotice, WindowNotice} from './index';
+import  {InlineNotice,PageNotice, SectionNotice, WindowNotice} from './index';
 import {IconName} from '../Icon';
 import Button from '../Button';
 import {toStoryObj} from '../../.storybook/util/utils';
@@ -31,10 +31,10 @@ const defaultProps = {
 };
 const typeOptions = toStoryObj(['page', 'section', 'inline']);
 
-export const _PageNotice = () => {
+export const _SectionNotice = () => {
   return (
     statusList.map((status,i)=>(<div key={i}>
-        <PageNotice
+        <SectionNotice
           {...defaultProps}
           status={status}
           title={'Title copy goes here'}
@@ -47,17 +47,55 @@ export const _PageNotice = () => {
           }
         >
           <p>Details...</p>
-        </PageNotice>
+        </SectionNotice>
       </div>))
   );
 };
-
-export const _WindowNotice = () => {
+export const _PageNotice = () => {
+  return (
+    statusList.map((status,i)=>(<div key={i}>
+      <PageNotice
+        {...defaultProps}
+        status={status}
+        title={'Title copy goes here'}
+        id={`page-notice-${i}`}
+        a11yText={`page notice ${i}`}
+        footer={
+          <Button priority="secondary" className="btn--transparent" aria-label="Read More Button">
+            Action
+          </Button>
+        }
+      >
+        <p>Details...</p>
+      </PageNotice>
+    </div>))
+  );
+};export const _InlineNotice = () => {
+  return (
+    statusList.map((status,i)=>(<div key={i}>
+      <InlineNotice
+        {...defaultProps}
+        status={status}
+        title={'Title copy goes here'}
+        id={`page-notice-${i}`}
+        a11yText={`page notice ${i}`}
+        footer={
+          <Button priority="secondary" className="btn--transparent" aria-label="Read More Button">
+            Action
+          </Button>
+        }
+      >
+        <p>Details...</p>
+      </InlineNotice>
+    </div>))
+  );
+};export const _WindowNotice = () => {
   const hidden = boolean('hidden', false);
   return (
-    <div>
+    statusList.map((status,i)=>(<div key={i}>
       <WindowNotice
         {...defaultProps}
+        status={status}
         title="Your first order has been placed!"
         id="window-notice-1"
         hidden={hidden}
@@ -70,7 +108,7 @@ export const _WindowNotice = () => {
       >
         <p>You'll get a confirmation email soon. The rest of your items are now ready to checkout.</p>
       </WindowNotice>
-    </div>
+    </div>))
   );
 };
 
