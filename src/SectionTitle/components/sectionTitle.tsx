@@ -23,7 +23,17 @@ export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'> &
     info?: ReactNode;
     overflow?: ReactNode;
   };
-export const SectionTitle = ({title, subtitle, href, ctaText, info, overflow, size, ...props}: SectionTitleProps) => {
+export const SectionTitle = ({
+  title,
+  children,
+  subtitle,
+  href,
+  ctaText,
+  info,
+  overflow,
+  size,
+  ...props
+}: SectionTitleProps) => {
   const className = classNames(
     'section-title',
     {
@@ -33,9 +43,8 @@ export const SectionTitle = ({title, subtitle, href, ctaText, info, overflow, si
   );
   return (
     <div {...props} className={className}>
-      {title && <SectionContainer title={title} subtitle={subtitle} href={href} />}
+      {(title || children) && <SectionContainer title={title || children} subtitle={subtitle} href={href} />}
       {href && <SectionCTA href={href} ctaText={ctaText} />}
-      {props.children}
       {info && <SectionInfo>{info}</SectionInfo>}
       {overflow && <SectionOverflow>{overflow}</SectionOverflow>}
     </div>
