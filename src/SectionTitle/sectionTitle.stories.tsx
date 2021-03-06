@@ -22,13 +22,16 @@ const story: any = {
 };
 
 const defaultProps = {
-  style: {backgroundColor: 'white' , marginBottom:'20px'},
-  children:' '
+  style: {backgroundColor: 'white', marginBottom: '20px'},
+  children: ' '
 };
 
 export const _SectionTitle = () => {
-  const props = {...defaultProps,title: 'Today’s Deals – All With Free Shipping',
-    subtitle: 'Plus, guaranteed best prices.'};
+  const props = {
+    ...defaultProps,
+    title: 'Today’s Deals – All With Free Shipping',
+    subtitle: 'Plus, guaranteed best prices.'
+  };
   return (
     <div>
       <mock.CTA_SeeAll {...props} />
