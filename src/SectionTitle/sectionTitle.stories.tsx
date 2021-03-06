@@ -13,6 +13,7 @@ import {Category} from '../../.storybook/util/stories-hierarchy';
 import {SectionTitle} from './index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withA11y} from '@storybook/addon-a11y';
+import * as mock from './__tests__/mocks';
 
 const story: any = {
   title: Category.SKINDS6,
@@ -21,19 +22,19 @@ const story: any = {
 };
 
 const defaultProps = {
-  title: 'Today’s Deals – All With Free Shipping',
-  subtitle: 'Plus, guaranteed best prices.'
+  style: {backgroundColor: 'white' , marginBottom:'20px'},
+  children:' '
 };
 
 export const _SectionTitle = () => {
-  const props = {...defaultProps};
+  const props = {...defaultProps,title: 'Today’s Deals – All With Free Shipping',
+    subtitle: 'Plus, guaranteed best prices.'};
   return (
     <div>
-      <SectionTitle {...props} />
-      <br />
-      <br />
-      <br />
-      <SectionTitle {...props} href="#" ctaText="See All" />
+      <mock.CTA_SeeAll {...props} />
+      <mock.CTA_NoText {...props} />
+      <mock.Overflow {...props} />
+      <mock.Size {...props} />
     </div>
   );
 };

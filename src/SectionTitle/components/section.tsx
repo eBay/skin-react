@@ -10,8 +10,7 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-export type DivProps = React.HTMLProps<HTMLDivElement>;
-
+type DivProps = React.HTMLProps<HTMLDivElement>;
 export const SectionInfo = (props: DivProps) => {
   const className = classNames('section-title__info', props.className);
   return <div {...props} className={className} />;

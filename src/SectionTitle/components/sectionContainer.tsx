@@ -20,7 +20,7 @@ export const SectionContainer = ({title, subtitle, href, children, ...props}: Se
   const className = classNames('section-title__title-container', props.className);
   return (
     <div {...props} className={className}>
-      <h2 className="section-title__title">{href && <a href={href}>{title}</a>}</h2>
+      <h2 className="section-title__title">{href ? <a href={href}>{title}</a>: title}</h2>
       <span className="section-title__subtitle">{subtitle}</span>
       {children}
     </div>

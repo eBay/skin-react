@@ -10,20 +10,35 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
+import {ReactNode} from 'react';
+import {SectionCTA, SectionOverflow, SectionContainer, SectionInfo} from '../index';
 
-export const addClassNamePrefix = (prefix: string) => (className?: string) => `${prefix}${className || ''}`;
-export type BasicSectionTitleProps = React.HTMLProps<HTMLDivElement> & {
-  sectionSize?: 'small' | 'large' | 'giant';
-};
-
-export const BasicSectionTitle = ({sectionSize, ...props}: BasicSectionTitleProps) => {
+export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'> &
+  Omit<React.HTMLProps<HTMLElement>, 'size'> & {
+    size?: 'small' | 'large' | 'giant';
+    title?: ReactNode;
+    subtitle?: string;
+    href?: string;
+    ctaText?: string;
+    info?: ReactNode;
+    overflow?: ReactNode;
+  };
+export const SectionTitle = ({title, subtitle, href, ctaText, info, overflow, size, ...props}: SectionTitleProps) => {
   const className = classNames(
     'section-title',
     {
-      [`section-title--${sectionSize}`]: sectionSize
+      [`section-title--${size}`]: size
     },
     props.className
   );
-  return <div {...props} className={className} />;
+  return (
+    <div {...props} className={className}>
+      {title && <SectionContainer title={title} subtitle={subtitle} href={href} />}
+      {href && <SectionCTA href={href} ctaText={ctaText} />}
+      {props.children}
+      {info && <SectionInfo>{info}</SectionInfo>}
+      {overflow && <SectionOverflow>{overflow}</SectionOverflow>}
+    </div>
+  );
 };
-export default BasicSectionTitle;
+export default SectionTitle;
