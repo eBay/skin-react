@@ -13,8 +13,7 @@ import classNames from 'classnames';
 import {ReactNode} from 'react';
 import {SectionCTA, SectionOverflow, SectionContainer, SectionInfo} from '../index';
 
-export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'> &
-  Omit<React.HTMLProps<HTMLElement>, 'size'> & {
+export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'|'size'> & {
     size?: 'small' | 'large' | 'giant';
     title?: ReactNode;
     subtitle?: string;
