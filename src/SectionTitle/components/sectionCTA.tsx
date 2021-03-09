@@ -11,8 +11,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import Icon, {IconName} from '../../Icon';
+import {ReactNode} from 'react';
 export type SectionCTAProps = React.HTMLProps<HTMLDivElement> & {
-  ctaText?: string;
+  ctaText?: ReactNode;
   href?: string;
   iconName?: IconName;
   iconProps?: object;

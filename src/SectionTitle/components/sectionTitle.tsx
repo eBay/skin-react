@@ -16,9 +16,9 @@ import {SectionCTA, SectionOverflow, SectionContainer, SectionInfo} from '../ind
 export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'|'size'> & {
     size?: 'small' | 'large' | 'giant';
     title?: ReactNode;
-    subtitle?: string;
+    subtitle?: ReactNode;
     href?: string;
-    ctaText?: string;
+    ctaText?: ReactNode;
     info?: ReactNode;
     overflow?: ReactNode;
   };
