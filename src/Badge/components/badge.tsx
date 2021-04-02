@@ -10,15 +10,7 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import {
-  combineModifiers,
-  getBgColorModifiers,
-  getColorModifiers,
-  getHTMLProps,
-  removeBgColorProps,
-  removeColorProps
-} from '../../skin-utils';
-import * as Skin from '../../skin';
+import {getHTMLProps} from '../../skin-utils';
 
 export type BadgeProps = React.HTMLProps<HTMLSpanElement> & {
   type?: 'menu' | 'icon';
@@ -28,13 +20,9 @@ export const Badge = ({number, type, ...props}: BadgeProps) => {
   const parsedNumber = Math.round(parseInt(number as string, 10));
   if (parsedNumber > 0) {
     const children = parsedNumber > 99 ? '99+' : parsedNumber;
-    const className = classNames(
-      'badge',
-      combineModifiers(props, getColorModifiers, getBgColorModifiers),
-      props.className
-    );
+    const className = classNames('badge', props.className);
     const role = type !== 'menu' && type !== 'icon' && 'img';
-    const HTMLProps = getHTMLProps({...props, className, children, role}, removeColorProps, removeBgColorProps);
+    const HTMLProps = getHTMLProps({...props, className, children, role});
     return <span {...HTMLProps} />;
   }
   return null;

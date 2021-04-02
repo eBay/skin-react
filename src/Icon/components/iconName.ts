@@ -173,6 +173,8 @@ export type IconName =
   | 'checkbox-checked'
   | 'checkbox-unchecked-large'
   | 'checkbox-unchecked'
+  | 'checkbox-mixed'
+  | 'checkbox-mixed-large'
   | 'checkbox-square-checked'
   | 'checkbox-square-checked-large'
   | 'checkbox-square-unchecked'

@@ -13,15 +13,15 @@ import classNames from 'classnames';
 import {ReactNode} from 'react';
 import {SectionCTA, SectionOverflow, SectionContainer, SectionInfo} from '../index';
 
-export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title'|'size'> & {
-    size?: 'small' | 'large' | 'giant';
-    title?: ReactNode;
-    subtitle?: ReactNode;
-    href?: string;
-    ctaText?: ReactNode;
-    info?: ReactNode;
-    overflow?: ReactNode;
-  };
+export type SectionTitleProps = Omit<React.HTMLProps<HTMLDivElement>, 'title' | 'size'> & {
+  size?: 'small' | 'large' | 'giant';
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  href?: string;
+  ctaText?: ReactNode;
+  info?: ReactNode;
+  overflow?: ReactNode;
+};
 export const SectionTitle = ({
   title,
   children,

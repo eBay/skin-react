@@ -10,20 +10,11 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
-import * as ReactDOM from 'react-dom';
 import {useEffect, useRef} from 'react';
 import * as Skin from './skin';
 
 // @ts-ignore
 export const isControlled = (value) => typeof value !== 'undefined';
-
-export const getColorModifiers = ({colors}: Skin.Color) => ({[colors]: !!colors});
-
-export const removeColorProps = (props: Skin.Color) => removeProp(props, 'colors');
-
-export const getBgColorModifiers = ({bgColor}: Skin.BgColor) => ({[bgColor]: !!bgColor});
-
-export const removeBgColorProps = (props: Skin.BgColor) => removeProp(props, 'bgColor');
 
 // @ts-ignore
 export const removeProp = ({[prop]: omit, ...res}: React.HTMLProps<HTMLElement> | object, prop) => res;
@@ -59,7 +50,7 @@ export const DefaultElement = ({tag = 'div', ...props}) => React.createElement(t
 
 export const withProps = ({displayName, ...injectedProps}) => (WrappedComponent = DefaultElement) => {
   const HOC: React.FunctionComponent<React.HTMLProps<HTMLElement> & Skin.Fake> = ({isFake, ...props}) => {
-    const className = classNames(addFakePrefix(isFake, injectedProps.className), props.className);
+    const className = classNames(addFakePrefix(isFake || false, injectedProps.className), props.className);
     const combinedProps = {...injectedProps, ...props, className};
     return <WrappedComponent {...combinedProps} />;
   };

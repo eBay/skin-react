@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const IconSymbols = (props) => (
+export const IconSymbols = (props: React.HTMLProps<HTMLSpanElement>) => (
   <span style={{display: 'none'}} hidden {...props}>
   TODO_REPLACE
   </span>
