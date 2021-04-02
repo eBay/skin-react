@@ -19,7 +19,7 @@ export const isControlled = (value) => typeof value !== 'undefined';
 // @ts-ignore
 export const removeProp = ({[prop]: omit, ...res}: React.HTMLProps<HTMLElement> | object, prop) => res;
 
-type PropsFunc = (object) => object;
+type PropsFunc = (obj:any) => object;
 
 export function getHTMLProps(props: object, ...args: PropsFunc[]): React.HTMLProps<HTMLElement> {
   return args && args.length > 0 ? args.reduce((rest, fn) => ({...fn(rest)}), props) : props;
@@ -31,7 +31,7 @@ export function combineModifiers(props: object, ...args: PropsFunc[]): object {
 
 export const isBetween = (min: number, max: number) => (value: number) => value >= min && value <= max;
 
-export const is = (options: object) => (str: string): boolean => options[str] || false;
+export const is = (options: object) => (str: string): boolean => !!options[str];
 
 export const addPrefix = (prefix: string) => (className = '', showPrefix?: boolean) =>
   `${showPrefix ? prefix : ''}${className}`;
@@ -48,7 +48,7 @@ export const getFakeTag = (isFake: boolean, fakeTag = 'a', tag = 'div') => (isFa
 
 export const DefaultElement = ({tag = 'div', ...props}) => React.createElement(tag, props);
 
-export const withProps = ({displayName, ...injectedProps}) => (WrappedComponent = DefaultElement) => {
+export const withProps = ({displayName, ...injectedProps}: any) => (WrappedComponent = DefaultElement) => {
   const HOC: React.FunctionComponent<React.HTMLProps<HTMLElement> & Skin.Fake> = ({isFake, ...props}) => {
     const className = classNames(addFakePrefix(isFake || false, injectedProps.className), props.className);
     const combinedProps = {...injectedProps, ...props, className};
@@ -58,7 +58,7 @@ export const withProps = ({displayName, ...injectedProps}) => (WrappedComponent 
   return HOC;
 };
 
-export const getDisplayName = (Component) =>
+export const getDisplayName = (Component: any) =>
   !Component ? 'Component' : Component.displayName || Component.name || 'Component';
 
 export const withOnChangeState = <Props,>(Component: React.FC<Props>) => {
@@ -101,18 +101,18 @@ export const withHideEffect = <P extends unknown>(Component: React.ComponentType
   notice.displayName = getDisplayName(Component);
   return notice;
 };
-export const hasValue = (input) => input && input.value && input.value.length > 0;
+export const hasValue = (input: any) => input && input.value && input.value.length > 0;
 
 export const useFocusState: any = () => {
   const htmlElRef = useRef(null);
   const setFocus = () => {
-    htmlElRef.current && htmlElRef.current.focus();
+     htmlElRef?.current && htmlElRef.current.focus();
   };
 
   return [htmlElRef, setFocus];
 };
 export const uniqueId = (n = 7) => Math.random().toString(36).substring(n);
-export const processHtmlAttributes = (input, ignore = []) => {
+export const processHtmlAttributes = (input: any, ignore = []) => {
   const attributes = {};
   const htmlAttributes = input.htmlAttributes;
 
@@ -120,12 +120,12 @@ export const processHtmlAttributes = (input, ignore = []) => {
   if (htmlAttributes) {
     obj = {...htmlAttributes};
   }
-  Object.keys(input).forEach((key) => {
+  Object.keys(input).forEach((key: any) => {
     if (ignore.indexOf(key) === -1 && !obj[key]) {
       obj[key] = input[key];
     }
   });
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach((key: any) => {
     attributes[key] = obj[key];
   });
 

@@ -8,7 +8,6 @@
  *  ***********************************************************
  */
 
-import * as React from 'react';
 import Icon from './components/icon';
 export {Icon} from './components/icon';
 export {IconName} from './components/iconName';
