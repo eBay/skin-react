@@ -9,25 +9,25 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import {FullScreenDialog} from './';
+
+import {PanelDialog} from '../index';
 import {select, withKnobs} from '@storybook/addon-knobs';
 import {withA11y} from '@storybook/addon-a11y';
 const story: any = {
-  title: Category.SKINDS6,
-  component: FullScreenDialog,
+  title: 'skin',
+  component: PanelDialog,
   decorators: [withKnobs, withA11y]
 };
 const defaultProps = {};
-export const _FullScreenDialog = () => {
+export const _PanelDialog = () => {
   const [open, setOpen] = React.useState(true);
   const props = {...defaultProps, open};
   return (
     <div>
       <button className="btn btn--secondary" onClick={() => setOpen(!open)}>
-        Open FullScreenDialog
+        Open PanelDialog
       </button>
-      <FullScreenDialog {...props} onClose={() => setOpen(false)} header={<h2>Heading</h2>}>
+      <PanelDialog {...props} onClose={() => setOpen(false)} header={<h2>Heading</h2>}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -38,7 +38,7 @@ export const _FullScreenDialog = () => {
         <p>
           <a href="http://www.ebay.com">www.ebay.com</a>
         </p>
-      </FullScreenDialog>
+      </PanelDialog>
     </div>
   );
 };

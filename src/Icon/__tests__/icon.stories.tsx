@@ -9,15 +9,15 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import {Icon, IconName} from './index';
+
+import {Icon, IconName} from '../index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import {icons} from '../../.storybook/util/utils';
+import {icons} from '../../util/utils';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Icon,
   decorators: [withKnobs, withA11y]
 };

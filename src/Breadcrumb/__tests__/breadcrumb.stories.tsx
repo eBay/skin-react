@@ -9,15 +9,14 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import {Breadcrumb, BreadcrumbItem} from './index';
+
+import {Breadcrumb, BreadcrumbItem} from '../index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Breadcrumb,
   decorators: [withKnobs, withA11y]
 };

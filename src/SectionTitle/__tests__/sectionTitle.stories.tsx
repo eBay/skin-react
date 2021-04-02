@@ -9,30 +9,35 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import Spinner from './index';
+
+import {SectionTitle} from '../index';
 import {withKnobs} from '@storybook/addon-knobs';
-import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
+import * as mock from './mocks';
 
 const story: any = {
-  title: Category.SKINDS6,
-  component: Spinner,
+  title: 'skin',
+  component: SectionTitle,
   decorators: [withKnobs, withA11y]
 };
 
-const defaultProps = {};
+const defaultProps = {
+  style: {backgroundColor: 'white', marginBottom: '20px'},
+  children: ' '
+};
 
-export const _Spinner = () => {
-  const props = {...defaultProps};
+export const _SectionTitle = () => {
+  const props = {
+    ...defaultProps,
+    title: 'Today’s Deals – All With Free Shipping',
+    subtitle: 'Plus, guaranteed best prices.'
+  };
   return (
     <div>
-      <Spinner {...props} />
-      <br />
-      <br />
-      <br />
-      <Spinner {...props} size="large" />
+      <mock.CTA_SeeAll {...props} />
+      <mock.CTA_NoText {...props} />
+      <mock.Overflow {...props} />
+      <mock.Size {...props} />
     </div>
   );
 };

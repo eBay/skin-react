@@ -9,13 +9,13 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
+
 import {withKnobs, boolean} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Tabs, Tab} from './skin-tab';
+
+import {Tabs, Tab} from '../skin-tab';
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Tab,
   decorators: [withKnobs, withInfo]
 };

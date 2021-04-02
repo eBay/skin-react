@@ -9,17 +9,14 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
+
 import {withKnobs, select, boolean, number} from '@storybook/addon-knobs';
-import Button, {BtnCell, ButtonColors, ButtonSizes, ButtonTypes} from './index';
-import {Icon} from '../Icon';
-import {withInfo} from '@storybook/addon-info';
-import {toStoryObj} from '../../.storybook/util/utils';
-import StoryBook from '../../.storybook/util/story-setup';
+import Button from '../index';
+import {toStoryObj} from '../../util/utils';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Button,
   decorators: [withKnobs, withA11y]
 };

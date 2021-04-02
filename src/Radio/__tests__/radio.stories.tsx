@@ -9,28 +9,28 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import Checkbox from './index';
-import {boolean, select, withKnobs} from '@storybook/addon-knobs';
+
+import Radio from '../index';
+import {select, withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
+import {toStoryObj} from '../../util/utils';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6,
-  component: Checkbox,
+  title: 'skin',
+  component: Radio,
   decorators: [withKnobs, withA11y]
 };
 
 const defaultProps = {};
+const Sizeoptions = toStoryObj([undefined, 'small', 'large']);
 
-export const _Checkbox = () => {
-  const size = select('Sizes', ['large', 'regular'], 'regular');
-  const disabled = boolean('disabled', false);
-  const props = {...defaultProps, size, disabled};
+export const _Radio = () => {
+  const size = select('Sizes', Sizeoptions, undefined);
+  const props = {...defaultProps};
   return (
     <div>
-      <Checkbox aria-label="Default checkbox example" name="checkbox" {...props} />
+      <Radio {...props} size={size} aria-label="Radio" />
       <br />
       <br />
       <br />
@@ -39,15 +39,15 @@ export const _Checkbox = () => {
         <legend>Choose an Option</legend>
         {[1, 2, 3].map((item, index) => (
           <span className="field" key={index}>
-            <Checkbox
-              id={`group-checkbox-inline-${index}`}
+            <Radio
+              id={`group-radio-inline-${index}`}
               className="field__control"
-              aria-label={`checkbox inline ${index}`}
-              name="checkbox_group"
+              aria-label={`radio inline ${index}`}
+              name="radio_group"
               {...props}
               value={item}
             />
-            <label className="field__label field__label--end" htmlFor={`group-checkbox-inline-${index}`}>
+            <label className="field__label field__label--end" htmlFor={`group-radio-inline-${index}`}>
               Option {index + 1}
             </label>
           </span>
@@ -61,15 +61,15 @@ export const _Checkbox = () => {
         <legend>Choose an Option</legend>
         {[1, 2, 3].map((item, index) => (
           <div className="field" key={index}>
-            <Checkbox
-              id={`group-checkbox-stacked-${index}`}
+            <Radio
+              id={`group-radio-stacked-${index}`}
               className="field__control"
-              aria-label={`checkbox stacked ${index}`}
-              name="checkbox_group"
+              aria-label={`radio stacked ${index}`}
+              name="radio_group"
               {...props}
               value={item}
             />
-            <label className="field__label field__label--end" htmlFor={`group-checkbox-stacked-${index}`}>
+            <label className="field__label field__label--end" htmlFor={`group-radio-stacked-${index}`}>
               Option {index + 1}
             </label>
           </div>

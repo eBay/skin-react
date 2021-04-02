@@ -9,26 +9,29 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import Switch from './index';
+
+import Spinner from '../index';
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6,
-  component: Switch,
+  title: 'skin',
+  component: Spinner,
   decorators: [withKnobs, withA11y]
 };
 
 const defaultProps = {};
 
-export const _Switch = () => {
+export const _Spinner = () => {
   const props = {...defaultProps};
   return (
     <div>
-      <Switch {...props} aria-label="Switch" />
+      <Spinner {...props} />
+      <br />
+      <br />
+      <br />
+      <Spinner {...props} size="large" />
     </div>
   );
 };

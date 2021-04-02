@@ -9,14 +9,14 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import CtaButton from './index';
+
+import CtaButton from '../index';
 import {select, withKnobs} from '@storybook/addon-knobs';
-import {toStoryObj} from '../../.storybook/util/utils';
+import {toStoryObj} from '../../util/utils';
 import {withA11y} from '@storybook/addon-a11y';
 
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: CtaButton,
   decorators: [withKnobs, withA11y]
 };

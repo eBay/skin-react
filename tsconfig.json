@@ -5,7 +5,7 @@
     "target": "es5",
     "removeComments": true,
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
-    "rootDirs": ["./src", "stories"],
+    "rootDir": "./src",
     "outDir": "./lib",
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
@@ -27,7 +27,11 @@
     "lib",
     "esm",
     "build",
-    "scripts"
+    "scripts",
+    "*.stories*",
+    "*.stories.tsx",
+    "__tests__"
+
   ],
   "compileOnSave": false,
   "buildOnSave": false,

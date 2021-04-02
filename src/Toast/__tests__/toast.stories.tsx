@@ -9,10 +9,10 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import Toast from './components/toast';
+
+import Toast from '../components/toast';
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Toast
 };
 const defaultProps = {allyCloseText: 'Close Toast'};

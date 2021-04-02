@@ -19,7 +19,7 @@ export const isControlled = (value) => typeof value !== 'undefined';
 // @ts-ignore
 export const removeProp = ({[prop]: omit, ...res}: React.HTMLProps<HTMLElement> | object, prop) => res;
 
-type PropsFunc = (obj:any) => object;
+type PropsFunc = (obj: any) => object;
 
 export function getHTMLProps(props: object, ...args: PropsFunc[]): React.HTMLProps<HTMLElement> {
   return args && args.length > 0 ? args.reduce((rest, fn) => ({...fn(rest)}), props) : props;

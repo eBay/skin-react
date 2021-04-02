@@ -9,10 +9,10 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
+
 import Drawer from './components/drawer';
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Drawer
 };
 const defaultProps = {};

@@ -9,10 +9,10 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import {Select, Option} from './';
+
+import {Select, Option} from '../index';
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Select
 };
 const defaultProps = {};

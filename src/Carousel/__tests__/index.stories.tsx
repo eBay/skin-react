@@ -9,18 +9,17 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Category} from '../../.storybook/util/stories-hierarchy';
+
 import {withKnobs, select, boolean, number} from '@storybook/addon-knobs';
-import {Carousel} from './index';
-import {BgColorsEnum, ColorsEnum} from '../skin';
+import {Carousel} from '../index';
+import {BgColorsEnum, ColorsEnum} from '../../skin';
 import {withA11y} from '@storybook/addon-a11y';
-import {times} from '../test-utils';
-import {BreadcrumbItem} from '../Breadcrumb/components/breadcrumbItem';
-import {Breadcrumb} from '../Breadcrumb/skin-breadcrumb';
+import {times} from '../../test-utils';
+import {BreadcrumbItem} from '../../Breadcrumb/components/breadcrumbItem';
+import {Breadcrumb} from '../../Breadcrumb/skin-breadcrumb';
 
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Carousel,
   decorators: [withKnobs, withA11y]
 };

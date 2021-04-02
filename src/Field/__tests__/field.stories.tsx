@@ -9,16 +9,15 @@
  */
 
 import * as React from 'react';
-import StoryBook from '../../.storybook/util/story-setup';
-import {Category} from '../../.storybook/util/stories-hierarchy';
+
 import {withKnobs} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 import {withA11y} from '@storybook/addon-a11y';
-import {Field, FieldLabel, FieldControl, FieldDescription} from './';
-import Textbox from '../Textbox';
+import {Field, FieldLabel, FieldControl, FieldDescription} from '../index';
+import Textbox from '../../Textbox';
 
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Field,
   decorators: [withKnobs, withA11y]
 };

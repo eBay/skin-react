@@ -9,11 +9,11 @@
  */
 
 import * as React from 'react';
-import {Category} from '../../.storybook/util/stories-hierarchy';
-import Stepper from './';
-import {StepperItem} from './';
+
+import Stepper from '../index';
+import {StepperItem} from '../index';
 const story: any = {
-  title: Category.SKINDS6,
+  title: 'skin',
   component: Stepper
 };
 const defaultProps = {};
