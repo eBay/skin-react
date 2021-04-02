@@ -19,3 +19,4 @@ yarn-error.log
 .vscode/*
 storybook-static
 out*/
+.storybook

@@ -1,9 +1,9 @@
 {
   "name": "skin-react",
-  "version": "2.0.0-beta.37",
+  "version": "2.0.0-beta.38",
   "description": "A set of React Components for Ebay Skin CSS",
-  "main": "lib/src/index.js",
-  "types": "lib/src/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "start": "npm run storybook",
     "sanity-check": "yarn lint && yarn build && yarn test",
@@ -19,8 +19,8 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "build-storybook": "build-storybook",
-    "prepublishOnly": "npm run build && cross-env mv lib/src/* lib",
-    "postpublish": "echo"
+    "prepublishOnly": "npm run build",
+    "postpublish": "npm run deploy-storybook"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -141,6 +141,6 @@
   ],
   "license": "MIT",
   "release": {
-    "publishDir": "lib"
+    "publishDir": "lib/src"
   }
 }
