@@ -29,6 +29,7 @@ export const getTemplateData = (state) => {
     if (typeof style === 'string') {
       item.props.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
       if (transform) {
+        // @ts-ignore
         item.props.style += `transform:${transform}`;
       }
     } else {

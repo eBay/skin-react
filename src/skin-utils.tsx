@@ -31,7 +31,7 @@ export function combineModifiers(props: object, ...args: PropsFunc[]): object {
 
 export const isBetween = (min: number, max: number) => (value: number) => value >= min && value <= max;
 
-export const is = (options: object) => (str: string): boolean => !!options[str];
+export const is = (options: Record<string, unknown>) => (str: string): boolean => !!options[str];
 
 export const addPrefix = (prefix: string) => (className = '', showPrefix?: boolean) =>
   `${showPrefix ? prefix : ''}${className}`;
@@ -65,7 +65,7 @@ export const withOnChangeState = <Props,>(Component: React.FC<Props>) => {
   const WithOnChangeState = React.forwardRef<React.FC<Props>, Props>((props, ref) => {
     // @ts-ignore
     const [state, setState] = React.useState({checked: props.checked || false});
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
       const input = e.target || {};
       // @ts-ignore
       props.onChange && props.onChange(e, input);
@@ -104,28 +104,28 @@ export const withHideEffect = <P extends unknown>(Component: React.ComponentType
 export const hasValue = (input: any) => input && input.value && input.value.length > 0;
 
 export const useFocusState: any = () => {
-  const htmlElRef = useRef(null);
+  const htmlElRef: any = useRef(null);
   const setFocus = () => {
-     htmlElRef?.current && htmlElRef.current.focus();
+    htmlElRef?.current?.focus && htmlElRef.current.focus();
   };
 
   return [htmlElRef, setFocus];
 };
 export const uniqueId = (n = 7) => Math.random().toString(36).substring(n);
-export const processHtmlAttributes = (input: any, ignore = []) => {
-  const attributes = {};
+export const processHtmlAttributes = (input: any, ignore: Array<string> = []) => {
+  const attributes: any = {};
   const htmlAttributes = input.htmlAttributes;
 
   let obj = htmlAttributes || {};
   if (htmlAttributes) {
     obj = {...htmlAttributes};
   }
-  Object.keys(input).forEach((key: any) => {
+  Object.keys(input).forEach((key: string) => {
     if (ignore.indexOf(key) === -1 && !obj[key]) {
       obj[key] = input[key];
     }
   });
-  Object.keys(obj).forEach((key: any) => {
+  Object.keys(obj).forEach((key: string) => {
     attributes[key] = obj[key];
   });
 
