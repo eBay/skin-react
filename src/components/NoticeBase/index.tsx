@@ -3,7 +3,8 @@ import {ReactNode} from 'react';
 import classNames from 'classnames';
 import {Icon} from '../../Icon';
 import {DefaultElement, uniqueId} from '../../skin-utils';
-export type NoticeBaseProps = React.HTMLProps<HTMLElement> & {
+
+export type NoticeBaseProps = Omit<React.HTMLProps<HTMLElement>, 'title'> & {
   status?: 'confirmation' | 'attention' | 'information' | 'celebration' | string;
   a11yText?: string;
   icon?: boolean;

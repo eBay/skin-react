@@ -207,4 +207,3 @@ export const icons = [
   'stepper-attention',
   'dropdown'
 ];
-
