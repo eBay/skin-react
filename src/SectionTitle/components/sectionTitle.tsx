@@ -42,10 +42,11 @@ export const SectionTitle = ({
   );
   return (
     <div {...props} className={className}>
-      {(title || children) && <SectionContainer title={title || children} subtitle={subtitle} href={href} />}
+      {(title) && <SectionContainer title={title} subtitle={subtitle} href={href} />}
       {href && <SectionCTA href={href} ctaText={ctaText} />}
       {info && <SectionInfo>{info}</SectionInfo>}
       {overflow && <SectionOverflow>{overflow}</SectionOverflow>}
+      {children}
     </div>
   );
 };
