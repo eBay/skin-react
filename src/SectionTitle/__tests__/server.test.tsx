@@ -6,10 +6,7 @@ describe('section-title', () => {
     const Input = mock.TitleBasic;
     const {getByText} = render(<Input />);
     const title = getByText(mock.TitleBasicProps.children);
-    expect(title.parentElement.parentElement).toHaveClass('section-title');
-    expect(title.parentElement).toHaveClass('section-title__title-container');
-    expect(title).toHaveClass('section-title__title');
-    expect(title).toHaveProperty('tagName', 'H2');
+    expect(title).toHaveClass('section-title');
   });
 
   it('renders with title tag', () => {
