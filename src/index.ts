@@ -17,7 +17,6 @@ export * from './CtaButton';
 export * from './Details';
 export * from './Dialog';
 export * from './Drawer';
-export * from './Grid';
 export * from './Icon';
 export * from './Notice';
 export * from './Pagination';
